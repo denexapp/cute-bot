@@ -1,1 +1,1 @@
-# paige-bot
+# cute-bot
