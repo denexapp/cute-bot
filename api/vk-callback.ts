@@ -12,7 +12,7 @@ export default async (req: NowRequest, res: NowResponse) => {
   }
 
   if (data.type === 'message_new') {
-    const { text, peer_id } = data.object
+    const { text, peer_id } = data.object.message
 
     await messagesSend(peer_id, text)
     return

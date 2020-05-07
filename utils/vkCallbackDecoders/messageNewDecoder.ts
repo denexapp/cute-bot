@@ -8,14 +8,22 @@ interface Message {
   peer_id: number
 }
 
+interface MessageNew {
+  message: Message
+}
+
 const messageDecoder = JsonDecoder.object<Message>({
   id: JsonDecoder.number,
   text: JsonDecoder.string,
   peer_id: JsonDecoder.number
 }, 'VK message')
 
-export type VkCallbackMessageNew = VkCallbackRequestWithObject<'message_new', Message, typeof variables.secret, typeof variables.groupId>
+const messageNewObjectDecoder = JsonDecoder.object<MessageNew>({
+  message: messageDecoder
+}, 'VK message new object')
 
-const messageNewDecoder = vkCallbackWithObjectRequestDecoder('message_new', messageDecoder, variables.secret, variables.groupId)
+export type VkCallbackMessageNew = VkCallbackRequestWithObject<'message_new', MessageNew, typeof variables.secret, typeof variables.groupId>
+
+const messageNewDecoder = vkCallbackWithObjectRequestDecoder('message_new', messageNewObjectDecoder, variables.secret, variables.groupId)
 
 export default messageNewDecoder
