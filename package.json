@@ -18,9 +18,11 @@
   "homepage": "https://github.com/denexapp/cute-bot#readme",
   "dependencies": {
     "@now/node": "^1.5.1",
+    "node-fetch": "^2.6.0",
     "ts.data.json": "^1.1.0"
   },
   "devDependencies": {
+    "@types/node-fetch": "^2.5.7",
     "typescript": "^3.8.3"
   }
 }

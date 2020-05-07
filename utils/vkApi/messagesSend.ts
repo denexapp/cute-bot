@@ -1,5 +1,6 @@
 import variables from '../variables'
 import consts from '../consts'
+import fetch from 'node-fetch'
 
 type Params = { [key: string]: string | number }
 
