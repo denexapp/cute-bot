@@ -4,7 +4,7 @@ export type VkCallbackRequestWithObject<Type extends string, Response, Secret ex
   type: Type
   object: Response
   secret: Secret
-  groupId: GroupId
+  group_id: GroupId
 }
 
 const vkCallbackWithObjectRequestDecoder = <Type extends string, Response, Secret extends string, GroupId extends number>(
@@ -16,7 +16,7 @@ const vkCallbackWithObjectRequestDecoder = <Type extends string, Response, Secre
   type: JsonDecoder.isExactly(type),
   object: decoder,
   secret: JsonDecoder.isExactly(secret),
-  groupId: JsonDecoder.isExactly(groupId)
+  group_id: JsonDecoder.isExactly(groupId)
 }, 'VK callback request')
 
 export default vkCallbackWithObjectRequestDecoder
