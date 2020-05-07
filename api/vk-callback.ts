@@ -4,10 +4,6 @@ import messagesSend from '../utils/vkApi/messagesSend'
 import variables from '../utils/variables'
 
 export default async (req: NowRequest, res: NowResponse) => {
-  console.log(req.body)
-  console.log(typeof req.body)
-  console.log(JSON.stringify(req.body))
-  console.log(variables)
   const data = decodeVkCallback(req.body)
 
   if (data.type === 'confirmation') {
