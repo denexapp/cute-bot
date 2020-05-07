@@ -19,5 +19,8 @@
   "dependencies": {
     "@now/node": "^1.5.1",
     "ts.data.json": "^1.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^3.8.3"
   }
 }
