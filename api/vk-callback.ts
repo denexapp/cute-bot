@@ -15,6 +15,8 @@ export default async (req: NowRequest, res: NowResponse) => {
     const { text, peer_id } = data.object.message
 
     await messagesSend(peer_id, text)
+    
+    res.send('ok')
     return
   }
   
