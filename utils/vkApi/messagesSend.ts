@@ -3,6 +3,7 @@ import consts from '../consts'
 import fetch from 'node-fetch'
 import { JsonDecoder } from 'ts.data.json'
 import decode from '../decode'
+import getRandomInt from '../getRandomInt'
 
 type Params = { [key: string]: string | number }
 
@@ -10,6 +11,7 @@ const generateVkLink = (methodName: string, params?: Params): string => {
   const query = new URLSearchParams({
     access_token: variables.accessToken,
     v: consts.vkApiVersion,
+    random_id: getRandomInt(0, 999999999999999).toString(10),
     ...(params ? params : { })
   })
 
