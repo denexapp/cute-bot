@@ -1,5 +1,5 @@
 const messages = {
-  unknownCommand: 'Unknown command',
+  unknownCommand: 'Unknown command. Use /help to list all commands',
   echoDescription: 'echoes all messages in chat',
   echoEnabled: 'Echo enabled',
   echoDisabled: 'Echo disabled',
