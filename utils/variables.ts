@@ -7,6 +7,7 @@ type Variables = {
   secret: string
   accessToken: string
   confirmationKey: string
+  databaseSecret: string
 }
 
 const stringToNumberDecoder = new JsonDecoder.Decoder<number>((parameter: unknown) => {
@@ -25,7 +26,8 @@ const variablesDecoder = JsonDecoder.object<Variables>({
   groupId: stringToNumberDecoder,
   secret: JsonDecoder.string,
   accessToken: JsonDecoder.string,
-  confirmationKey: JsonDecoder.string
+  confirmationKey: JsonDecoder.string,
+  databaseSecret: JsonDecoder.string
 }, 'Variables Decoder')
 
 const values = process.env

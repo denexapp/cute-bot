@@ -2,6 +2,7 @@ import { NowRequest, NowResponse } from '@now/node'
 import decodeVkCallback from '../utils/decodeVkCallback'
 import messagesSend from '../utils/vkApi/messagesSend'
 import variables from '../utils/variables'
+import getChatSettings from '../utils/database/getSettings'
 
 export default async (req: NowRequest, res: NowResponse) => {
   const data = decodeVkCallback(req.body)
@@ -13,8 +14,12 @@ export default async (req: NowRequest, res: NowResponse) => {
 
   if (data.type === 'message_new') {
     const { text, peer_id } = data.object.message
-
-    await messagesSend(peer_id, text)
+    
+    const settings = await getChatSettings()
+    
+    if (settings.echo) {
+      await messagesSend(peer_id, text)
+    }
     
     res.send('ok')
     return
