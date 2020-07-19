@@ -15,7 +15,7 @@ export default async (req: NowRequest, res: NowResponse) => {
   if (data.type === 'message_new') {
     const { text, peer_id } = data.object.message
     
-    const settings = await getChatSettings()
+    const settings = await getChatSettings(peer_id)
     
     if (settings.echo) {
       await messagesSend(peer_id, text)

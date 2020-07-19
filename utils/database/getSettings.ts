@@ -7,7 +7,7 @@ export interface ChatSettings {
   echo: boolean
 }
 
-const getChatSettings = async (): Promise<ChatSettings> => {
+const getChatSettings = async (peerId: number): Promise<ChatSettings> => {
   const client = getDatabaseClient()
   
   const settings = await client.query(
@@ -25,19 +25,19 @@ const getChatSettings = async (): Promise<ChatSettings> => {
         q.Exists(
           q.Ref(
             q.Collection('chats-settings'),
-            123
+            peerId
           )
         ),
         q.Get(
           q.Ref(
             q.Collection('chats-settings'),
-            123
+            peerId
           )
         ),
         q.Create(
           q.Ref(
             q.Collection('chats-settings'),
-            123
+            peerId
           ),
           {
             data: {
