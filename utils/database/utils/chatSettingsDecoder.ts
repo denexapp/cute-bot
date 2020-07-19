@@ -1,5 +1,5 @@
 import { JsonDecoder } from 'ts.data.json'
-import { ChatSettings } from '../getSettings'
+import { ChatSettings } from '../getChatSettings'
 
 const chatSettingsDecoder = JsonDecoder.object<ChatSettings>({
   echo: JsonDecoder.boolean
