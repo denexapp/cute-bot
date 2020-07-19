@@ -20,9 +20,7 @@ export default async (req: NowRequest, res: NowResponse) => {
 
     if (text.startsWith('/')) {
       await handleCommand(text, peer_id, settings)
-    }
-
-    if (settings.echo) {
+    } else if (settings.echo) {
       await messagesSend(peer_id, text)
     }
     
