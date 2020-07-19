@@ -1,12 +1,19 @@
 import echo from '../commands/echo'
+import help from '../commands/help'
 import { ChatSettings } from './database/getChatSettings'
-import messagesSend from './vkApi/messagesSend'
 import messages from './messages'
+import messagesSend from './vkApi/messagesSend'
 
 export type Command = (peerId: number, settings: ChatSettings) => Promise<void>
 
-const commands: { [commandName: string]: Command } = {
-  echo
+export type CommandObject = {
+  command: Command
+  description: string
+}
+
+export const commands: { [commandName: string]: CommandObject } = {
+  echo,
+  help
 }
 
 const getFirstWord = (text: string) => {
@@ -16,10 +23,10 @@ const getFirstWord = (text: string) => {
 
 const handleCommand = async (text: string, peerId: number, settings: ChatSettings) => {
   const commandName = getFirstWord(text).slice(1)
-  const command = commands[commandName]
+  const commandObject = commands[commandName]
 
-  if (command !== undefined) {
-    await command(peerId, settings)
+  if (commandObject !== undefined) {
+    await commandObject.command(peerId, settings)
   } else {
     await messagesSend(peerId, messages.unknownCommand)
   }
