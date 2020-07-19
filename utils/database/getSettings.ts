@@ -1,7 +1,7 @@
 import { query as q } from 'faunadb'
 import getDatabaseClient from './utils/getDatabaseClient'
-import decode from '../decode'
 import chatSettingsDecoder from './utils/chatSettingsDecoder'
+import decodeDatabaseResponse from './utils/decodeDatabaseResponse'
 
 export interface ChatSettings {
   echo: boolean
@@ -49,7 +49,7 @@ const getChatSettings = async (peerId: number): Promise<ChatSettings> => {
     )
   )
 
-  const decodedSettings = decode(settings, chatSettingsDecoder)
+  const decodedSettings = decodeDatabaseResponse(settings, chatSettingsDecoder)
 
   return decodedSettings
 }
