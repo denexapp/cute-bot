@@ -9,42 +9,31 @@ export interface ChatSettings {
 
 const getChatSettings = async (peerId: number): Promise<ChatSettings> => {
   const client = getDatabaseClient()
-  
+
   const settings = await client.query(
-    q.Do(
-      q.If(
-        q.Exists(
-          q.Collection('chats-settings')
-        ),
-        null,
-        q.CreateCollection({
-          name: 'chats-settings'
-        })
-      ),
-      q.If(
-        q.Exists(
-          q.Ref(
-            q.Collection('chats-settings'),
-            peerId
-          )
-        ),
-        q.Get(
-          q.Ref(
-            q.Collection('chats-settings'),
-            peerId
-          )
-        ),
-        q.Create(
-          q.Ref(
-            q.Collection('chats-settings'),
-            peerId
-          ),
-          {
-            data: {
-              echo: false
-            }
-          }
+    q.If(
+      q.Exists(
+        q.Ref(
+          q.Collection('chats-settings'),
+          peerId
         )
+      ),
+      q.Get(
+        q.Ref(
+          q.Collection('chats-settings'),
+          peerId
+        )
+      ),
+      q.Create(
+        q.Ref(
+          q.Collection('chats-settings'),
+          peerId
+        ),
+        {
+          data: {
+            echo: false
+          }
+        }
       )
     )
   )
