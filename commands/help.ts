@@ -17,7 +17,7 @@ const generateCommandList = (commands: Array<CommandItem>, header: string): stri
 const command: Command = async (peerId, settings) => {
   const commandItems: Array<CommandItem> = Object.entries(commands)
   const adminCommands = commandItems.filter(([, { isAdminCommand }]) => isAdminCommand)
-  const userCommands = commandItems.filter(([, { isAdminCommand }]) => isAdminCommand)
+  const userCommands = commandItems.filter(([, { isAdminCommand }]) => !isAdminCommand)
 
   const userCommandsText = generateCommandList(userCommands, messages.helpUserCommands)
   const adminCommandsText = generateCommandList(adminCommands, messages.helpAdminCommands)
