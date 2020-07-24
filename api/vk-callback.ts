@@ -15,13 +15,13 @@ export default async (req: NowRequest, res: NowResponse) => {
   }
 
   if (data.type === 'message_new') {
-    const { text, peer_id } = data.object.message
+    const { text, peer_id, from_id } = data.object.message
     
     await createChatSettingsCollection()
     const settings = await getChatSettings(peer_id)
 
     if (text.startsWith('/')) {
-      await handleCommand(text, peer_id, settings)
+      await handleCommand(text, peer_id, from_id, settings)
     } else if (settings.echo) {
       await messagesSend(peer_id, text)
     }
@@ -32,4 +32,3 @@ export default async (req: NowRequest, res: NowResponse) => {
   
   res.send('ok')
 }
-
