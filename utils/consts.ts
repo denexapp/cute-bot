@@ -1,5 +1,5 @@
-const consts ={
-  vkApiVersion: '5.103'
+const consts = {
+  vkApiVersion: '5.120'
 }
 
 export default consts
