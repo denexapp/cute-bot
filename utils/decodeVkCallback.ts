@@ -14,9 +14,7 @@ const decoders = [
 
 const vkCallbackDecoder = JsonDecoder.oneOf<Callback>(decoders, 'Vk Callback')
 
-const decodeVkCallback = (
-  data: unknown,
-) => {
+const decodeVkCallback = (data: unknown) => {
   return decode(data, vkCallbackDecoder)
 }
 
