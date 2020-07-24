@@ -19,7 +19,10 @@ const conversationMemberDecoder = JsonDecoder.object<ConversationMember>({
   member_id: JsonDecoder.number,
   invited_by: JsonDecoder.number,
   join_date: JsonDecoder.number,
-  is_admin: JsonDecoder.boolean,
+  conversationMemberDecoder  is_admin: JsonDecoder.oneOf([
+    JsonDecoder.boolean,
+    JsonDecoder.isUndefined(false)
+  ], 'Is admin')
 }, 'Conversation member decoder')
 
 const messagesGetConversationMembersDecoder = JsonDecoder.object<MessagesGetConversationMembersDecoderResponse>({
