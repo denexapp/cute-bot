@@ -17,6 +17,8 @@ const makeVkRequest = async <T>(
 
   const json = await response.json()
 
+  console.log(await response.text())
+
   const value = decode(json, vkResponseDecoder).response
 
   return decode(value, decoder)
