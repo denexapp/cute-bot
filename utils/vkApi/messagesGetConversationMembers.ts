@@ -6,7 +6,6 @@ type ConversationMember = {
   invited_by: number
   join_date: number
   is_admin: boolean
-  can_kick: boolean
 }
 
 type MessagesGetConversationMembersDecoderResponse = {
@@ -21,7 +20,6 @@ const conversationMemberDecoder = JsonDecoder.object<ConversationMember>({
   invited_by: JsonDecoder.number,
   join_date: JsonDecoder.number,
   is_admin: JsonDecoder.boolean,
-  can_kick: JsonDecoder.boolean
 }, 'Conversation member decoder')
 
 const messagesGetConversationMembersDecoder = JsonDecoder.object<MessagesGetConversationMembersDecoderResponse>({
