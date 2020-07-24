@@ -4,6 +4,8 @@ const messages = {
   echoEnabled: 'Echo enabled',
   echoDisabled: 'Echo disabled',
   helpDescription: 'lists all commands',
+  helpUserCommands: 'User commands',
+  helpAdminCommands: 'Admin commands',
 }
 
 export default messages

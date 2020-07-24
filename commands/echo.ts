@@ -1,4 +1,4 @@
-import { Command, CommandObject } from '../utils/handleCommand'
+import { Command, CommandObject } from "."
 import setChatSettings from '../utils/database/setChatSetting'
 import messagesSend from '../utils/vkApi/messagesSend'
 import messages from '../utils/messages'
@@ -13,6 +13,7 @@ const command: Command = async (peerId, settings) => {
 
 const echo: CommandObject = {
   command,
+  isAdminCommand: true,
   description: messages.echoDescription
 }
 

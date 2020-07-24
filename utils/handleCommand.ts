@@ -1,20 +1,7 @@
-import echo from '../commands/echo'
-import help from '../commands/help'
 import { ChatSettings } from './database/getChatSettings'
 import messages from './messages'
 import messagesSend from './vkApi/messagesSend'
-
-export type Command = (peerId: number, settings: ChatSettings) => Promise<void>
-
-export type CommandObject = {
-  command: Command
-  description: string
-}
-
-export const commands: { [commandName: string]: CommandObject } = {
-  echo,
-  help
-}
+import { commands } from '../commands'
 
 const getFirstWord = (text: string) => {
   const spaceIndex = text.indexOf(' ')
