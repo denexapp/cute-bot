@@ -2,7 +2,7 @@ import variables from '../variables'
 import vkCallbackWithObjectRequestDecoder, { VkCallbackRequestWithObject } from './vkCallbackWithObjectDecoder'
 import { JsonDecoder } from 'ts.data.json'
 
-interface Message {
+export interface Message {
   id: number
   text: string
   peer_id: number

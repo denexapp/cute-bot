@@ -1,8 +1,9 @@
 import { ChatSettings } from '../utils/database/getChatSettings'
+import { Message } from '../utils/vkCallbackDecoders/messageNewDecoder'
 import echo from './echo'
 import help from './help'
 
-export type Command = (peerId: number, settings: ChatSettings) => Promise<void>
+export type Command = (message: Message, settings: ChatSettings) => Promise<void>
 
 export type CommandObject = {
   command: Command
