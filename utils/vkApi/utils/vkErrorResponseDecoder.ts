@@ -1,8 +1,8 @@
 import { JsonDecoder } from 'ts.data.json'
 
 type Error = {
-  code: number
-  description: string
+  error_code: number
+  error_msg: string
 }
 
 export type VkErrorResponse = {
@@ -11,8 +11,8 @@ export type VkErrorResponse = {
 }
 
 const errorDecoder = JsonDecoder.object<Error>({
-  code: JsonDecoder.number,
-  description: JsonDecoder.string
+  error_code: JsonDecoder.number,
+  error_msg: JsonDecoder.string
 }, 'Error decoder')
 
 const vkErrorResponseDecoder = JsonDecoder.object<VkErrorResponse>({

@@ -20,10 +20,8 @@ const makeVkRequest = async <T>(
   const value = decode(json, vkResponseDecoder)
 
   if (!value.success) {
-    throw new Error(`VK api responded with error:\nCode: ${value.error.code}\n${value.error.description}`)
+    throw new Error(`VK api responded with error:\nCode: ${value.error.error_code}\n${value.error.error_msg}`)
   }
-
-  console.log(JSON.stringify(json))
 
   return decode(value.response, decoder)
 }

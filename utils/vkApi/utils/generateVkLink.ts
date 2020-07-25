@@ -19,7 +19,9 @@ const transformParams = (params?: VkLinkParams) => {
         result[name] = value
       }
       return result
-    }, {})
+    }, { })
+
+  console.log(result)
 
   return result
 }
