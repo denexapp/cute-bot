@@ -12,6 +12,8 @@ const getFirstWord = (text: string) => {
 
 const handleCommand = async (message: Message, settings: ChatSettings) => {
   const { from_id: fromId, peer_id: peerId, text } = message
+
+  console.log(JSON.stringify(message))
   
   const commandName = getFirstWord(text).slice(1)
   const commandObject = commands[commandName]

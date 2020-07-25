@@ -6,11 +6,12 @@ const messagesDeleteDecoder = JsonDecoder.dictionary(
   'messages.delete decoder'
 )
 
-const messagesDelete = async (id: number, delete_for_all: boolean) => (
-  await makeVkRequest('messages.delete', messagesDeleteDecoder, {
+const messagesDelete = async (id: number, delete_for_all: boolean) => {
+  console.log(`\n\n${id}\n\n`)
+  return await makeVkRequest('messages.delete', messagesDeleteDecoder, {
     message_ids: id,
     delete_for_all
   })
-)
+}
 
 export default messagesDelete
