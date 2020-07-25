@@ -21,8 +21,6 @@ const transformParams = (params?: VkLinkParams) => {
       return result
     }, { })
 
-  console.log(result)
-
   return result
 }
 
