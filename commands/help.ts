@@ -1,6 +1,6 @@
 import { Command, CommandObject, commands } from '.'
 import messages from '../utils/messages'
-import messagesSend from '../utils/vkApi/messagesSend'
+import vk from '../utils/vk'
 
 type CommandItem = [string, CommandObject]
 
@@ -26,7 +26,7 @@ const command: Command = async (message, settings) => {
 
   const text = `${userCommandsText}\n\n${adminCommandsText}`
 
-  await messagesSend(peerId, text)
+  await vk.messagesSend(peerId, text)
 }
 
 const help: CommandObject = {

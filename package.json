@@ -20,7 +20,8 @@
     "@now/node": "^1.5.1",
     "faunadb": "^2.14.2",
     "node-fetch": "^2.6.0",
-    "ts.data.json": "^1.1.0"
+    "ts.data.json": "^1.1.0",
+    "vk-ts": "^0.1.0"
   },
   "devDependencies": {
     "@types/node-fetch": "^2.5.7",

@@ -1,9 +1,9 @@
 import { Command, CommandObject } from "."
 import messages from '../utils/messages'
-import messagesDelete from '../utils/vkApi/messagesDelete'
+import vk from '../utils/vk'
 
 const command: Command = async (message, settings) => {
-  await messagesDelete(message.id, true)
+  await vk.messagesDelete(message.id, true)
 }
 
 const echo: CommandObject = {
