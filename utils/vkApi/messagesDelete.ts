@@ -7,7 +7,6 @@ const messagesDeleteDecoder = JsonDecoder.dictionary(
 )
 
 const messagesDelete = async (id: number, delete_for_all: boolean) => {
-  console.log(`\n\n${id}\n\n`)
   return await makeVkRequest('messages.delete', messagesDeleteDecoder, {
     message_ids: id,
     delete_for_all
