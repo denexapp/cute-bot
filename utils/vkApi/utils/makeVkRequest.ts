@@ -17,9 +17,13 @@ const makeVkRequest = async <T>(
 
   const json = await response.json()
 
-  const value = decode(json, vkResponseDecoder).response
+  const value = decode(json, vkResponseDecoder)
 
-  return decode(value, decoder)
+  if (!value.success) {
+    throw new Error(`VK api responded with error:\nCode: ${value.error.code}\n${value.error.description}`)
+  }
+
+  return decode(value.response, decoder)
 }
 
 export default makeVkRequest

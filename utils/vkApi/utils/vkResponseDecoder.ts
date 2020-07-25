@@ -1,11 +1,12 @@
 import { JsonDecoder } from 'ts.data.json'
+import vkErrorResponseDecoder, { VkErrorResponse } from './vkErrorResponseDecoder'
+import vkSucessfulResponseDecoder, { VkSucessfulResponse } from './vkSucessfulResponseDecoder'
 
-type VkResponse = {
-  response: unknown
-}
+type VkResponse = VkErrorResponse | VkSucessfulResponse
 
-const vkResponseDecoder = JsonDecoder.object<VkResponse>({
-  response: JsonDecoder.succeed
-}, 'VK response decoder')
+const vkResponseDecoder = JsonDecoder.oneOf<VkResponse>([
+  vkErrorResponseDecoder,
+  vkSucessfulResponseDecoder
+], 'VK response decoder')
 
 export default vkResponseDecoder
