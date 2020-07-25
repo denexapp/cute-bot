@@ -1,6 +1,6 @@
 import { JsonDecoder } from 'ts.data.json'
 
-export type VkCallbackRequestWithObject<Type extends string, Response, Secret extends string, GroupId extends number> = {
+export interface VkCallbackRequestWithObject<Type extends string, Response, Secret extends string, GroupId extends number> {
   type: Type
   object: Response
   secret: Secret

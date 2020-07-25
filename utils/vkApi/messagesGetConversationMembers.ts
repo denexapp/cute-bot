@@ -1,14 +1,14 @@
 import { JsonDecoder } from 'ts.data.json'
 import makeVkRequest from './utils/makeVkRequest'
 
-type ConversationMember = {
+interface ConversationMember {
   member_id: number
   invited_by: number
   join_date: number
   is_admin: boolean
 }
 
-type MessagesGetConversationMembersDecoderResponse = {
+interface MessagesGetConversationMembersDecoderResponse {
   count: number
   items: Array<ConversationMember>
   profiles: Array<unknown>

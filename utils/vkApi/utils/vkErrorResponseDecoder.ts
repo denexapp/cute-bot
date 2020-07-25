@@ -1,11 +1,11 @@
 import { JsonDecoder } from 'ts.data.json'
 
-type Error = {
+interface Error {
   error_code: number
   error_msg: string
 }
 
-export type VkErrorResponse = {
+export interface VkErrorResponse {
   success: false
   error: Error
 }

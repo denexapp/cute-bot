@@ -6,7 +6,7 @@ import remove from './remove'
 
 export type Command = (message: Message, settings: ChatSettings) => Promise<void>
 
-export type CommandObject = {
+export interface CommandObject {
   command: Command
   isAdminCommand: boolean
   description: string

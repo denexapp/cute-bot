@@ -2,7 +2,7 @@ import parseNumber from './parseNumber'
 import { Err, Ok, JsonDecoder } from 'ts.data.json'
 import decode from './decode'
 
-type Variables = {
+interface Variables {
   groupId: number
   secret: string
   accessToken: string

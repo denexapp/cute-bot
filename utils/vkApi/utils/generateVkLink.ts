@@ -1,9 +1,9 @@
 import variables from '../../variables'
 import consts from '../../consts'
 
-export type VkLinkParams = { [key: string]: string | number | boolean }
+export interface VkLinkParams { [key: string]: string | number | boolean }
 
-type TransformedParams = { [key: string]: string | number }
+interface TransformedParams { [key: string]: string | number }
 
 const transformParams = (params?: VkLinkParams) => {
   if (params === undefined) {

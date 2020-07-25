@@ -1,6 +1,6 @@
 import { JsonDecoder } from 'ts.data.json'
 
-export type VkSucessfulResponse = {
+export interface VkSucessfulResponse {
   success: true
   response: unknown
 }

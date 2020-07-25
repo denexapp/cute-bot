@@ -1,7 +1,7 @@
 import { JsonDecoder } from 'ts.data.json'
 import decode from '../../decode'
 
-type DatabaseResponse = {
+interface DatabaseResponse {
   data: unknown
 }
 
