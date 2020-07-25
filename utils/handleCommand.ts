@@ -3,13 +3,16 @@ import messages from './messages'
 import messagesSend from './vkApi/messagesSend'
 import { commands } from '../commands'
 import messagesGetConversationMembers from './vkApi/messagesGetConversationMembers'
+import { Message } from './vkCallbackDecoders/messageNewDecoder'
 
 const getFirstWord = (text: string) => {
   const spaceIndex = text.indexOf(' ')
   return spaceIndex === -1 ? text : text.slice(0, spaceIndex)
 }
 
-const handleCommand = async (text: string, peerId: number, fromId: number, settings: ChatSettings) => {
+const handleCommand = async (message: Message, settings: ChatSettings) => {
+  const { from_id: fromId, peer_id: peerId, text } = message
+  
   const commandName = getFirstWord(text).slice(1)
   const commandObject = commands[commandName]
 
@@ -33,7 +36,7 @@ const handleCommand = async (text: string, peerId: number, fromId: number, setti
     }
   }
 
-  await commandObject.command(peerId, settings)
+  await commandObject.command(message, settings)
 }
 
 export default handleCommand
