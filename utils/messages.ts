@@ -8,6 +8,7 @@ const messages = {
   helpDescription: 'lists all commands',
   helpUserCommands: 'User commands',
   helpAdminCommands: 'Admin commands',
+  removeDescription: 'removes message with this command',
 }
 
 export default messages
