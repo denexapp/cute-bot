@@ -4,7 +4,7 @@ import getChatSettings from '../utils/database/getChatSettings'
 import decodeVkCallback from '../utils/decodeVkCallback'
 import handleCommand from '../utils/handleCommand'
 import variables from '../utils/variables'
-import messagesSend from '../utils/vkApi/messagesSend'
+import vk from '../utils/vk'
 
 export default async (req: NowRequest, res: NowResponse) => {
   const data = decodeVkCallback(req.body)
@@ -24,7 +24,7 @@ export default async (req: NowRequest, res: NowResponse) => {
     if (text.startsWith('/')) {
       await handleCommand(message, settings)
     } else if (settings.echo) {
-      await messagesSend(peerId, text)
+      await vk.messagesSend(peerId, text)
     }
     
     res.send('ok')
