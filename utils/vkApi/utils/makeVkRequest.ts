@@ -23,6 +23,8 @@ const makeVkRequest = async <T>(
     throw new Error(`VK api responded with error:\nCode: ${value.error.code}\n${value.error.description}`)
   }
 
+  console.log(JSON.stringify(json))
+
   return decode(value.response, decoder)
 }
 
