@@ -7,6 +7,7 @@ export interface Message {
   text: string
   peer_id: number
   from_id: number
+  conversation_message_id: number
 }
 
 interface MessageNew {
@@ -17,7 +18,8 @@ const messageDecoder = JsonDecoder.object<Message>({
   id: JsonDecoder.number,
   text: JsonDecoder.string,
   peer_id: JsonDecoder.number,
-  from_id: JsonDecoder.number
+  from_id: JsonDecoder.number,
+  conversation_message_id: JsonDecoder.number
 }, 'VK message')
 
 const messageNewObjectDecoder = JsonDecoder.object<MessageNew>({
