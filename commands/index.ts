@@ -9,6 +9,8 @@ export type Command = (message: Message, settings: ChatSettings) => Promise<void
 export interface CommandObject {
   command: Command
   isAdminCommand: boolean
+  worksInGroupChats: boolean
+  worksInPrivateMessages: boolean
   description: string
 }
 

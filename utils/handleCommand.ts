@@ -20,6 +20,18 @@ const handleCommand = async (message: Message, settings: ChatSettings) => {
     return
   }
 
+  const privateMessage = message.peer_id < 2000000000
+
+  if (privateMessage && !commandObject.worksInPrivateMessages) {
+    await vk.messagesSend(peerId, messages.commandAvailableInAGroupChatOnly)
+    return
+  }
+
+  if (!privateMessage && !commandObject.worksInGroupChats) {
+    await vk.messagesSend(peerId, messages.commandAvailableInThePrivateChatOnly)
+    return
+  }
+
   if (commandObject.isAdminCommand) {
     const { items } = await vk.messagesGetConversationMembers(peerId)
     const memberIndex = items.findIndex(({ member_id }) => member_id === fromId)

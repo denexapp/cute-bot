@@ -31,6 +31,8 @@ const command: Command = async (message, settings) => {
 
 const help: CommandObject = {
   command,
+  worksInGroupChats: true,
+  worksInPrivateMessages: true,
   isAdminCommand: false,
   description: messages.helpDescription
 }

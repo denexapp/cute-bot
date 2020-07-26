@@ -8,6 +8,8 @@ const command: Command = async (message, settings) => {
 
 const echo: CommandObject = {
   command,
+  worksInGroupChats: true,
+  worksInPrivateMessages: false,
   isAdminCommand: false,
   description: messages.removeDescription
 }
