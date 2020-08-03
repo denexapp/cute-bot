@@ -11,6 +11,9 @@ const messages = {
   helpUserCommands: 'User commands',
   helpAdminCommands: 'Admin commands',
   removeDescription: 'removes message with this command',
+  callbackSecretDescription: 'shows your callback server secret',
+  callbackSecretMessage: 'Your callback server secret',
+  callbackSecretMessageAttention: 'Do not share this secret to anyone'
 }
 
 export default messages
