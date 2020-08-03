@@ -1,5 +1,5 @@
 import { NowRequest, NowResponse } from '@now/node'
-import createChatSettingsCollection from '../utils/database/createChatsSettingsCollection'
+import createSettingsCollections from '../utils/database/createSettingsCollections'
 import getChatSettings from '../utils/database/getChatSettings'
 import decodeVkCallback from '../utils/decodeVkCallback'
 import handleCommand from '../utils/handleCommand'
@@ -18,7 +18,7 @@ export default async (req: NowRequest, res: NowResponse) => {
     const { message } = data.object
     const { text, peer_id: peerId } = message
     
-    await createChatSettingsCollection()
+    await createSettingsCollections()
     const settings = await getChatSettings(peerId)
 
     if (text.startsWith('/')) {
