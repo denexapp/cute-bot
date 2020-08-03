@@ -15,7 +15,10 @@ const makeRequestToCallback = async <T>(
   }
 
   const result = await fetch(url, {
-    body: JSON.stringify(body)
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json'
+    }
   })
 
   if (!result.ok) {
