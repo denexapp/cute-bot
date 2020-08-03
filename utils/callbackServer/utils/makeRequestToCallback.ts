@@ -1,5 +1,6 @@
-import decodeCallback from './decodeCallback'
+import fetch from 'node-fetch'
 import { JsonDecoder } from 'ts.data.json'
+import decodeCallback from './decodeCallback'
 
 const makeRequestToCallback = async <T>(
   url: string,
