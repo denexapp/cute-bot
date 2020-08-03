@@ -20,7 +20,7 @@ const command: Command = async (message, settings) => {
   try {
     await add(url, callbackSecret)
   } catch {
-    const response = `${messages.callbackAddFailError}\n\n${messages.callbackAddFailUrl}: ${url}`
+    const response = `${messages.callbackAddFailError}\n\n${messages.callbackAddFailUrl}: ${url === undefined ? '' : url}`
     await vk.messagesSend(peerId, response)
     return
   }
