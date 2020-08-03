@@ -1,0 +1,1 @@
+export const callbackServerName = 'cute bot callback'

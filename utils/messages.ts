@@ -13,7 +13,12 @@ const messages = {
   removeDescription: 'removes message with this command',
   callbackSecretDescription: 'shows your callback server secret',
   callbackSecretMessage: 'Your callback server secret',
-  callbackSecretMessageAttention: 'Do not share this secret to anyone'
+  callbackSecretMessageAttention: 'Do not share this secret to anyone',
+  callbackAddDescription: 'Adds personal callback server',
+  callbackAddFailError: 'Failed to add callback server. Make sure that server is online',
+  callbackAddFailBadUrl: 'Failed to add callback server. Provided url is not acceptable',
+  callbackAddFailUrl: 'Server url',
+  callbackAddSuccess: 'Callback server successfully added'
 }
 
 export default messages
