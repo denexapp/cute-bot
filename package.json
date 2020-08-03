@@ -21,7 +21,7 @@
     "faunadb": "^2.14.2",
     "nanoid": "^3.1.12",
     "ts.data.json": "^1.1.0",
-    "vk-ts": "^0.3.0"
+    "vk-ts": "^0.4.0"
   },
   "devDependencies": {
     "typescript": "^3.8.3"
