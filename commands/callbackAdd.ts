@@ -4,6 +4,7 @@ import getUserSettings from '../utils/database/getUserSettings'
 import messages from '../utils/messages'
 import isUrlValidAndHttps from '../utils/validateString'
 import vk from '../utils/vk'
+import setUserSettings from '../utils/database/setUserSettings'
 
 const command: Command = async (message, settings) => {
   const { peer_id: peerId, from_id: userId, text } = message
@@ -25,6 +26,8 @@ const command: Command = async (message, settings) => {
     await vk.messagesSend(peerId, response)
     return
   }
+
+  await setUserSettings(userId, { callbackServerUrl: url })
 
   await vk.messagesSend(peerId, messages.callbackAddSuccess)
 }

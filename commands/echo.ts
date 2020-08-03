@@ -1,5 +1,5 @@
 import { Command, CommandObject } from '.'
-import setChatSettings from '../utils/database/setChatSetting'
+import setChatSettings from '../utils/database/setChatSettings'
 import messages from '../utils/messages'
 import vk from '../utils/vk'
 

@@ -6,7 +6,13 @@ import userSettingsDecoder from './utils/userSettingsDecoder'
 
 export interface UserSettings {
   callbackSecret: string
+  callbackServerUrl: string | null
 }
+
+const getDefaultSettings = async (): Promise<UserSettings> => ({
+  callbackSecret: await generateSecret(),
+  callbackServerUrl: null
+})
 
 const getUserSettings = async (userId: number): Promise<UserSettings> => {
   const client = getDatabaseClient()
@@ -31,9 +37,7 @@ const getUserSettings = async (userId: number): Promise<UserSettings> => {
           userId
         ),
         {
-          data: {
-            callbackSecret: await generateSecret()
-          }
+          data: await getDefaultSettings()
         }
       )
     )

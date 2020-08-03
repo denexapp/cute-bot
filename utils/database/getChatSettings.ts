@@ -7,6 +7,10 @@ export interface ChatSettings {
   echo: boolean
 }
 
+const getDefaultSettings = (): ChatSettings => ({
+  echo: false
+})
+
 const getChatSettings = async (peerId: number): Promise<ChatSettings> => {
   const client = getDatabaseClient()
 
@@ -30,9 +34,7 @@ const getChatSettings = async (peerId: number): Promise<ChatSettings> => {
           peerId
         ),
         {
-          data: {
-            echo: false
-          }
+          data: getDefaultSettings()
         }
       )
     )
