@@ -14,6 +14,8 @@ const makeRequestToCallback = async <T>(
     object
   }
 
+  console.log(JSON.stringify(body))
+
   const result = await fetch(url, {
     body: JSON.stringify(body),
     method: 'POST',
