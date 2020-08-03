@@ -32,7 +32,7 @@ const getUserSettings = async (userId: number): Promise<UserSettings> => {
         ),
         {
           data: {
-            callbackSecret: generateSecret()
+            callbackSecret: await generateSecret()
           }
         }
       )
