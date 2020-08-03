@@ -8,3 +8,5 @@ const isUrlValidAndHttps = (string: string) => {
 
   return url.protocol === "https:"
 }
+
+export default isUrlValidAndHttps
