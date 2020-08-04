@@ -21,6 +21,7 @@ const messages = {
   callbackAddFailUrl: 'Server url',
   callbackAddSuccess: 'Callback server successfully added',
   callbackRemoveDescription: 'Removes personal callback server and resets callback secret',
+  callbackRemoveNotExist: 'You don\'t have a connected callback server to remove',
   callbackRemoveMessage: 'Your callback server has been disconnected. Callback secret has been reset. Don\'t forget to turn off your callback server, if necessary'
 }
 
