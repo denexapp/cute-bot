@@ -5,10 +5,14 @@ import decodeDatabaseResponse from './utils/decodeDatabaseResponse'
 
 export interface ChatSettings {
   echo: boolean
+  callbackServerUserId: null | number
+  callbackServerChatId: null | number
 }
 
 const getDefaultSettings = (): ChatSettings => ({
-  echo: false
+  echo: false,
+  callbackServerUserId: null,
+  callbackServerChatId: null
 })
 
 const getChatSettings = async (peerId: number): Promise<ChatSettings> => {

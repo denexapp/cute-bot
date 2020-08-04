@@ -4,6 +4,7 @@ import { JsonDecoder } from 'ts.data.json'
 
 export interface Message {
   id: number
+  date: number
   text: string
   peer_id: number
   from_id: number
@@ -16,6 +17,7 @@ interface MessageNew {
 
 const messageDecoder = JsonDecoder.object<Message>({
   id: JsonDecoder.number,
+  date: JsonDecoder.number,
   text: JsonDecoder.string,
   peer_id: JsonDecoder.number,
   from_id: JsonDecoder.number,
