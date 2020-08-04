@@ -6,7 +6,7 @@ const decoder = JsonDecoder.object({
 }, 'Connect decoder')
 
 const connect = async (url: string, secret: string, date: number) => (
-  await makeRequestToCallback(url, 'add', secret, { date }, decoder)
+  await makeRequestToCallback(url, 'connect', secret, { date }, decoder)
 )
 
 export default connect
