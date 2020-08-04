@@ -24,7 +24,7 @@ const messages = {
   callbackRemoveNotExist: 'You don\'t have a connected callback server to remove',
   callbackRemoveMessage: 'Your callback server has been disconnected. Callback secret has been reset. Don\'t forget to turn off your callback server, if necessary',
   callbackConnectDescription: 'connects your callback server to this conversation',
-  callbackConnectCallbackServerAlreadyConnected: 'This conversation already has a connected callback server. If you want to replace it, disconnect current callback server by using /callbackDisconnect command',
+  callbackConnectCallbackServerAlreadyConnected: 'Another callback server is already connected to this conversation. If you want to replace it, disconnect current callback server by using /callbackDisconnect command',
   callbackConnectNoCallbackServer: 'You don\'t have a connected callback server. In order to connect this conversation to callback server, connect it to your account first by using /callbackAdd command',
   callbackConnectSameServer: 'Your callback server is already connected to this conversation',
   callbackConnectSuccess: 'Your callback server connected to this conversation',
