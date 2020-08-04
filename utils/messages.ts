@@ -27,7 +27,7 @@ const messages = {
   callbackConnectCallbackServerAlreadyConnected: 'Another callback server is already connected to this conversation. If you want to replace it, disconnect current callback server by using /callbackDisconnect command',
   callbackConnectNoCallbackServer: 'You don\'t have a connected callback server. In order to connect this conversation to callback server, connect it to your account first by using /callbackAdd command',
   callbackConnectSameServer: 'Your callback server is already connected to this conversation',
-  callbackConnectSuccess: 'Your callback server connected to this conversation',
+  callbackConnectSuccess: 'Your callback server has been connected to this conversation',
   callbackDisconnectDescription: 'disconnects your callback server from this conversation',
   callbackDisconnectNotConnected: 'This conversation has no connected callback server',
   callbackDisconnectSuccess: 'Callback server has been disconnected from this conversation',
