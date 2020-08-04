@@ -10,6 +10,11 @@ const command: Command = async (message, settings) => {
 
   const userSettings = await getUserSettings(userId)
 
+  if (settings.callbackServerUserId === userId) {
+    await vk.messagesSend(peerId, messages.callbackConnectSameServer)
+    return
+  }
+
   if (settings.callbackServerChatId !== null || settings.callbackServerUserId !== null) {
     await vk.messagesSend(peerId, messages.callbackConnectCallbackServerAlreadyConnected)
     return
@@ -20,10 +25,6 @@ const command: Command = async (message, settings) => {
     return
   }
 
-  if (settings.callbackServerUserId === userId) {
-    await vk.messagesSend(peerId, messages.callbackConnectSameServer)
-    return
-  }
 
   const { peerId: callbackServerChatId } = await connect(userSettings.callbackServerUrl, userSettings.callbackSecret, date)
 
