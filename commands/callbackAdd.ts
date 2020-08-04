@@ -9,6 +9,14 @@ import setUserSettings from '../utils/database/setUserSettings'
 const command: Command = async (message, settings) => {
   const { peer_id: peerId, from_id: userId, text } = message
   
+  const { callbackSecret, callbackServerUrl } = await getUserSettings(userId)
+
+  if (callbackServerUrl !== null) {
+    const response = `${messages.callbackAddFailAlreadyExist}\n\n${messages.callbackAddFailUrl}: ${callbackServerUrl}`
+    await vk.messagesSend(peerId, response)
+    return
+  }
+
   const url = text.split(' ')[1]
 
   if (url === undefined || !isUrlValidAndHttps(url)) {
@@ -16,8 +24,6 @@ const command: Command = async (message, settings) => {
     await vk.messagesSend(peerId, response)
     return
   }
-
-  const { callbackSecret } = await getUserSettings(userId)
 
   try {
     await add(url, callbackSecret)
