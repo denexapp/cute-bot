@@ -8,17 +8,17 @@ const command: Command = async (message, settings) => {
   
   const { callbackSecret } = await getUserSettings(userId)
 
-  const text = `${messages.callbackSecretMessage}: ${callbackSecret}\n\n${messages.callbackSecretMessageAttention}`
+  const text = `${messages.callbackSecretGetMessage}: ${callbackSecret}\n\n${messages.callbackSecretGetMessageAttention}`
 
   await vk.messagesSend(peerId, text)
 }
 
-const callbackSecret: CommandObject = {
+const callbackSecretGet: CommandObject = {
   command,
   worksInGroupChats: false,
   worksInPrivateMessages: true,
   isAdminCommand: false,
-  description: messages.callbackSecretDescription
+  description: messages.callbackSecretGetDescription
 }
 
-export default callbackSecret
+export default callbackSecretGet

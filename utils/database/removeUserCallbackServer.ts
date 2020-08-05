@@ -1,7 +1,6 @@
 import { query as q, values } from 'faunadb'
 import { Err, JsonDecoder, Ok } from 'ts.data.json'
 import { limitOfConversationsForOneCallbackServer } from '../consts'
-import generateSecret from '../generateSecret'
 import { ChatSettings } from './getChatSettings'
 import { UserSettings } from './getUserSettings'
 import decodeDatabaseResponse from './utils/decodeDatabaseResponse'
@@ -26,8 +25,7 @@ const removeUserCallbackServer = async (userId: number): Promise<Array<number>> 
   }
 
   const newUserSettings: Partial<UserSettings> = {
-    callbackServerUrl: null,
-    callbackSecret: await generateSecret()
+    callbackServerUrl: null
   }
 
   const refArray = await client.query(

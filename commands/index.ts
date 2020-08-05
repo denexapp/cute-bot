@@ -1,10 +1,10 @@
 import { ChatSettings } from '../utils/database/getChatSettings'
 import { Message } from '../utils/vkCallbackDecoders/messageNewDecoder'
 import callbackAdd from './callbackAdd'
-import callbackDisconnect from './callbackDisconnect'
 import callbackConnect from './callbackConnect'
+import callbackDisconnect from './callbackDisconnect'
 import callbackRemove from './callbackRemove'
-import callbackSecret from './callbackSecret'
+import callbackSecretGet from './callbackSecretGet'
 import echo from './echo'
 import help from './help'
 import remove from './remove'
@@ -24,7 +24,7 @@ export const commands: { [commandName: string]: CommandObject } = {
   callbackConnect,
   callbackDisconnect,
   callbackRemove,
-  callbackSecret,
+  callbackSecretGet,
   echo,
   help,
   remove
