@@ -1,10 +1,10 @@
 import { query as q, values } from 'faunadb'
 import { Err, JsonDecoder, Ok } from 'ts.data.json'
 import { limitOfConversationsForOneCallbackServer } from '../consts'
-import decode from '../decode'
 import generateSecret from '../generateSecret'
 import { ChatSettings } from './getChatSettings'
 import { UserSettings } from './getUserSettings'
+import decodeDatabaseResponse from './utils/decodeDatabaseResponse'
 import getDatabaseClient from './utils/getDatabaseClient'
 
 const refDecoder = new JsonDecoder.Decoder<values.Ref>(ref => {
@@ -65,7 +65,7 @@ const removeUserCallbackServer = async (userId: number): Promise<Array<number>> 
     )
   )
 
-  const decoderRefArray = decode(refArray, refArrayDecoder)
+  const decoderRefArray = decodeDatabaseResponse(refArray, refArrayDecoder)
 
   return decoderRefArray.map(ref => parseInt(ref.id, 10))
 }
