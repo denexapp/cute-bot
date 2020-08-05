@@ -24,7 +24,7 @@ const messages = {
   callbackAddFailAlreadyExist: 'You alredy have connected callback server. To use this server instead, remove connected server first using /callbackRemove command',
   callbackAddFailBadUrl: 'Failed to add callback server. Provided url is not acceptable',
   callbackAddFailUrl: 'Server url',
-  callbackAddSuccess: 'Callback server successfully added',
+  callbackAddSuccess: 'Callback server successfully added. Now you can connect it to conversations using /callbackConnect command',
   callbackRemoveDescription: 'removes personal callback server',
   callbackRemoveNotExist: 'You don\'t have a connected callback server to remove',
   callbackRemoveMessage: 'Your callback server has been disconnected. Don\'t forget to turn off your callback server, if necessary',
