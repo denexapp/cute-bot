@@ -1,7 +1,6 @@
 import { Command, CommandObject } from '.'
 import getUserSettings from '../utils/database/getUserSettings'
-import setUserSettings from '../utils/database/setUserSettings'
-import generateSecret from '../utils/generateSecret'
+import removeUserCallbackServer from '../utils/database/removeUserCallbackServer'
 import messages from '../utils/messages'
 import vk from '../utils/vk'
 
@@ -15,9 +14,13 @@ const command: Command = async (message, settings) => {
     return
   }
 
-  await setUserSettings(userId, { callbackServerUrl: null, callbackSecret: await generateSecret() })
+  const chatIds = await removeUserCallbackServer(userId)
 
   await vk.messagesSend(peerId, messages.callbackRemoveMessage)
+
+  for (const chatId of chatIds) {
+    await vk.messagesSend(chatId, messages.callbackRemoveChatMessage)
+  }
 }
 
 const callbackRemove: CommandObject = {

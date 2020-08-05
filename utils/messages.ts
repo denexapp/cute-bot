@@ -23,6 +23,7 @@ const messages = {
   callbackRemoveDescription: 'removes personal callback server and resets callback secret',
   callbackRemoveNotExist: 'You don\'t have a connected callback server to remove',
   callbackRemoveMessage: 'Your callback server has been disconnected. Callback secret has been reset. Don\'t forget to turn off your callback server, if necessary',
+  callbackRemoveChatMessage: 'Owner of the callback server has removed it. This conversation doesn\'t have callback server now',
   callbackConnectDescription: 'connects your callback server to this conversation',
   callbackConnectCallbackServerAlreadyConnected: 'Another callback server is already connected to this conversation. If you want to replace it, disconnect current callback server by using /callbackDisconnect command',
   callbackConnectNoCallbackServer: 'You don\'t have a connected callback server. In order to connect this conversation to callback server, connect it to your account first by using /callbackAdd command',
