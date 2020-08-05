@@ -21,6 +21,7 @@ const callbackDisconnect: CommandObject = {
   worksInGroupChats: true,
   worksInPrivateMessages: false,
   isAdminCommand: true,
+  requiresCallbackServer: false,
   description: messages.callbackDisconnectDescription
 }
 

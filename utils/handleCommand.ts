@@ -47,6 +47,11 @@ const handleCommand = async (message: Message, settings: ChatSettings) => {
     }
   }
 
+  if (commandObject.requiresCallbackServer && (settings.callbackServerChatId === null || settings.callbackServerUserId === null)) {
+    await vk.messagesSend(peerId, messages.commandRequiresCallbackServer)
+    return
+  }
+
   await commandObject.command(message, settings)
 }
 

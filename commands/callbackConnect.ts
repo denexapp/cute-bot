@@ -45,6 +45,7 @@ const callbackConnect: CommandObject = {
   worksInGroupChats: true,
   worksInPrivateMessages: false,
   isAdminCommand: true,
+  requiresCallbackServer: false,
   description: messages.callbackConnectDescription
 }
 

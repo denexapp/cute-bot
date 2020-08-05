@@ -43,6 +43,7 @@ const callbackAdd: CommandObject = {
   worksInGroupChats: false,
   worksInPrivateMessages: true,
   isAdminCommand: false,
+  requiresCallbackServer: false,
   description: messages.callbackAddDescription
 }
 

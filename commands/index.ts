@@ -17,6 +17,7 @@ export interface CommandObject {
   isAdminCommand: boolean
   worksInGroupChats: boolean
   worksInPrivateMessages: boolean
+  requiresCallbackServer: boolean
   description: string
 }
 

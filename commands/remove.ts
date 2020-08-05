@@ -1,17 +1,26 @@
-import { Command, CommandObject } from "."
+import { Command, CommandObject } from '.'
 import messages from '../utils/messages'
-import vk from '../utils/vk'
+import callbackRemove from '../utils/callbackServer/remove'
+import getUserSettings from '../utils/database/getUserSettings'
 
 const command: Command = async (message, settings) => {
-  await vk.messagesDelete(message.id, true)
+  if (settings.callbackServerUserId === null || settings.callbackServerChatId === null) {
+    throw new Error('Unexpected null values')
+  }
+  const { callbackSecret, callbackServerUrl } = await getUserSettings(settings.callbackServerUserId)
+  if (callbackServerUrl === null) {
+    throw new Error('Unexpected null values')
+  }
+  await callbackRemove(callbackServerUrl, callbackSecret, settings.callbackServerChatId, message.conversation_message_id)
 }
 
-const echo: CommandObject = {
+const remove: CommandObject = {
   command,
   worksInGroupChats: true,
   worksInPrivateMessages: false,
-  isAdminCommand: false,
+  isAdminCommand: true,
+  requiresCallbackServer: true,
   description: messages.removeDescription
 }
 
-export default echo
+export default remove

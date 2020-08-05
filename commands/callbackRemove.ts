@@ -28,6 +28,7 @@ const callbackRemove: CommandObject = {
   worksInGroupChats: false,
   worksInPrivateMessages: true,
   isAdminCommand: false,
+  requiresCallbackServer: false,
   description: messages.callbackRemoveDescription
 }
 

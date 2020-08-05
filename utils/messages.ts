@@ -4,6 +4,7 @@ const messages = {
   commandAvailableInThePrivateChatOnly: 'This command is available only in the private chat with me',
   commandAvailableInAGroupChatOnly: 'This command is available only in a group chat',
   commandAvailableForAdminsOnly: 'This command is available for admins only',
+  commandRequiresCallbackServer: 'This command requires a callback server connected to this conversation. Use /callbackConnect command to connect callback server to this conversation',
   echoDescription: 'echoes all new messages in the chat',
   echoEnabled: 'Echo enabled',
   echoDisabled: 'Echo disabled',

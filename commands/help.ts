@@ -34,6 +34,7 @@ const help: CommandObject = {
   worksInGroupChats: true,
   worksInPrivateMessages: true,
   isAdminCommand: false,
+  requiresCallbackServer: false,
   description: messages.helpDescription
 }
 

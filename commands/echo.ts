@@ -18,6 +18,7 @@ const echo: CommandObject = {
   worksInGroupChats: true,
   worksInPrivateMessages: false,
   isAdminCommand: true,
+  requiresCallbackServer: false,
   description: messages.echoDescription
 }
 
