@@ -1,7 +1,8 @@
 import { Command, CommandObject } from '.'
 import connect from '../utils/callbackServer/connect'
+import { limitOfConversationsForOneCallbackServer } from '../utils/consts'
 import getUserSettings from '../utils/database/getUserSettings'
-import setChatSettings from '../utils/database/setChatSettings'
+import setChatCallbackServer from '../utils/database/setChatCallbackServer'
 import messages from '../utils/messages'
 import vk from '../utils/vk'
 
@@ -28,7 +29,13 @@ const command: Command = async (message, settings) => {
 
   const { peerId: callbackServerChatId } = await connect(userSettings.callbackServerUrl, userSettings.callbackSecret, date)
 
-  await setChatSettings(peerId, { callbackServerChatId, callbackServerUserId: userId })
+  const result = await setChatCallbackServer(peerId, userId, callbackServerChatId)
+
+  if (result !== -1) {
+    const response = `${messages.callbackConnectTooMuchConversations}\n\n${messages.callbackConnectTooMuchConversationsAmount}: ${result}\n${messages.callbackConnectTooMuchConversationsLimit}: ${limitOfConversationsForOneCallbackServer}`
+    await vk.messagesSend(peerId, response)
+    return
+  }
 
   await vk.messagesSend(peerId, messages.callbackConnectSuccess)
 }
