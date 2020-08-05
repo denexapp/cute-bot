@@ -26,6 +26,22 @@ const createSettingsCollections = async () => {
       )
     )
   )
+
+  await client.query(
+    q.Do(
+      q.If(
+        q.Exists(
+          q.Index('chats-by-callback-server-user-id')
+        ),
+        null,
+        q.CreateIndex({
+          name: 'chats-by-callback-server-user-id',
+          source: q.Collection('chats-settings'),
+          terms: [{ field: ['data', 'callbackServerUserId'] }]
+        })
+      )
+    )
+  )
 }
 
 export default createSettingsCollections
