@@ -33,7 +33,7 @@ const messages = {
   callbackConnectTooMuchConversationsLimit: 'Limit of conversations per callback server',
   callbackConnectSuccess: 'Your callback server has been connected to this conversation',
   callbackDisconnectDescription: 'disconnects your callback server from this conversation',
-  callbackDisconnectNotConnected: 'This conversation has no connected callback server',
+  callbackDisconnectNotConnected: 'This conversation has no connected callback server to disconnect',
   callbackDisconnectSuccess: 'Callback server has been disconnected from this conversation',
 }
 
