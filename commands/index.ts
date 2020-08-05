@@ -5,6 +5,7 @@ import callbackConnect from './callbackConnect'
 import callbackDisconnect from './callbackDisconnect'
 import callbackRemove from './callbackRemove'
 import callbackSecretGet from './callbackSecretGet'
+import callbackSecretReset from './callbackSecretReset'
 import echo from './echo'
 import help from './help'
 import remove from './remove'
@@ -25,6 +26,7 @@ export const commands: { [commandName: string]: CommandObject } = {
   callbackDisconnect,
   callbackRemove,
   callbackSecretGet,
+  callbackSecretReset,
   echo,
   help,
   remove
