@@ -6,7 +6,7 @@ const phrase = (key: MessageKey, values?: Record<string, string | number>) => {
   const locale = getLocale()
   const string = prepareMessages(messages[locale])[key]
   const message = new IntlMessageFormat(string, locale, undefined, { ignoreTag: true })
-  const result = `${message.format()}`
+  const result = `${message.format(values)}`
   return result
 }
 
