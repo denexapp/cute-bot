@@ -1,4 +1,5 @@
 import { ChatSettings } from '../utils/database/getChatSettings'
+import { MessageKey } from '../utils/localization/messages'
 import { Message } from '../utils/vkCallbackDecoders/messageNewDecoder'
 import callbackAdd from './callbackAdd'
 import callbackConnect from './callbackConnect'
@@ -18,7 +19,7 @@ export interface CommandObject {
   worksInGroupChats: boolean
   worksInPrivateMessages: boolean
   requiresCallbackServer: boolean
-  description: string
+  description: MessageKey
 }
 
 export const commands: { [commandName: string]: CommandObject } = {

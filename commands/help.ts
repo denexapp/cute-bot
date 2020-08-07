@@ -1,12 +1,12 @@
 import { Command, CommandObject, commands } from '.'
-import messages from '../utils/messages'
+import phrase from '../utils/localization/phrase'
 import vk from '../utils/vk'
 
 type CommandItem = [string, CommandObject]
 
 const generateCommandList = (commands: Array<CommandItem>, header: string): string => {
   const list = commands
-    .map(([commandName, { description }]) => `/${commandName} - ${description}`)
+    .map(([name, { description }]) => phrase('help_command', { name, description: phrase(description) }))
     .join('\n')
 
   const text = `${header}\n${list}`
@@ -21,8 +21,8 @@ const command: Command = async (message, settings) => {
   const adminCommands = commandItems.filter(([, { isAdminCommand }]) => isAdminCommand)
   const userCommands = commandItems.filter(([, { isAdminCommand }]) => !isAdminCommand)
 
-  const userCommandsText = generateCommandList(userCommands, messages.helpUserCommands)
-  const adminCommandsText = generateCommandList(adminCommands, messages.helpAdminCommands)
+  const userCommandsText = generateCommandList(userCommands, phrase('help_userCommands'))
+  const adminCommandsText = generateCommandList(adminCommands, phrase('help_adminCommands'))
 
   const text = `${userCommandsText}\n\n${adminCommandsText}`
 
@@ -35,7 +35,7 @@ const help: CommandObject = {
   worksInPrivateMessages: true,
   isAdminCommand: false,
   requiresCallbackServer: false,
-  description: messages.helpDescription
+  description: 'help_description'
 }
 
 export default help

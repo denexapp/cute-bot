@@ -1,4 +1,4 @@
-import { JsonDecoder, Ok } from 'ts.data.json'
+import { JsonDecoder } from 'ts.data.json'
 import decode from './decode'
 import confirmationDecoder, { VkCallbackConfirmation } from './vkCallbackDecoders/confirmationDecoder'
 import messageNewDecoder, { VkCallbackMessageNew } from './vkCallbackDecoders/messageNewDecoder'

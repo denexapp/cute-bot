@@ -1,5 +1,4 @@
 import { Command, CommandObject } from '.'
-import messages from '../utils/messages'
 import callbackRemove from '../utils/callbackServer/remove'
 import getUserSettings from '../utils/database/getUserSettings'
 
@@ -20,7 +19,7 @@ const remove: CommandObject = {
   worksInPrivateMessages: false,
   isAdminCommand: true,
   requiresCallbackServer: true,
-  description: messages.removeDescription
+  description: 'remove_description'
 }
 
 export default remove

@@ -1,6 +1,6 @@
 import { Command, CommandObject } from '.'
 import setChatSettings from '../utils/database/setChatSettings'
-import messages from '../utils/messages'
+import phrase from '../utils/localization/phrase'
 import vk from '../utils/vk'
 
 const command: Command = async (message, settings) => {
@@ -10,7 +10,7 @@ const command: Command = async (message, settings) => {
 
   await setChatSettings(peerId, { echo })
 
-  await vk.messagesSend(peerId, echo ? messages.echoEnabled : messages.echoDisabled)
+  await vk.messagesSend(peerId, echo ? phrase('echo_enabled') : phrase('echo_disabled'))
 }
 
 const echo: CommandObject = {
@@ -19,7 +19,7 @@ const echo: CommandObject = {
   worksInPrivateMessages: false,
   isAdminCommand: true,
   requiresCallbackServer: false,
-  description: messages.echoDescription
+  description: 'echo_description'
 }
 
 export default echo

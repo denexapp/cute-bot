@@ -3,7 +3,7 @@ import connect from '../utils/callbackServer/connect'
 import { limitOfConversationsForOneCallbackServer } from '../utils/consts'
 import getUserSettings from '../utils/database/getUserSettings'
 import setChatCallbackServer from '../utils/database/setChatCallbackServer'
-import messages from '../utils/messages'
+import phrase from '../utils/localization/phrase'
 import vk from '../utils/vk'
 
 const command: Command = async (message, settings) => {
@@ -12,32 +12,31 @@ const command: Command = async (message, settings) => {
   const userSettings = await getUserSettings(userId)
 
   if (settings.callbackServerUserId === userId) {
-    await vk.messagesSend(peerId, messages.callbackConnectSameServer)
+    await vk.messagesSend(peerId, phrase('callbackConnect_sameServer'))
     return
   }
 
   if (settings.callbackServerChatId !== null || settings.callbackServerUserId !== null) {
-    await vk.messagesSend(peerId, messages.callbackConnectCallbackServerAlreadyConnected)
+    await vk.messagesSend(peerId, phrase('callbackConnect_callbackServerAlreadyConnected'))
     return
   }
 
   if (userSettings.callbackServerUrl === null) {
-    await vk.messagesSend(peerId, messages.callbackConnectNoCallbackServer)
+    await vk.messagesSend(peerId, phrase('callbackConnect_noCallbackServer'))
     return
   }
-
 
   const { peerId: callbackServerChatId } = await connect(userSettings.callbackServerUrl, userSettings.callbackSecret, date)
 
   const result = await setChatCallbackServer(peerId, userId, callbackServerChatId)
 
   if (result !== -1) {
-    const response = `${messages.callbackConnectTooMuchConversations}\n\n${messages.callbackConnectTooMuchConversationsAmount}: ${result}\n${messages.callbackConnectTooMuchConversationsLimit}: ${limitOfConversationsForOneCallbackServer}`
+    const response = phrase('callbackConnect_tooMuchConversations', { amount: result, limit: limitOfConversationsForOneCallbackServer})
     await vk.messagesSend(peerId, response)
     return
   }
 
-  await vk.messagesSend(peerId, messages.callbackConnectSuccess)
+  await vk.messagesSend(peerId, phrase('callbackConnect_success'))
 }
 
 const callbackConnect: CommandObject = {
@@ -46,7 +45,7 @@ const callbackConnect: CommandObject = {
   worksInPrivateMessages: false,
   isAdminCommand: true,
   requiresCallbackServer: false,
-  description: messages.callbackConnectDescription
+  description: 'callbackConnect_description'
 }
 
 export default callbackConnect

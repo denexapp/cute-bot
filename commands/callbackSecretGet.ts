@@ -1,6 +1,6 @@
 import { Command, CommandObject } from '.'
 import getUserSettings from '../utils/database/getUserSettings'
-import messages from '../utils/messages'
+import phrase from '../utils/localization/phrase'
 import vk from '../utils/vk'
 
 const command: Command = async (message, settings) => {
@@ -8,7 +8,7 @@ const command: Command = async (message, settings) => {
   
   const { callbackSecret } = await getUserSettings(userId)
 
-  const text = `${messages.callbackSecretGetMessage}: ${callbackSecret}\n\n${messages.callbackSecretGetMessageAttention}`
+  const text = phrase('callbackSecretGet_message', { secret: callbackSecret })
 
   await vk.messagesSend(peerId, text)
 }
@@ -19,7 +19,7 @@ const callbackSecretGet: CommandObject = {
   worksInPrivateMessages: true,
   isAdminCommand: false,
   requiresCallbackServer: false,
-  description: messages.callbackSecretGetDescription
+  description: 'callbackSecretGet_description'
 }
 
 export default callbackSecretGet
