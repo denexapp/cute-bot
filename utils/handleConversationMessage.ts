@@ -101,7 +101,7 @@ const handleConversationMessage = async (message: Message, commandName: string, 
       return
     }
 
-    commandObject.command(message, settings)
+    await commandObject.command(message, settings)
     return
   }
 
