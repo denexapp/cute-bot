@@ -1,12 +1,12 @@
-import { Command, CommandObject } from '.'
-import add from '../utils/callbackServer/add'
-import getUserSettings from '../utils/database/getUserSettings'
-import setUserSettings from '../utils/database/setUserSettings'
-import phrase from '../utils/localization/phrase'
-import isUrlValidAndHttps from '../utils/validateString'
-import vk from '../utils/vk'
+import { PrivateMessageCommand, PrivateMessageCommandObject } from '..'
+import add from '../../utils/callbackServer/add'
+import getUserSettings from '../../utils/database/getUserSettings'
+import setUserSettings from '../../utils/database/setUserSettings'
+import phrase from '../../utils/localization/phrase'
+import isUrlValidAndHttps from '../../utils/validateString'
+import vk from '../../utils/vk'
 
-const command: Command = async (message, settings) => {
+const command: PrivateMessageCommand = async message => {
   const { peer_id: peerId, from_id: userId, text } = message
   
   const { callbackSecret, callbackServerUrl } = await getUserSettings(userId)
@@ -44,12 +44,8 @@ const command: Command = async (message, settings) => {
   await vk.messagesSend(peerId, phrase('callbackAdd_success'))
 }
 
-const callbackAdd: CommandObject = {
+const callbackAdd: PrivateMessageCommandObject = {
   command,
-  worksInGroupChats: false,
-  worksInPrivateMessages: true,
-  isAdminCommand: false,
-  requiresCallbackServer: false,
   description: 'callbackAdd_description'
 }
 

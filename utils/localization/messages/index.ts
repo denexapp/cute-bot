@@ -2,26 +2,39 @@ import { Locale } from '../locale'
 import en from './en'
 
 type Common =
-  | 'common_unknownCommand'
-  | 'common_commandCalledByLeftUser'
-  | 'common_commandAvailableInThePrivateChatOnly'
-  | 'common_commandAvailableInAGroupChatOnly'
   | 'common_commandAvailableForAdminsOnly'
+  | 'common_commandAvailableInAGroupChatOnly'
+  | 'common_commandAvailableInThePrivateChatOnly'
   | 'common_commandRequiresCallbackServer'
+  | 'common_modeAvailableForAdminsOnly'
+  | 'common_modeAvailableInAGroupChatOnly'
+  | 'common_modeRequiresCallbackServer'
+  | 'common_modeEnabled'
+  | 'common_modeDisabled'
+  | 'common_modeCantBeAppliedWithoutCallbackServer'
+  | 'common_unknownCommand'
 
 type Echo =
   | 'echo_description'
-  | 'echo_enabled'
-  | 'echo_disabled'
+  | 'echo_enabledText'
+  | 'echo_disabledText'
 
 type Help =
   | 'help_description'
   | 'help_command'
-  | 'help_userCommands'
+  | 'help_callbackCommand'
+  | 'help_modes'
   | 'help_adminCommands'
+  | 'help_userCommands'
+  | 'help_privateMessageCommands'
 
 type Remove =
   | 'remove_description'
+
+type Stop =
+  | 'stop_description'
+  | 'stop_enabledText'
+  | 'stop_disabledText'
 
 type CallbackSecretGet =
   | 'callbackSecretGet_description'
@@ -57,7 +70,6 @@ type CallbackConnect =
 
 type CallbackDisconnect =
   | 'callbackDisconnect_description'
-  | 'callbackDisconnect_notConnected'
   | 'callbackDisconnect_success'
 
 
@@ -74,6 +86,7 @@ export interface Messages {
   echo: Context<Echo>
   help: Context<Help>
   remove: Context<Remove>
+  stop: Context<Stop>
 }
 
 export type MessageKey =
@@ -87,6 +100,7 @@ export type MessageKey =
   | Echo
   | Help
   | Remove
+  | Stop
 
 export const prepareMessages = (messages: Messages): Record<MessageKey, string> => ({
   ...messages.callbackAdd,
@@ -99,6 +113,7 @@ export const prepareMessages = (messages: Messages): Record<MessageKey, string> 
   ...messages.echo,
   ...messages.help,
   ...messages.remove,
+  ...messages.stop,
 })
 
 const messages: { [key in Locale]: Messages } = {

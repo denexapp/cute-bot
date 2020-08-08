@@ -1,8 +1,9 @@
 import { query as q } from 'faunadb'
-import getDatabaseClient from './utils/getDatabaseClient'
+import { DeepPartial } from '../typescript/deepPartial'
 import { ChatSettings } from './getChatSettings'
+import getDatabaseClient from './utils/getDatabaseClient'
 
-const setChatSettings = async (peerId: number, newSettings: Partial<ChatSettings>) => {
+const setChatSettings = async (peerId: number, newSettings: DeepPartial<ChatSettings>) => {
   const client = getDatabaseClient()
 
   await client.query(

@@ -2,15 +2,18 @@ import { query as q } from 'faunadb'
 import getDatabaseClient from './utils/getDatabaseClient'
 import chatSettingsDecoder from './utils/chatSettingsDecoder'
 import decodeDatabaseResponse from './utils/decodeDatabaseResponse'
+import { ModeName, CallbackModeName } from '../../commands'
 
 export interface ChatSettings {
-  echo: boolean
+  modes: { [key in ModeName]: true | null }
+  callbackModes: { [key in CallbackModeName]: true | null }
   callbackServerUserId: null | number
   callbackServerChatId: null | number
 }
 
 const getDefaultSettings = (): ChatSettings => ({
-  echo: false,
+  modes: { echo: null },
+  callbackModes: { stop: null },
   callbackServerUserId: null,
   callbackServerChatId: null
 })

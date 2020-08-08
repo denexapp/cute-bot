@@ -19,7 +19,6 @@ const en: Messages = {
   },
   callbackDisconnect: {
     callbackDisconnect_description: 'disconnects your callback server from this conversation',
-    callbackDisconnect_notConnected: 'This conversation has no connected callback server to disconnect',
     callbackDisconnect_success: 'Callback server has been disconnected from this conversation',
   },
   callbackRemove: {
@@ -40,25 +39,38 @@ const en: Messages = {
   },
   common: {
     common_unknownCommand: 'Unknown command. Use /help to list all commands',
-    common_commandCalledByLeftUser: 'User who called this command left the chat',
-    common_commandAvailableInThePrivateChatOnly: 'This command is available only in the private chat with me',
-    common_commandAvailableInAGroupChatOnly: 'This command is available only in a group chat',
-    common_commandAvailableForAdminsOnly: 'This command is available for admins only',
-    common_commandRequiresCallbackServer: 'This command requires a callback server connected to this conversation. Use /callbackConnect command to connect your callback server to this conversation',
+    common_commandAvailableInThePrivateChatOnly: 'Command /{commandName} is available in the private chat with me only',
+    common_commandAvailableInAGroupChatOnly: 'Command /{commandName} is available in a group chat only',
+    common_commandAvailableForAdminsOnly: 'Command /{commandName} is available for admins only',
+    common_commandRequiresCallbackServer: 'Command /{commandName} requires a callback server connected to this conversation. Use /callbackConnect command to connect your callback server to this conversation',
+    common_modeAvailableInAGroupChatOnly: 'Mode /{commandName} is available in a group chat only, like all other modes',
+    common_modeAvailableForAdminsOnly: 'Mode /{commandName} can be controled by admins only, like all other modes',
+    common_modeCantBeAppliedWithoutCallbackServer: 'The effect of mode /{commandName} can\'t be applied, because callback server is disconnected from this conversation. Reconnect your callback server using /callbackConnect command or disable this mode using /{commandName} command',
+    common_modeDisabled: 'Mode /{commandName} disabled. {disabledText}',
+    common_modeEnabled: 'Mode /{commandName} enabled. {enabledText}',
+    common_modeRequiresCallbackServer: 'Mode /{commandName} requires a callback server connected to this conversation. Use /callbackConnect command to connect your callback server to this conversation',
   },
   echo: {
     echo_description: 'echoes all new messages in the chat',
-    echo_enabled: 'Echo enabled',
-    echo_disabled: 'Echo disabled',
+    echo_enabledText: 'I\'ll be repeating all messages in the chat',
+    echo_disabledText: 'I won\'t be repeating messages in the chat anymore'
   },
   help: {
     help_description: 'lists all commands',
     help_command: '/{name} - {description}',
-    help_userCommands: 'User commands',
-    help_adminCommands: 'Admin commands',
+    help_callbackCommand: '/{name} - 🌐 {description}',
+    help_modes: 'Conversation modes (modes with 🌐 require callback server):',
+    help_adminCommands: 'Admin commands (commands with 🌐 require callback server):',
+    help_userCommands: 'User commands (commands with 🌐 require callback server):',
+    help_privateMessageCommands: 'Commands available in private messages with bot:',
   },
   remove: {
     remove_description: 'removes message with this command',
+  },
+  stop: {
+    stop_description: 'deletes all new messages',
+    stop_enabledText: 'All new messages in the chat will be removed',
+    stop_disabledText: 'New messages won\'t be removed anymore'
   }
 }
 

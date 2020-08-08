@@ -1,12 +1,12 @@
-import { Command, CommandObject } from '.'
-import connect from '../utils/callbackServer/connect'
-import { limitOfConversationsForOneCallbackServer } from '../utils/consts'
-import getUserSettings from '../utils/database/getUserSettings'
-import setChatCallbackServer from '../utils/database/setChatCallbackServer'
-import phrase from '../utils/localization/phrase'
-import vk from '../utils/vk'
+import { ConversationCommand, ConversationCommandObject } from '..'
+import connect from '../../utils/callbackServer/connect'
+import { limitOfConversationsForOneCallbackServer } from '../../utils/consts'
+import getUserSettings from '../../utils/database/getUserSettings'
+import setChatCallbackServer from '../../utils/database/setChatCallbackServer'
+import phrase from '../../utils/localization/phrase'
+import vk from '../../utils/vk'
 
-const command: Command = async (message, settings) => {
+const command: ConversationCommand = async (message, settings) => {
   const { peer_id: peerId, from_id: userId, date } = message
 
   const userSettings = await getUserSettings(userId)
@@ -39,12 +39,9 @@ const command: Command = async (message, settings) => {
   await vk.messagesSend(peerId, phrase('callbackConnect_success'))
 }
 
-const callbackConnect: CommandObject = {
+const callbackConnect: ConversationCommandObject = {
   command,
-  worksInGroupChats: true,
-  worksInPrivateMessages: false,
   isAdminCommand: true,
-  requiresCallbackServer: false,
   description: 'callbackConnect_description'
 }
 

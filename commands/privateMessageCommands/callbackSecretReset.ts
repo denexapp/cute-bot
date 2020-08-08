@@ -1,12 +1,12 @@
-import { Command, CommandObject } from '.'
-import getUserSettings from '../utils/database/getUserSettings'
-import removeUserCallbackServer from '../utils/database/removeUserCallbackServer'
-import setUserSettings from '../utils/database/setUserSettings'
-import generateSecret from '../utils/generateSecret'
-import phrase from '../utils/localization/phrase'
-import vk from '../utils/vk'
+import { PrivateMessageCommand, PrivateMessageCommandObject } from '..'
+import getUserSettings from '../../utils/database/getUserSettings'
+import removeUserCallbackServer from '../../utils/database/removeUserCallbackServer'
+import setUserSettings from '../../utils/database/setUserSettings'
+import generateSecret from '../../utils/generateSecret'
+import phrase from '../../utils/localization/phrase'
+import vk from '../../utils/vk'
 
-const command: Command = async (message, settings) => {
+const command: PrivateMessageCommand = async message => {
   const { peer_id: peerId, from_id: userId } = message
 
   const { callbackServerUrl } = await getUserSettings(userId)
@@ -29,12 +29,8 @@ const command: Command = async (message, settings) => {
   }
 }
 
-const callbackRemove: CommandObject = {
+const callbackRemove: PrivateMessageCommandObject = {
   command,
-  worksInGroupChats: false,
-  worksInPrivateMessages: true,
-  isAdminCommand: false,
-  requiresCallbackServer: false,
   description: 'callbackSecretReset_description'
 }
 
