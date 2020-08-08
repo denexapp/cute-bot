@@ -7,14 +7,14 @@ const isConversationCommandWithNameExist = (name: string) => (
   [callbackConversationCommands, conversationCommands]
     .map(commands => Object.keys(commands))
     .flat()
-    .some(commandName => commandName = name)
+    .some(commandName => commandName === name)
 )
 
 const isModeWithNameExist = (name: string) => (
   [callbackModes, modes]
     .map(modes => Object.keys(modes))
     .flat()
-    .some(modeName => modeName = name)
+    .some(modeName => modeName === name)
 )
 
 const handlePrivateMessage = async (message: Message, commandName: string) => {

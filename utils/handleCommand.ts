@@ -8,7 +8,7 @@ import { Message } from './vkCallbackDecoders/messageNewDecoder'
 import { CallbackServerSettings } from './getCallbackServerSettings'
 
 const isPrivateMessageCommandWithNameExist = (name: string) => (
-  Object.keys(privateMessageCommands).some(commandName => commandName = name)
+  Object.keys(privateMessageCommands).some(commandName => commandName === name)
 )
 
 const getFirstWord = (text: string) => {
