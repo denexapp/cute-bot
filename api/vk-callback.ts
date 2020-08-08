@@ -1,13 +1,11 @@
 import { NowRequest, NowResponse } from '@now/node'
-import { callbackModes, modes } from '../commands'
 import createSettingsCollections from '../utils/database/createSettingsCollections'
 import getChatSettings from '../utils/database/getChatSettings'
 import decodeVkCallback from '../utils/decodeVkCallback'
 import getCallbackServerSettings from '../utils/getCallbackServerSettings'
 import handleCommand from '../utils/handleCommand'
-import phrase from '../utils/localization/phrase'
+import handleModes from '../utils/handleModes'
 import variables from '../utils/variables'
-import vk from '../utils/vk'
 
 export default async (req: NowRequest, res: NowResponse) => {
   const data = decodeVkCallback(req.body)
@@ -30,21 +28,7 @@ export default async (req: NowRequest, res: NowResponse) => {
       await handleCommand(message, settings, callbackServerSettings)
     }
 
-    for (const [commandName, mode] of Object.entries(settings.callbackModes)) {
-      if (mode === true) {
-        if (callbackServerSettings === null) {
-          await vk.messagesSend(peerId, phrase('common_modeCantBeAppliedWithoutCallbackServer', { commandName }))
-          continue
-        }
-        await callbackModes[commandName].action(message, callbackServerSettings)
-      }
-    }
-
-    for (const [commandName, mode] of Object.entries(settings.modes)) {
-      if (mode === true) {
-        await modes[commandName].action(message)
-      }
-    }
+    await handleModes(message, settings, callbackServerSettings)
 
     res.send('ok')
     return
