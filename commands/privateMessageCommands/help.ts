@@ -36,8 +36,8 @@ const generateCommandList = (
 
   return [
     phrase(header),
+    ...callbackCommands.map(mapper('help_callbackCommand')),
     ...commands.map(mapper('help_command')),
-    ...callbackCommands.map(mapper('help_callbackCommand'))
   ].join('\n')
 }
 
@@ -66,6 +66,7 @@ const command: PrivateMessageCommand = async message => {
   const privateMessagesCommandsText = generateCommandList('help_privateMessageCommands', Object.entries(privateMessageCommands))
 
   const text = [
+    phrase('help_header'),
     modesText,
     adminCommandsText,
     userCommandsText,

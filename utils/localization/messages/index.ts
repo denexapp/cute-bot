@@ -23,6 +23,7 @@ type Help =
   | 'help_description'
   | 'help_command'
   | 'help_callbackCommand'
+  | 'help_header'
   | 'help_modes'
   | 'help_adminCommands'
   | 'help_userCommands'

@@ -58,10 +58,11 @@ const en: Messages = {
   help: {
     help_description: 'lists all commands',
     help_command: '/{name} - {description}',
-    help_callbackCommand: '/{name} - 🌐 {description}',
-    help_modes: 'Conversation modes (modes with 🌐 require callback server):',
-    help_adminCommands: 'Admin commands (commands with 🌐 require callback server):',
-    help_userCommands: 'User commands (commands with 🌐 require callback server):',
+    help_callbackCommand: '🌐 /{name} - {description}',
+    help_header: 'List of all commands. Commands with the globe icon require callback server',
+    help_modes: 'Conversation modes:',
+    help_adminCommands: 'Admin commands:',
+    help_userCommands: 'User commands:',
     help_privateMessageCommands: 'Commands available in private messages with bot:',
   },
   remove: {
