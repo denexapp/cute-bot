@@ -53,9 +53,11 @@ const handleCommand = async (message: Message, settings: ChatSettings, callbackS
       })
 
       if (settings.callbackModes[callbackModeName] === null) {
-        await vk.messagesSend(peerId, phrase('common_modeEnabled', { commandName, enabledText: commandObject.enabledText }))
+        const enabledText = phrase(commandObject.enabledText)
+        await vk.messagesSend(peerId, phrase('common_modeEnabled', { commandName, enabledText }))
       } else {
-        await vk.messagesSend(peerId, phrase('common_modeDisabled', { commandName, disabledText: commandObject.disabledText }))
+        const disabledText = phrase(commandObject.disabledText)
+        await vk.messagesSend(peerId, phrase('common_modeDisabled', { commandName, disabledText }))
       }
 
       return
