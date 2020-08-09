@@ -11,7 +11,7 @@ type Common =
   | 'common_modeRequiresCallbackServer'
   | 'common_modeEnabled'
   | 'common_modeDisabled'
-  | 'common_modeCantBeAppliedWithoutCallbackServer'
+  | 'common_modesCantBeAppliedWithoutCallbackServer'
   | 'common_unknownCommand'
 
 type Echo =
@@ -71,7 +71,7 @@ type CallbackConnect =
 
 type CallbackDisconnect =
   | 'callbackDisconnect_description'
-  | 'callbackDisconnect_success'
+  | 'callbackDisconnect_successWithModes'
 
 
 type Context<K extends string> = { [Key in K]: string }

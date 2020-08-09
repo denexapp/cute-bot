@@ -16,13 +16,16 @@ const refDecoder = new JsonDecoder.Decoder<values.Ref>(ref => {
 
 const refArrayDecoder = JsonDecoder.array<values.Ref>(refDecoder, 'Ref array decoder')
 
+export const partialChatSettingsWithoutCallback: Partial<ChatSettings> = {
+  callbackServerChatId: null,
+  callbackServerUserId: null,
+  callbackModes: {
+    stop: null
+  }
+}
+
 const removeUserCallbackServer = async (userId: number): Promise<Array<number>> => {
   const client = getDatabaseClient()
-
-  const newChatSettings: Partial<ChatSettings> = {
-    callbackServerChatId: null,
-    callbackServerUserId: null
-  }
 
   const newUserSettings: Partial<UserSettings> = {
     callbackServerUrl: null
@@ -53,7 +56,7 @@ const removeUserCallbackServer = async (userId: number): Promise<Array<number>> 
             q.Update(
               q.Var('ref'),
               {
-                data: newChatSettings
+                data: partialChatSettingsWithoutCallback
               }
             ),
             q.Var('ref')

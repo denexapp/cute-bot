@@ -19,7 +19,11 @@ const en: Messages = {
   },
   callbackDisconnect: {
     callbackDisconnect_description: 'disconnects your callback server from this conversation',
-    callbackDisconnect_success: 'Callback server has been disconnected from this conversation',
+    callbackDisconnect_successWithModes: `Callback server has been disconnected from this conversation{modesCount, plural,
+      =0 {}
+      one {. Mode {modesNames} was disabled, because it requires a callback server}
+      other {. Modes {modesNames} were disabled, because they require a callback server}
+    }`,
   },
   callbackRemove: {
     callbackRemove_description: 'removes personal callback server',
@@ -45,10 +49,13 @@ const en: Messages = {
     common_commandRequiresCallbackServer: 'Command /{commandName} requires a callback server connected to this conversation. Use /callbackConnect command to connect your callback server to this conversation',
     common_modeAvailableInAGroupChatOnly: 'Mode /{commandName} is available in a group chat only, like all other modes',
     common_modeAvailableForAdminsOnly: 'Mode /{commandName} can be controled by admins only, like all other modes',
-    common_modeCantBeAppliedWithoutCallbackServer: 'The effect of mode /{commandName} can\'t be applied, because callback server is disconnected from this conversation. Reconnect your callback server using /callbackConnect command or disable this mode using /{commandName} command',
     common_modeDisabled: 'Mode /{commandName} disabled. {disabledText}',
     common_modeEnabled: 'Mode /{commandName} enabled. {enabledText}',
     common_modeRequiresCallbackServer: 'Mode /{commandName} requires a callback server connected to this conversation. Use /callbackConnect command to connect your callback server to this conversation',
+    common_modesCantBeAppliedWithoutCallbackServer: `{modesCount, plural,
+      one {Effects of modes {modesNames}}
+      other {The effect of mode {modesNames}}
+    } can't be applied, because callback server is disconnected from this conversation. Reconnect your callback server using /callbackConnect command or disable this mode using /{commandName} command`,
   },
   echo: {
     echo_description: 'echoes all new messages in the chat',
