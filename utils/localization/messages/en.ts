@@ -55,7 +55,10 @@ const en: Messages = {
     common_modesCantBeAppliedWithoutCallbackServer: `{modesCount, plural,
       one {Effects of modes {modesNames}}
       other {The effect of mode {modesNames}}
-    } can't be applied, because callback server is disconnected from this conversation. Reconnect your callback server using /callbackConnect command or disable this mode using /{commandName} command`,
+    } can't be applied, because callback server is disconnected from this conversation. Reconnect your callback server using /callbackConnect command or disable this mode using {modesNamesSlash} {
+      one {command}
+      other {commands}
+    }`,
   },
   echo: {
     echo_description: 'echoes all new messages in the chat',
