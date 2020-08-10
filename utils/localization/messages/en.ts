@@ -52,10 +52,12 @@ const en: Messages = {
     common_modeDisabled: 'Mode /{commandName} disabled. {disabledText}',
     common_modeEnabled: 'Mode /{commandName} enabled. {enabledText}',
     common_modeRequiresCallbackServer: 'Mode /{commandName} requires a callback server connected to this conversation. Use /callbackConnect command to connect your callback server to this conversation',
-    common_modesCantBeAppliedWithoutCallbackServer: `{modesCount, plural,
+    common_modesCantBeAppliedWithoutCallbackServer: `{
+      modesCount, plural,
       one {Effects of modes {modesNames}}
       other {The effect of mode {modesNames}}
     } can't be applied, because callback server is disconnected from this conversation. Reconnect your callback server using /callbackConnect command or disable this mode using {modesNamesSlash} {
+      modesCount, plural,
       one {command}
       other {commands}
     }`,
