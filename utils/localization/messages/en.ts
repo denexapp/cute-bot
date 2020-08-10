@@ -54,8 +54,8 @@ const en: Messages = {
     common_modeRequiresCallbackServer: 'Mode /{commandName} requires a callback server connected to this conversation. Use /callbackConnect command to connect your callback server to this conversation',
     common_modesCantBeAppliedWithoutCallbackServer: `{
       modesCount, plural,
-      one {Effects of modes {modesNames}}
-      other {The effect of mode {modesNames}}
+      one {The effect of mode {modesNames}}
+      other {Effect of modes {modesNames}}
     } can't be applied, because callback server is disconnected from this conversation. Reconnect your callback server using /callbackConnect command or disable this mode using {modesNamesSlash} {
       modesCount, plural,
       one {command}

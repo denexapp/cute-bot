@@ -10,21 +10,23 @@ const handleModes = async (message: Message, settings: ChatSettings, callbackSer
   const { peer_id: peerId } = message
 
   if (callbackServerSettings === null) {
-    const disabledCallbackModesNames = Object
+    const enabledCallbackModesNames = Object
       .entries(settings.callbackModes)
       .filter(([, mode]) => mode === true)
       .map(([name]) => name)
 
-    const modesNames = list(disabledCallbackModesNames)
-    const modesNamesSlash = list(disabledCallbackModesNames.map(value => `/${value}`))
-    const modesCount = disabledCallbackModesNames.length
-    const text = phrase('common_modesCantBeAppliedWithoutCallbackServer', {
-      modesCount,
-      modesNames,
-      modesNamesSlash
-    })
-
-    await vk.messagesSend(peerId, text)
+    if (enabledCallbackModesNames.length !== 0) {
+      const modesNames = list(enabledCallbackModesNames)
+      const modesNamesSlash = list(enabledCallbackModesNames.map(value => `/${value}`))
+      const modesCount = enabledCallbackModesNames.length
+      const text = phrase('common_modesCantBeAppliedWithoutCallbackServer', {
+        modesCount,
+        modesNames,
+        modesNamesSlash
+      })
+  
+      await vk.messagesSend(peerId, text)
+    }
   } else {
     for (const [commandName, mode] of Object.entries(settings.callbackModes)) {
       if (mode === true) {
