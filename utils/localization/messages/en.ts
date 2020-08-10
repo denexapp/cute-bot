@@ -42,7 +42,7 @@ const en: Messages = {
   },
   callbackSecretReset: {
     callbackSecretReset_description: 'resets callback secret and removes personal callback server',
-    callbackSecretReset_keyReset: 'Your callback secret has been reset. You can view new secret using /callbackSecretGet command',
+    callbackSecretReset_keyReset: 'Your callback secret has been reset. You can view the new secret using /callbackSecretGet command',
     callbackSecretReset_keyResetAndServerRemoved: 'Your callback secret has been reset and your callback server has been removed. You can view new secret using /callbackSecretGet command and you can use /callbackAdd command to add your callback server again',
     callbackSecretReset_keyChatMessage: `Owner of the callback server has reset callback key and the server has been removed, so this conversation doesn\'t have a callback server now{
       modesCount, plural,
