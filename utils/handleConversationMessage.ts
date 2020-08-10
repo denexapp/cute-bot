@@ -27,20 +27,21 @@ const handleConversationMessage = async (message: Message, commandName: string, 
       return
     }
 
-    if (callbackServerSettings === null) {
+    const callbackModeName = upcastToCallbackModeName(commandName)
+    const newValue = settings.callbackModes[callbackModeName] === null ? true : null
+
+    if (newValue === true && callbackServerSettings === null) {
       await vk.messagesSend(peerId, phrase('common_modeRequiresCallbackServer', { commandName }))
       return
     }
 
-    const callbackModeName = upcastToCallbackModeName(commandName)
-
     await setChatSettings(peerId, {
       callbackModes: {
-        [callbackModeName]: settings.callbackModes[callbackModeName] === null ? true : null
+        [callbackModeName]: newValue
       }
     })
 
-    if (settings.callbackModes[callbackModeName] === null) {
+    if (newValue === true) {
       const enabledText = phrase(commandObject.enabledText)
       await vk.messagesSend(peerId, phrase('common_modeEnabled', { commandName, enabledText }))
     } else {
