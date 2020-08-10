@@ -7,7 +7,7 @@ import { Message } from './vkCallbackDecoders/messageNewDecoder'
 
 const getCommandName = (text: string) => {
   const spaceIndex = text.indexOf(' ')
-  return spaceIndex === -1 ? text : text.slice(0, spaceIndex).slice(1)
+  return spaceIndex === -1 ? text.slice(1) : text.slice(1, spaceIndex)
 }
 
 const handleMessage = async (message: Message) => {
