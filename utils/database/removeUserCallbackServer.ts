@@ -1,20 +1,17 @@
-import { query as q, values } from 'faunadb'
-import { Err, JsonDecoder, Ok } from 'ts.data.json'
+import { query as q } from 'faunadb'
+import { JsonDecoder } from 'ts.data.json'
 import { limitOfConversationsForOneCallbackServer } from '../consts'
 import { ChatSettings } from './getChatSettings'
 import { UserSettings } from './getUserSettings'
+import chatSettingsDecoder from './utils/chatSettingsDecoder'
 import decodeDatabaseResponse from './utils/decodeDatabaseResponse'
+import { Entity, entityDecoder } from './utils/decodeEntity'
 import getDatabaseClient from './utils/getDatabaseClient'
 
-const refDecoder = new JsonDecoder.Decoder<values.Ref>(ref => {
-  if (ref instanceof values.Ref) {
-    return new Ok(ref)
-  } else {
-    return new Err('Not a ref')
-  }
-})
-
-const refArrayDecoder = JsonDecoder.array<values.Ref>(refDecoder, 'Ref array decoder')
+const chatSettingsEntityArrayDecoder = JsonDecoder.array<Entity<ChatSettings>>(
+  entityDecoder(chatSettingsDecoder),
+  'ChatSettings Entity array decoder'
+)
 
 export const partialChatSettingsWithoutCallback: Partial<ChatSettings> = {
   callbackServerChatId: null,
@@ -24,14 +21,14 @@ export const partialChatSettingsWithoutCallback: Partial<ChatSettings> = {
   }
 }
 
-const removeUserCallbackServer = async (userId: number): Promise<Array<number>> => {
+const removeUserCallbackServer = async (userId: number): Promise<Array<Entity<ChatSettings>>> => {
   const client = getDatabaseClient()
 
   const newUserSettings: Partial<UserSettings> = {
     callbackServerUrl: null
   }
 
-  const refArray = await client.query(
+  const chatSettingsArray = await client.query(
     q.Do(
       q.Update(
         q.Ref(
@@ -52,23 +49,30 @@ const removeUserCallbackServer = async (userId: number): Promise<Array<number>> 
         ),
         q.Lambda(
           'ref',
-          q.Do(
-            q.Update(
-              q.Var('ref'),
-              {
-                data: partialChatSettingsWithoutCallback
-              }
-            ),
-            q.Var('ref')
+          q.Let(
+            {
+              callbackModes: q.Get(
+                q.Var('ref')
+              )
+            },
+            q.Do(
+              q.Update(
+                q.Var('ref'),
+                {
+                  data: partialChatSettingsWithoutCallback
+                }
+              ),
+              q.Var('callbackModes')
+            )
           )
         )
       )
     )
   )
 
-  const decoderRefArray = decodeDatabaseResponse(refArray, refArrayDecoder)
+  const decodedChatSettingsEntityArray = decodeDatabaseResponse(chatSettingsArray, chatSettingsEntityArrayDecoder)
 
-  return decoderRefArray.map(ref => parseInt(ref.id, 10))
+  return decodedChatSettingsEntityArray
 }
 
 export default removeUserCallbackServer

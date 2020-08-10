@@ -29,7 +29,12 @@ const en: Messages = {
     callbackRemove_description: 'removes personal callback server',
     callbackRemove_notExist: 'You don\'t have a connected callback server to remove',
     callbackRemove_message: 'Your callback server has been disconnected. Don\'t forget to turn off your callback server, if necessary',
-    callbackRemove_chatMessage: 'Owner of the callback server has removed it. This conversation doesn\'t have callback server now',
+    callbackRemove_chatMessage: `Owner of the callback server has removed it, so this conversation doesn\'t have a callback server now{
+      modesCount, plural,
+      =0 {}
+      one {. Mode {modesNames} was disabled, because it requires a callback server}
+      other {. Modes {modesNames} were disabled, because they require a callback server}
+    }`,
   },
   callbackSecretGet: {
     callbackSecretGet_description: 'shows your callback secret',
@@ -39,7 +44,12 @@ const en: Messages = {
     callbackSecretReset_description: 'resets callback secret and removes personal callback server',
     callbackSecretReset_keyReset: 'Your callback secret has been reset. You can view new secret using /callbackSecretGet command',
     callbackSecretReset_keyResetAndServerRemoved: 'Your callback secret has been reset and your callback server has been removed. You can view new secret using /callbackSecretGet command and you can use /callbackAdd command to add your callback server again',
-    callbackSecretReset_keyChatMessage: 'Owner of the callback server has reset callback key and the server has been removed. This conversation doesn\'t have callback server now',
+    callbackSecretReset_keyChatMessage: `Owner of the callback server has reset callback key and the server has been removed, so this conversation doesn\'t have a callback server now{
+      modesCount, plural,
+      =0 {}
+      one {. Mode {modesNames} was disabled, because it requires a callback server}
+      other {. Modes {modesNames} were disabled, because they require a callback server}
+    }`,
   },
   common: {
     common_unknownCommand: 'Unknown command. Use /help to list all commands',

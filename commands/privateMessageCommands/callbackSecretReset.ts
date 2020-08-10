@@ -3,7 +3,10 @@ import getUserSettings from '../../utils/database/getUserSettings'
 import removeUserCallbackServer from '../../utils/database/removeUserCallbackServer'
 import setUserSettings from '../../utils/database/setUserSettings'
 import generateSecret from '../../utils/generateSecret'
+import getEnabledCallbackModesNames from '../../utils/getEnabledCallbackModesNames'
+import list from '../../utils/localization/list'
 import phrase from '../../utils/localization/phrase'
+import parseNumber from '../../utils/parseNumber'
 import vk from '../../utils/vk'
 
 const command: PrivateMessageCommand = async message => {
@@ -20,12 +23,16 @@ const command: PrivateMessageCommand = async message => {
     return
   }
 
-  const chatIds = await removeUserCallbackServer(userId)
+  const settingsOfAffectedChatsBeforeChange = await removeUserCallbackServer(userId)
 
   await vk.messagesSend(peerId, phrase('callbackSecretReset_keyResetAndServerRemoved'))
 
-  for (const chatId of chatIds) {
-    await vk.messagesSend(chatId, phrase('callbackSecretReset_keyChatMessage'))
+  for (const entity of settingsOfAffectedChatsBeforeChange) {
+    const enabledCallbackModesNames = getEnabledCallbackModesNames(entity.data)
+    const modesNames = list(enabledCallbackModesNames)
+    const modesCount = enabledCallbackModesNames.length
+    const text = phrase('callbackSecretReset_keyChatMessage', { modesNames, modesCount })
+    await vk.messagesSend(parseNumber(entity.ref.id), text)
   }
 }
 
