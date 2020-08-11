@@ -13,7 +13,7 @@ export interface ChatSettings {
 
 const getDefaultSettings = (): ChatSettings => ({
   modes: { echo: null },
-  callbackModes: { stop: null },
+  callbackModes: { stop: null, profanityFilter: null },
   callbackServerUserId: null,
   callbackServerChatId: null
 })

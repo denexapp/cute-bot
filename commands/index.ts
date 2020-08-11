@@ -10,6 +10,7 @@ import callbackRemove from './privateMessageCommands/callbackRemove'
 import callbackSecretGet from './privateMessageCommands/callbackSecretGet'
 import callbackSecretReset from './privateMessageCommands/callbackSecretReset'
 import privateHelp from './privateMessageCommands/help'
+import profanityFilter from './callbackModes/profanityFilter'
 import remove from './callbackConversationCommands/remove'
 import stop from './callbackModes/stop'
 import { JsonDecoder } from 'ts.data.json'
@@ -75,13 +76,14 @@ export interface PrivateMessageCommandObject {
 
 export type ModeName = 'echo'
 
-export type CallbackModeName = 'stop'
+export type CallbackModeName = 'stop' | 'profanityFilter'
 
 const internalModes: { [commandName in ModeName]: ModeObject } = {
   echo,
 }
 
 const internalCallbackModes: { [commandName in CallbackModeName]: CallbackModeObject } = {
+  profanityFilter,
   stop,
 }
 

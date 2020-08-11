@@ -32,6 +32,11 @@ type Help =
   | 'help_userCommands'
   | 'help_privateMessageCommands'
 
+type ProfanityFilter =
+  | 'profanityFilter_description'
+  | 'profanityFilter_enabledText'
+  | 'profanityFilter_disabledText'
+
 type Remove =
   | 'remove_description'
 
@@ -89,6 +94,7 @@ export interface Messages {
   common: Context<Common>
   echo: Context<Echo>
   help: Context<Help>
+  profanityFilter: Context<ProfanityFilter>
   remove: Context<Remove>
   stop: Context<Stop>
 }
@@ -103,6 +109,7 @@ export type MessageKey =
   | Common
   | Echo
   | Help
+  | ProfanityFilter
   | Remove
   | Stop
 
@@ -116,6 +123,7 @@ export const prepareMessages = (messages: Messages): Record<MessageKey, string> 
   ...messages.common,
   ...messages.echo,
   ...messages.help,
+  ...messages.profanityFilter,
   ...messages.remove,
   ...messages.stop,
 })

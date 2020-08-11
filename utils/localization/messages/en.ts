@@ -110,6 +110,11 @@ const en: Messages = {
     help_userCommands: 'User commands:',
     help_privateMessageCommands: 'Commands available in private messages with bot:',
   },
+  profanityFilter: {
+    profanityFilter_description: 'deletes messages with Russian swear words',
+    profanityFilter_enabledText: 'All new messages with swear words will be removed',
+    profanityFilter_disabledText: 'New messages with swear words won\'t be removed'
+  },
   remove: {
     remove_description: 'removes message with this command',
   },
