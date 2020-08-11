@@ -95,7 +95,8 @@ export const upcastToModeName = (value: string): ModeName => (
 
 export const upcastToCallbackModeName = (value: string): CallbackModeName => (
   decode<CallbackModeName>(value, JsonDecoder.oneOf<CallbackModeName>([
-    JsonDecoder.isExactly('stop')
+    JsonDecoder.isExactly('profanityFilter'),
+    JsonDecoder.isExactly('stop'),
   ], 'Callback modes'))
 )
 
