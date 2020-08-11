@@ -66,11 +66,34 @@ const en: Messages = {
       modesCount, plural,
       one {The effect of mode {modesNames}}
       other {Effect of modes {modesNames}}
-    } can't be applied, because callback server is disconnected from this conversation. Reconnect your callback server using /callbackConnect command or disable this mode using {modesNamesSlash} {
+    } can't be applied, because callback server is disconnected from this conversation. Reconnect your callback server using /callbackConnect command or disable {
+      modesCount, plural,
+      one {this mode}
+      other {these modes}
+    } using {modesNamesSlash} {
       modesCount, plural,
       one {command}
       other {commands}
     }`,
+    common_modesCantBeAppliedWithoutAdminRights: `{
+      modesCount, plural,
+      one {The effect of mode {modesNames}}
+      other {Effect of modes {modesNames}}
+    } can't be applied, because {
+      modesCount, plural,
+      one {it requires}
+      other {they require}
+    } admin permissions for the bot. Appoint me as administrator or disable {
+      modesCount, plural,
+      one {this mode}
+      other {these modes}
+    } using {modesNamesSlash} {
+      modesCount, plural,
+      one {command}
+      other {commands}
+    }`,
+    common_needPermissionsToControlModes: 'Mode /{commandName} can be controled by admins only, like all other modes, but I don\'t have a permission to check user permissions in this conversation. Appoint me as administrator to use modes',
+    common_needPermissionsToUseAdminCommands: 'Command /{commandName} is available for admins only, but I don\'t have a permission to check user permissions in this conversation. Appoint me as administrator to use admin commands',
   },
   echo: {
     echo_description: 'echoes all new messages in the chat',

@@ -11,6 +11,7 @@ const stop: CallbackModeObject = {
   description: 'stop_description',
   enabledText: 'stop_enabledText',
   disabledText: 'stop_disabledText',
+  actionNeedsBotAdminRights: false,
   action
 }
 

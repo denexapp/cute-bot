@@ -6,8 +6,15 @@ import vk from './vk'
 import { Message } from './vkCallbackDecoders/messageNewDecoder'
 import list from './localization/list'
 
-const handleModes = async (message: Message, settings: ChatSettings, callbackServerSettings: CallbackServerSettings | null) => {
+const handleModes = async (
+  message: Message,
+  settings: ChatSettings,
+  callbackServerSettings: CallbackServerSettings | null,
+  botHasAdminRights: boolean
+) => {
   const { peer_id: peerId } = message
+
+  const modesThatCantWorkWithoutAdminRights: Array<string> = []
 
   if (callbackServerSettings === null) {
     const enabledCallbackModesNames = Object
@@ -30,15 +37,38 @@ const handleModes = async (message: Message, settings: ChatSettings, callbackSer
   } else {
     for (const [commandName, mode] of Object.entries(settings.callbackModes)) {
       if (mode === true) {
-        await callbackModes[commandName].action(message, callbackServerSettings)
+        const modeObject = callbackModes[commandName]
+        if (modeObject.actionNeedsBotAdminRights && !botHasAdminRights) {
+          modesThatCantWorkWithoutAdminRights.push(commandName)
+        } else {
+          await modeObject.action(message, callbackServerSettings)
+        }
       }
     }
   }
 
   for (const [commandName, mode] of Object.entries(settings.modes)) {
     if (mode === true) {
-      await modes[commandName].action(message)
+      const modeObject = modes[commandName]
+      if (modeObject.actionNeedsBotAdminRights && !botHasAdminRights) {
+        modesThatCantWorkWithoutAdminRights.push(commandName)
+      } else {
+        await modeObject.action(message)
+      }
     }
+  }
+
+  if (modesThatCantWorkWithoutAdminRights.length !== 0) {
+    const modesNames = list(modesThatCantWorkWithoutAdminRights)
+    const modesNamesSlash = list(modesThatCantWorkWithoutAdminRights.map(value => `/${value}`))
+    const modesCount = modesThatCantWorkWithoutAdminRights.length
+    const text = phrase('common_modesCantBeAppliedWithoutAdminRights', {
+      modesCount,
+      modesNames,
+      modesNamesSlash
+    })
+
+    await vk.messagesSend(peerId, text)
   }
 }
 

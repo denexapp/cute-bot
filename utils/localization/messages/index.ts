@@ -12,6 +12,9 @@ type Common =
   | 'common_modeEnabled'
   | 'common_modeDisabled'
   | 'common_modesCantBeAppliedWithoutCallbackServer'
+  | 'common_modesCantBeAppliedWithoutAdminRights'
+  | 'common_needPermissionsToControlModes'
+  | 'common_needPermissionsToUseAdminCommands'
   | 'common_unknownCommand'
 
 type Echo =

@@ -11,6 +11,7 @@ const echo: ModeObject = {
   description: 'echo_description',
   enabledText: 'echo_enabledText',
   disabledText: 'echo_disabledText',
+  actionNeedsBotAdminRights: false,
   action
 }
 

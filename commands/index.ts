@@ -44,6 +44,7 @@ export interface ModeObject {
   description: MessageKey
   enabledText: MessageKey
   disabledText: MessageKey
+  actionNeedsBotAdminRights: boolean
   action: Mode
 }
 
@@ -51,6 +52,7 @@ export interface CallbackModeObject {
   description: MessageKey
   enabledText: MessageKey
   disabledText: MessageKey
+  actionNeedsBotAdminRights: boolean
   action: CallbackMode
 }
 

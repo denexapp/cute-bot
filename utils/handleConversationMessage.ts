@@ -10,20 +10,23 @@ const isPrivateMessageCommandWithNameExist = (name: string) => (
   Object.keys(privateMessageCommands).some(commandName => commandName === name)
 )
 
-const isUserAdmin = async (peerId: number, fromId: number) => {
-  const { items } = await vk.messagesGetConversationMembers(peerId)
-  const memberIndex = items.findIndex(({ member_id }) => member_id === fromId)
-  return memberIndex !== -1 && items[memberIndex].is_admin
-}
-
-const handleConversationMessage = async (message: Message, commandName: string, settings: ChatSettings, callbackServerSettings: CallbackServerSettings | null) => {
+const handleConversationMessage = async (
+  message: Message,
+  commandName: string,
+  settings: ChatSettings,
+  callbackServerSettings: CallbackServerSettings | null,
+  isAdminMessage: boolean | null
+) => {
   const { peer_id: peerId, from_id: fromId } = message
-  
+
   if (callbackModes[commandName] !== undefined) {
     const commandObject = callbackModes[commandName]
 
-    if (!await isUserAdmin(peerId, fromId)) {
+    if (isAdminMessage === false) {
       await vk.messagesSend(peerId, phrase('common_modeAvailableForAdminsOnly', { commandName }))
+      return
+    } else if (isAdminMessage === null) {
+      await vk.messagesSend(peerId, phrase('common_needPermissionsToControlModes', { commandName }))
       return
     }
 
@@ -55,8 +58,11 @@ const handleConversationMessage = async (message: Message, commandName: string, 
   if (modes[commandName] !== undefined) {
     const commandObject = modes[commandName]
 
-    if (!await isUserAdmin(peerId, fromId)) {
+    if (isAdminMessage === false) {
       await vk.messagesSend(peerId, phrase('common_modeAvailableForAdminsOnly', { commandName }))
+      return
+    } else if (isAdminMessage === null) {
+      await vk.messagesSend(peerId, phrase('common_needPermissionsToControlModes', { commandName }))
       return
     }
 
@@ -80,8 +86,13 @@ const handleConversationMessage = async (message: Message, commandName: string, 
   if (callbackConversationCommands[commandName] !== undefined) {
     const commandObject = callbackConversationCommands[commandName]
 
-    if (commandObject.isAdminCommand && !await isUserAdmin(peerId, fromId)) {
+    if (commandObject.isAdminCommand && isAdminMessage === false) {
       await vk.messagesSend(peerId, phrase('common_commandAvailableForAdminsOnly', { commandName }))
+      return
+    }
+
+    if (commandObject.isAdminCommand && isAdminMessage === null) {
+      await vk.messagesSend(peerId, phrase('common_needPermissionsToUseAdminCommands', { commandName }))
       return
     }
 
@@ -97,8 +108,13 @@ const handleConversationMessage = async (message: Message, commandName: string, 
   if (conversationCommands[commandName] !== undefined) {
     const commandObject = conversationCommands[commandName]
 
-    if (commandObject.isAdminCommand && !await isUserAdmin(peerId, fromId)) {
+    if (commandObject.isAdminCommand && isAdminMessage === false) {
       await vk.messagesSend(peerId, phrase('common_commandAvailableForAdminsOnly', { commandName }))
+      return
+    }
+
+    if (commandObject.isAdminCommand && isAdminMessage === null) {
+      await vk.messagesSend(peerId, phrase('common_needPermissionsToUseAdminCommands', { commandName }))
       return
     }
 
