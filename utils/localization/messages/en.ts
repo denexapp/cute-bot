@@ -122,6 +122,16 @@ const en: Messages = {
     stop_description: 'deletes all new messages',
     stop_enabledText: 'All new messages in the chat will be removed',
     stop_disabledText: 'New messages won\'t be removed anymore'
+  },
+  userCommandsDisable: {
+    userCommandsDisable_description: 'disables user commands for users',
+    userCommandsDisable_failAlreadyDisabled: 'All user commands are already disabled',
+    userCommandsDisable_success: 'All user commands have been disabled. Only admins can use them now'
+  },
+  userCommandsEnable: {
+    userCommandsEnable_description: 'enables user commands',
+    userCommandsEnable_failAlreadyEnabled: 'User commands are already enabled for everyone',
+    userCommandsEnable_success: 'User commands have been enabled for everyone'
   }
 }
 

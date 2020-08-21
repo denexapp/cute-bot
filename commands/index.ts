@@ -4,6 +4,8 @@ import { Message } from '../utils/vkCallbackDecoders/messageNewDecoder'
 import callbackDisconnect from './callbackConversationCommands/callbackDisconnect'
 import callbackConnect from './conversationCommands/callbackConnect'
 import help from './conversationCommands/help'
+import userCommandsDisable from './conversationCommands/userCommandsDisable'
+import userCommandsEnable from './conversationCommands/userCommandsEnable'
 import echo from './modes/echo'
 import callbackAdd from './privateMessageCommands/callbackAdd'
 import callbackRemove from './privateMessageCommands/callbackRemove'
@@ -107,6 +109,8 @@ export const callbackModes: { [commandName: string]: CallbackModeObject } = inte
 export const conversationCommands: { [commandName: string]: ConversationCommandObject } = {
   callbackConnect,
   help,
+  userCommandsDisable,
+  userCommandsEnable
 }
 
 export const callbackConversationCommands: { [commandName: string]: CallbackConversationCommandObject } = {
