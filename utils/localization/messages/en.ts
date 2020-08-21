@@ -93,6 +93,7 @@ const en: Messages = {
       other {commands}
     }`,
     common_needPermissionsToControlModes: 'Mode /{commandName} can be controled by admins only, like all other modes, but I don\'t have a permission to check user permissions in this conversation. Appoint me as administrator to use modes',
+    common_needPermissionsToReactToCommands: 'I can\'t react to this command. Chat settings allow me to react to commands from admins only, but I don\'t have a permission to check user permissions in this conversation. Appoint me as administrator so I can react to commands according to user permissions',
     common_needPermissionsToUseAdminCommands: 'Command /{commandName} is available for admins only, but I don\'t have a permission to check user permissions in this conversation. Appoint me as administrator to use admin commands',
   },
   echo: {
@@ -124,14 +125,14 @@ const en: Messages = {
     stop_disabledText: 'New messages won\'t be removed anymore'
   },
   userCommandsDisable: {
-    userCommandsDisable_description: 'disables user commands for users',
-    userCommandsDisable_failAlreadyDisabled: 'All user commands are already disabled',
-    userCommandsDisable_success: 'All user commands have been disabled. Only admins can use them now'
+    userCommandsDisable_description: 'ignore commands from regular users',
+    userCommandsDisable_failAlreadyDisabled: 'All commands from regular users are already being ignored',
+    userCommandsDisable_success: 'All commands from regular users are ignored now'
   },
   userCommandsEnable: {
-    userCommandsEnable_description: 'enables user commands',
-    userCommandsEnable_failAlreadyEnabled: 'User commands are already enabled for everyone',
-    userCommandsEnable_success: 'User commands have been enabled for everyone'
+    userCommandsEnable_description: 'react to commands from regular users',
+    userCommandsEnable_failAlreadyEnabled: 'Bot already reacts to commands from regular users',
+    userCommandsEnable_success: 'Bot reacts to commands from regular users now'
   }
 }
 

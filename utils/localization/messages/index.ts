@@ -14,6 +14,7 @@ type Common =
   | 'common_modesCantBeAppliedWithoutCallbackServer'
   | 'common_modesCantBeAppliedWithoutAdminRights'
   | 'common_needPermissionsToControlModes'
+  | 'common_needPermissionsToReactToCommands'
   | 'common_needPermissionsToUseAdminCommands'
   | 'common_unknownCommand'
 

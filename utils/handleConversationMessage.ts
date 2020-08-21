@@ -19,6 +19,15 @@ const handleConversationMessage = async (
 ) => {
   const { peer_id: peerId, from_id: fromId } = message
 
+  if (!settings.userCanUseCommands) {
+    if (isAdminMessage === null) {
+      await vk.messagesSend(peerId, phrase('common_modeAvailableForAdminsOnly'))
+      return
+    } else if (isAdminMessage === false) {
+      return
+    }
+  }
+
   if (callbackModes[commandName] !== undefined) {
     const commandObject = callbackModes[commandName]
 

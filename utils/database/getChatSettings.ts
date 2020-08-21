@@ -9,7 +9,7 @@ export interface ChatSettings {
   callbackModes: { [key in CallbackModeName]: true | null }
   callbackServerUserId: null | number
   callbackServerChatId: null | number
-  userCommands: boolean
+  userCanUseCommands: boolean
 }
 
 const getDefaultSettings = (): ChatSettings => ({
@@ -17,7 +17,7 @@ const getDefaultSettings = (): ChatSettings => ({
   callbackModes: { stop: null, profanityFilter: null },
   callbackServerUserId: null,
   callbackServerChatId: null,
-  userCommands: true
+  userCanUseCommands: true
 })
 
 const getChatSettings = async (peerId: number): Promise<ChatSettings> => {

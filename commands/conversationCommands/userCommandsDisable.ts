@@ -6,13 +6,13 @@ import vk from '../../utils/vk'
 const command: ConversationCommand = async (message, settings) => {
   const { peer_id: peerId } = message
 
-  if (!settings.userCommands) {
+  if (!settings.userCanUseCommands) {
     await vk.messagesSend(peerId, phrase('userCommandsDisable_failAlreadyDisabled'))
     return
   }
 
   await setChatSettings(peerId, {
-    userCommands: false
+    userCanUseCommands: false
   })
 
   await vk.messagesSend(peerId, phrase('userCommandsDisable_success'))

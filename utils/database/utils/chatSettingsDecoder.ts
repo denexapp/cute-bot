@@ -12,7 +12,7 @@ const chatSettingsDecoder = JsonDecoder.object<ChatSettings>({
   }, 'Callback modes'),
   callbackServerUserId: optionalDecoder(JsonDecoder.number),
   callbackServerChatId: optionalDecoder(JsonDecoder.number),
-  userCommands: JsonDecoder.boolean
+  userCanUseCommands: JsonDecoder.boolean
 }, 'Chat settings')
 
 export default chatSettingsDecoder
