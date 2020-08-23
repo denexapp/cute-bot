@@ -33,6 +33,11 @@ type Help =
   | 'help_userCommands'
   | 'help_privateMessageCommands'
 
+type IgnoreUnknownCommands =
+  | 'ignoreUnknownCommands_description'
+  | 'ignoreUnknownCommands_enabledText'
+  | 'ignoreUnknownCommands_disabledText'
+
 type IgnoreUsers =
   | 'ignoreUsers_description'
   | 'ignoreUsers_enabledText'
@@ -99,6 +104,7 @@ export interface Messages {
   common: Context<Common>
   echo: Context<Echo>
   help: Context<Help>
+  ignoreUnknownCommands: Context<IgnoreUnknownCommands>
   ignoreUsers: Context<IgnoreUsers>
   profanityFilter: Context<ProfanityFilter>
   remove: Context<Remove>
@@ -115,6 +121,7 @@ export type MessageKey =
   | Common
   | Echo
   | Help
+  | IgnoreUnknownCommands
   | IgnoreUsers
   | ProfanityFilter
   | Remove
@@ -130,6 +137,7 @@ export const prepareMessages = (messages: Messages): Record<MessageKey, string> 
   ...messages.common,
   ...messages.echo,
   ...messages.help,
+  ...messages.ignoreUnknownCommands,
   ...messages.ignoreUsers,
   ...messages.profanityFilter,
   ...messages.remove,

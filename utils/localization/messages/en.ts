@@ -111,6 +111,11 @@ const en: Messages = {
     help_userCommands: 'User commands:',
     help_privateMessageCommands: 'Commands available in private messages with bot:',
   },
+  ignoreUnknownCommands: {
+    ignoreUnknownCommands_description: 'do not send a message that a command is unknown',
+    ignoreUnknownCommands_disabledText: 'I\'ll send a message if you use a command that I don\'t know',
+    ignoreUnknownCommands_enabledText: 'I won\'t react if you use a command that I don\'t know',
+  },
   ignoreUsers: {
     ignoreUsers_description: 'ignore commands from regular users',
     ignoreUsers_disabledText: 'I\'ll react to commands from regular users',

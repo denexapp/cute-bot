@@ -4,6 +4,7 @@ import decode from '../utils/decode'
 import { CallbackServerSettings } from '../utils/getCallbackServerSettings'
 import { MessageKey } from '../utils/localization/messages'
 import { Message } from '../utils/vkCallbackDecoders/messageNewDecoder'
+import ignoreUnknownCommands from './actionlessModes/ignoreUnknownCommands'
 import ignoreUsers from './actionlessModes/ignoreUsers'
 import callbackDisconnect from './callbackConversationCommands/callbackDisconnect'
 import remove from './callbackConversationCommands/remove'
@@ -81,7 +82,7 @@ export interface PrivateMessageCommandObject {
   description: MessageKey
 }
 
-export type ActionlessModeName = 'ignoreUsers'
+export type ActionlessModeName = 'ignoreUsers' | 'ignoreUnknownCommands'
 
 export type ModeName = 'echo'
 
@@ -89,6 +90,7 @@ export type CallbackModeName = 'stop' | 'profanityFilter'
 
 const internalActionlessModes: { [commandName in ActionlessModeName]: ActionlessModeObject } = {
   ignoreUsers,
+  ignoreUnknownCommands
 }
 
 const internalModes: { [commandName in ModeName]: ModeObject } = {
@@ -102,7 +104,8 @@ const internalCallbackModes: { [commandName in CallbackModeName]: CallbackModeOb
 
 export const upcastToActionlessModeName = (value: string): ActionlessModeName => (
   decode<ActionlessModeName>(value, JsonDecoder.oneOf<ActionlessModeName>([
-    JsonDecoder.isExactly('ignoreUsers')
+    JsonDecoder.isExactly('ignoreUsers'),
+    JsonDecoder.isExactly('ignoreUnknownCommands')
   ], 'Actionless modes'))
 )
 

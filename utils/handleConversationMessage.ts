@@ -19,9 +19,9 @@ const handleConversationMessage = async (
 ) => {
   const { peer_id: peerId, from_id: fromId } = message
 
-  if (!settings.actionlessModes.ignoreUsers) {
+  if (settings.actionlessModes.ignoreUsers) {
     if (isAdminMessage === null) {
-      await vk.messagesSend(peerId, phrase('common_modeAvailableForAdminsOnly'))
+      await vk.messagesSend(peerId, phrase('common_needPermissionsToReactToCommands'))
       return
     } else if (isAdminMessage === false) {
       return
@@ -168,7 +168,9 @@ const handleConversationMessage = async (
     return
   }
 
-  await vk.messagesSend(peerId, phrase('common_unknownCommand'))
+  if (settings.actionlessModes.ignoreUnknownCommands === null) {
+    await vk.messagesSend(peerId, phrase('common_unknownCommand'))
+  }
 }
 
 export default handleConversationMessage

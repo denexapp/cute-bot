@@ -4,6 +4,7 @@ import { ChatSettings } from '../getChatSettings'
 
 const chatSettingsDecoder = JsonDecoder.object<ChatSettings>({
   actionlessModes: JsonDecoder.object({
+    ignoreUnknownCommands: optionalDecoder(JsonDecoder.isExactly(true)),
     ignoreUsers: optionalDecoder(JsonDecoder.isExactly(true))
   }, 'Actionless modes'),
   modes: JsonDecoder.object({
