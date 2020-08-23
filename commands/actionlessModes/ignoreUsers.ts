@@ -1,9 +1,9 @@
 import { ActionlessModeObject } from '..'
 
 const ignoreUsers: ActionlessModeObject = {
-  description: 'echo_description',
-  enabledText: 'echo_enabledText',
-  disabledText: 'echo_disabledText'
+  description: 'ignoreUsers_description',
+  enabledText: 'ignoreUsers_enabledText',
+  disabledText: 'ignoreUsers_disabledText'
 }
 
 export default ignoreUsers
