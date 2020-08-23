@@ -1,4 +1,4 @@
-import { callbackConversationCommands, callbackModes, conversationCommands, modes, privateMessageCommands, upcastToCallbackModeName, upcastToModeName } from '../commands'
+import { actionlessModes, callbackConversationCommands, callbackModes, conversationCommands, modes, privateMessageCommands, upcastToActionlessModeName, upcastToCallbackModeName, upcastToModeName } from '../commands'
 import { ChatSettings } from './database/getChatSettings'
 import setChatSettings from './database/setChatSettings'
 import { CallbackServerSettings } from './getCallbackServerSettings'
@@ -19,7 +19,7 @@ const handleConversationMessage = async (
 ) => {
   const { peer_id: peerId, from_id: fromId } = message
 
-  if (!settings.userCanUseCommands) {
+  if (!settings.actionlessModes.ignoreUsers) {
     if (isAdminMessage === null) {
       await vk.messagesSend(peerId, phrase('common_modeAvailableForAdminsOnly'))
       return
@@ -59,6 +59,34 @@ const handleConversationMessage = async (
     } else {
       const disabledText = phrase(commandObject.disabledText)
       await vk.messagesSend(peerId, phrase('common_modeDisabled', { commandName, disabledText }))
+    }
+
+    return
+  }
+
+  if (actionlessModes[commandName] !== undefined) {
+    const commandObject = actionlessModes[commandName]
+
+    if (isAdminMessage === false) {
+      await vk.messagesSend(peerId, phrase('common_modeAvailableForAdminsOnly', { commandName }))
+      return
+    } else if (isAdminMessage === null) {
+      await vk.messagesSend(peerId, phrase('common_needPermissionsToControlModes', { commandName }))
+      return
+    }
+
+    const modeName = upcastToActionlessModeName(commandName)
+
+    await setChatSettings(peerId, {
+      actionlessModes: {
+        [modeName]: settings.actionlessModes[modeName] === null ? true : null
+      }
+    })
+
+    if (settings.actionlessModes[modeName] === null) {
+      await vk.messagesSend(peerId, phrase('common_modeEnabled', { commandName, enabledText: commandObject.enabledText }))
+    } else {
+      await vk.messagesSend(peerId, phrase('common_modeDisabled', { commandName, disabledText: commandObject.disabledText }))
     }
 
     return

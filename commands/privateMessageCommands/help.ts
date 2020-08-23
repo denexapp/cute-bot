@@ -1,22 +1,25 @@
 import {
+  ActionlessModeObject,
+  actionlessModes,
   CallbackConversationCommandObject,
+  callbackConversationCommands,
+  CallbackModeObject,
+  callbackModes,
   ConversationCommandObject,
+  conversationCommands,
   ModeObject,
+  modes,
   PrivateMessageCommand,
   PrivateMessageCommandObject,
-  modes,
-  callbackModes,
-  CallbackModeObject,
-  conversationCommands,
-  callbackConversationCommands,
   privateMessageCommands
 } from '..'
+import { MessageKey } from '../../utils/localization/messages'
 import phrase from '../../utils/localization/phrase'
 import vk from '../../utils/vk'
-import { MessageKey } from '../../utils/localization/messages'
 
 type CommandItem = [
   string,
+  | ActionlessModeObject
   | ModeObject
   | CallbackModeObject
   | ConversationCommandObject
@@ -60,7 +63,7 @@ const command: PrivateMessageCommand = async message => {
     .entries(callbackConversationCommands)
     .filter(([, command]) => !command.isAdminCommand)
 
-  const modesText = generateCommandList('help_modes', Object.entries(modes), Object.entries(callbackModes))
+  const modesText = generateCommandList('help_modes', [...Object.entries(modes), ...Object.entries(actionlessModes)], Object.entries(callbackModes))
   const adminCommandsText = generateCommandList('help_adminCommands', adminCommands, adminCallbackCommands)
   const userCommandsText = generateCommandList('help_userCommands', userCommands, userCallbackCommands)
   const privateMessagesCommandsText = generateCommandList('help_privateMessageCommands', Object.entries(privateMessageCommands))

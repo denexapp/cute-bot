@@ -3,6 +3,9 @@ import optionalDecoder from '../../optionalDecoder'
 import { ChatSettings } from '../getChatSettings'
 
 const chatSettingsDecoder = JsonDecoder.object<ChatSettings>({
+  actionlessModes: JsonDecoder.object({
+    ignoreUsers: optionalDecoder(JsonDecoder.isExactly(true))
+  }, 'Actionless modes'),
   modes: JsonDecoder.object({
     echo: optionalDecoder(JsonDecoder.isExactly(true)),
   }, 'Modes'),
@@ -11,8 +14,7 @@ const chatSettingsDecoder = JsonDecoder.object<ChatSettings>({
     stop: optionalDecoder(JsonDecoder.isExactly(true)),
   }, 'Callback modes'),
   callbackServerUserId: optionalDecoder(JsonDecoder.number),
-  callbackServerChatId: optionalDecoder(JsonDecoder.number),
-  userCanUseCommands: JsonDecoder.boolean
+  callbackServerChatId: optionalDecoder(JsonDecoder.number)
 }, 'Chat settings')
 
 export default chatSettingsDecoder

@@ -33,6 +33,11 @@ type Help =
   | 'help_userCommands'
   | 'help_privateMessageCommands'
 
+type IgnoreUsers =
+  | 'ignoreUsers_description'
+  | 'ignoreUsers_enabledText'
+  | 'ignoreUsers_disabledText'
+
 type ProfanityFilter =
   | 'profanityFilter_description'
   | 'profanityFilter_enabledText'
@@ -82,16 +87,6 @@ type CallbackDisconnect =
   | 'callbackDisconnect_description'
   | 'callbackDisconnect_successWithModes'
 
-type UserCommandsDisable =
-  | 'userCommandsDisable_description'
-  | 'userCommandsDisable_failAlreadyDisabled'
-  | 'userCommandsDisable_success'
-
-type UserCommandsEnable =
-  | 'userCommandsEnable_description'
-  | 'userCommandsEnable_failAlreadyEnabled'
-  | 'userCommandsEnable_success'
-
 type Context<K extends string> = { [Key in K]: string }
 
 export interface Messages {
@@ -104,11 +99,10 @@ export interface Messages {
   common: Context<Common>
   echo: Context<Echo>
   help: Context<Help>
+  ignoreUsers: Context<IgnoreUsers>
   profanityFilter: Context<ProfanityFilter>
   remove: Context<Remove>
   stop: Context<Stop>
-  userCommandsDisable: Context<UserCommandsDisable>
-  userCommandsEnable: Context<UserCommandsEnable>
 }
 
 export type MessageKey =
@@ -121,11 +115,10 @@ export type MessageKey =
   | Common
   | Echo
   | Help
+  | IgnoreUsers
   | ProfanityFilter
   | Remove
   | Stop
-  | UserCommandsDisable
-  | UserCommandsEnable
 
 export const prepareMessages = (messages: Messages): Record<MessageKey, string> => ({
   ...messages.callbackAdd,
@@ -137,11 +130,10 @@ export const prepareMessages = (messages: Messages): Record<MessageKey, string> 
   ...messages.common,
   ...messages.echo,
   ...messages.help,
+  ...messages.ignoreUsers,
   ...messages.profanityFilter,
   ...messages.remove,
   ...messages.stop,
-  ...messages.userCommandsDisable,
-  ...messages.userCommandsEnable,
 })
 
 const messages: { [key in Locale]: Messages } = {

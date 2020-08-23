@@ -111,6 +111,11 @@ const en: Messages = {
     help_userCommands: 'User commands:',
     help_privateMessageCommands: 'Commands available in private messages with bot:',
   },
+  ignoreUsers: {
+    ignoreUsers_description: 'ignore commands from regular users',
+    ignoreUsers_disabledText: 'I\'ll react to commands from regular users',
+    ignoreUsers_enabledText: 'All commands from regular users will be ignored',
+  },
   profanityFilter: {
     profanityFilter_description: 'deletes messages with Russian swear words',
     profanityFilter_enabledText: 'All new messages with swear words will be removed',
@@ -123,16 +128,6 @@ const en: Messages = {
     stop_description: 'deletes all new messages',
     stop_enabledText: 'All new messages in the chat will be removed',
     stop_disabledText: 'New messages won\'t be removed anymore'
-  },
-  userCommandsDisable: {
-    userCommandsDisable_description: 'ignore commands from regular users',
-    userCommandsDisable_failAlreadyDisabled: 'All commands from regular users are already being ignored',
-    userCommandsDisable_success: 'All commands from regular users are ignored now'
-  },
-  userCommandsEnable: {
-    userCommandsEnable_description: 'react to commands from regular users',
-    userCommandsEnable_failAlreadyEnabled: 'Bot already reacts to commands from regular users',
-    userCommandsEnable_success: 'Bot reacts to commands from regular users now'
   }
 }
 

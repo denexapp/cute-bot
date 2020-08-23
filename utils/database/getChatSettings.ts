@@ -1,23 +1,23 @@
 import { query as q } from 'faunadb'
-import getDatabaseClient from './utils/getDatabaseClient'
+import { ActionlessModeName, CallbackModeName, ModeName } from '../../commands'
 import chatSettingsDecoder from './utils/chatSettingsDecoder'
 import decodeDatabaseResponse from './utils/decodeDatabaseResponse'
-import { ModeName, CallbackModeName } from '../../commands'
+import getDatabaseClient from './utils/getDatabaseClient'
 
 export interface ChatSettings {
+  actionlessModes: { [key in ActionlessModeName]: true | null }
   modes: { [key in ModeName]: true | null }
   callbackModes: { [key in CallbackModeName]: true | null }
   callbackServerUserId: null | number
   callbackServerChatId: null | number
-  userCanUseCommands: boolean
 }
 
 const getDefaultSettings = (): ChatSettings => ({
+  actionlessModes: { ignoreUsers: null },
   modes: { echo: null },
   callbackModes: { stop: null, profanityFilter: null },
   callbackServerUserId: null,
-  callbackServerChatId: null,
-  userCanUseCommands: true
+  callbackServerChatId: null
 })
 
 const getChatSettings = async (peerId: number): Promise<ChatSettings> => {
