@@ -15,8 +15,10 @@ export default async (req: NowRequest, res: NowResponse) => {
   if (data.type === 'message_new') {
     const { message } = data.object
 
-    await createSettingsCollections()
-    await handleMessage(message)
+    if (message.from_id > 0) {
+      await createSettingsCollections()
+      await handleMessage(message)
+    }
 
     res.send('ok')
     return
