@@ -12,18 +12,14 @@ const command: ConversationCommand = async (message, settings) => {
   const [commandName, templateName] = text.split(' ')
 
   if (templateName === undefined || templateName.length === 0) {
-    await vk.messagesSend(peerId, phrase('addTemplate_failNoNameOrText', {
-      text: templates[templateName].message
-    }))
+    await vk.messagesSend(peerId, phrase('addTemplate_failNoNameOrText'))
     return
   }
 
   const templateText = text.slice(commandName.length + templateName.length + 2).trim()
 
   if (templateText.length === 0) {
-    await vk.messagesSend(peerId, phrase('addTemplate_failNoNameOrText', {
-      text: templates[templateName].message
-    }))
+    await vk.messagesSend(peerId, phrase('addTemplate_failNoNameOrText'))
     return
   }
 
