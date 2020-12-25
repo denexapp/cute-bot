@@ -39,9 +39,10 @@ const setChatTemplate = async (
           q.Select(
             templateName,
             q.Var('templates'),
-            -1),
-          -1),
-        -1,
+            -1
+          ),
+          -1
+        ),
         q.If(
           q.GTE(
             q.Count(
@@ -64,7 +65,8 @@ const setChatTemplate = async (
             ),
             0
           )
-        )
+        ),
+        -1,
       )
     )
   )
