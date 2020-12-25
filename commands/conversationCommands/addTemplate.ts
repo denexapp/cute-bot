@@ -7,8 +7,6 @@ import vk from '../../utils/vk'
 const command: ConversationCommand = async (message, settings) => {
   const { peer_id: peerId, text } = message
 
-  const { templates } = settings
-
   const [commandName, templateName] = text.split(' ')
 
   if (templateName === undefined || templateName.length === 0) {
@@ -27,7 +25,7 @@ const command: ConversationCommand = async (message, settings) => {
 
   if (resultStatus === -1) {
     await vk.messagesSend(peerId, phrase('addTemplate_failAlreadyExists', {
-      text: templates[templateName].message
+      text: templateName
     }))
     return
   }
