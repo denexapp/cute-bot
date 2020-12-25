@@ -3,11 +3,11 @@ import { Messages } from '.'
 const en: Messages = {
   callbackAdd: {
     callbackAdd_description: 'adds personal callback server',
-    callbackAdd_failError: 'Failed to add callback server. Make sure that server is online.  Provided url: "{url}"',
+    callbackAdd_failError: 'I can\'t add callback server. Make sure that server is online.  Provided url: "{url}"',
     callbackAdd_failAlreadyExist: 'You alredy have connected callback server. To use new server instead, remove connected server first using /callbackRemove command. Url of current server: {callbackServerUrl}',
-    callbackAdd_failNoUrl: 'Failed to add callback server, missing callback server url. This command accepts callback server url as a parameter',
-    callbackAdd_failBadUrl: 'Failed to add callback server. Provided url is not acceptable. Provided url: "{url}"',
-    callbackAdd_success: 'Callback server successfully added. Now you can connect it to conversations using /callbackConnect command',
+    callbackAdd_failNoUrl: 'I can\'t add callback server, missing callback server url. This command accepts callback server url as a parameter',
+    callbackAdd_failBadUrl: 'I can\'t add callback server. Provided url is not acceptable. Provided url: "{url}"',
+    callbackAdd_success: 'I added the callback server successfully. Now you can connect it to conversations using /callbackConnect command',
   },
   callbackConnect: {
     callbackConnect_description: 'connects your callback server to this conversation',
@@ -53,7 +53,7 @@ const en: Messages = {
   },
   common: {
     common_unknownCommand: 'Unknown command. Use /help to list all commands',
-    common_commandAvailableInThePrivateChatOnly: 'Command /{commandName} is available in the private chat with me only',
+    common_commandAvailableInThePrivateChatOnly: 'Command /{commandName} is available in a private chat with me only',
     common_commandAvailableInAGroupChatOnly: 'Command /{commandName} is available in a group chat only',
     common_commandAvailableForAdminsOnly: 'Command /{commandName} is available for admins only',
     common_commandRequiresCallbackServer: 'Command /{commandName} requires a callback server connected to this conversation. Use /callbackConnect command to connect your callback server to this conversation',
@@ -109,7 +109,7 @@ const en: Messages = {
     help_modes: 'Conversation modes:',
     help_adminCommands: 'Admin commands:',
     help_userCommands: 'User commands:',
-    help_privateMessageCommands: 'Commands available in private messages with bot:',
+    help_privateMessageCommands: 'Commands available in a private chat with me:',
   },
   ignoreUnknownCommands: {
     ignoreUnknownCommands_description: 'do not send a message that a command is unknown',
@@ -119,20 +119,20 @@ const en: Messages = {
   ignoreUsers: {
     ignoreUsers_description: 'ignore commands from regular users',
     ignoreUsers_disabledText: 'I\'ll react to commands from regular users',
-    ignoreUsers_enabledText: 'All commands from regular users will be ignored',
+    ignoreUsers_enabledText: 'I will be ignore commands from regular users',
   },
   profanityFilter: {
     profanityFilter_description: 'deletes messages with Russian swear words',
-    profanityFilter_enabledText: 'All new messages with swear words will be removed',
-    profanityFilter_disabledText: 'New messages with swear words won\'t be removed'
+    profanityFilter_enabledText: 'I will remove all new messages with swear words',
+    profanityFilter_disabledText: 'Okay, I won\'t remove messages with swear words anymore'
   },
   remove: {
     remove_description: 'removes message with this command',
   },
   stop: {
     stop_description: 'deletes all new messages',
-    stop_enabledText: 'All new messages in the chat will be removed',
-    stop_disabledText: 'New messages won\'t be removed anymore'
+    stop_enabledText: 'I\ll delete any appearing messages in the chat',
+    stop_disabledText: 'I won\'t remove new messages anymore'
   }
 }
 
