@@ -4,7 +4,7 @@ const en: Messages = {
   addTemplate: {
     addTemplate_description: 'adds template message',
     addTemplate_failNoNameOrText: 'I can\'t add the template cause the command misses a name or a message. Please, add the name and the message separated by a space',
-    addTemplate_failAlreadyExists: 'I can\'t add this template cause template with the same name already exists. The existing template is: "{text}"',
+    addTemplate_failAlreadyExists: 'I can\'t add this template cause a template with the same name already exists. The existing template is: "{text}"',
     addTemplate_failTooMuchTemplates: `I can't add this template cause there are too much templates in the chat, the limit is {
       limit, plural,
       =0 {0 templates}
