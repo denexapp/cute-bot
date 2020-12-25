@@ -10,6 +10,11 @@ export interface ChatSettings {
   callbackModes: { [key in CallbackModeName]: true | null }
   callbackServerUserId: null | number
   callbackServerChatId: null | number
+  templates: {
+    [name: string]: {
+      message: string
+    }
+  }
 }
 
 const getDefaultSettings = (): ChatSettings => ({
@@ -17,7 +22,8 @@ const getDefaultSettings = (): ChatSettings => ({
   modes: { echo: null },
   callbackModes: { stop: null, profanityFilter: null },
   callbackServerUserId: null,
-  callbackServerChatId: null
+  callbackServerChatId: null,
+  templates: {}
 })
 
 const getChatSettings = async (peerId: number): Promise<ChatSettings> => {
