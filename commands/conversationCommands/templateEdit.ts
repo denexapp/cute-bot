@@ -45,7 +45,7 @@ const command: ConversationCommand = async (message, settings) => {
 const templateEdit: ConversationCommandObject = {
   command,
   isAdminCommand: true,
-  description: 'templateAdd_description'
+  description: 'templateEdit_description'
 }
 
 export default templateEdit
