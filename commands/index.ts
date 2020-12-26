@@ -13,6 +13,7 @@ import stop from './callbackModes/stop'
 import callbackConnect from './conversationCommands/callbackConnect'
 import templateAdd from './conversationCommands/templateAdd'
 import templateEdit from './conversationCommands/templateEdit'
+import templateList from './conversationCommands/templateList'
 import help from './conversationCommands/help'
 import echo from './modes/echo'
 import callbackAdd from './privateMessageCommands/callbackAdd'
@@ -135,6 +136,7 @@ export const conversationCommands: { [commandName: string]: ConversationCommandO
   help,
   templateAdd,
   templateEdit,
+  templateList,
 }
 
 export const callbackConversationCommands: { [commandName: string]: CallbackConversationCommandObject } = {

@@ -152,6 +152,12 @@ const en: Messages = {
     templateEdit_failNoTemplates: 'There\'s no saved templates in the chat. Use /templateAdd command to save a template',
     templateEdit_failNoTemplateWithThisName: 'There\'s no saved templates with the name "{templateName}". Use /templateList command to see all saved templates',
     templateEdit_success: 'I\'ve successfully edited template "{templateName}"'
+  },
+  templateList: {
+    templateList_description: 'lists all templates',
+    templateList_failNoTemplates: 'There\'s no saved templates in the chat. Use /templateAdd command to save a template',
+    templateList_header: 'Saved messages templates:',
+    templateList_template: '😾 {name}',
   }
 }
 

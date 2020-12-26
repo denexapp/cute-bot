@@ -70,6 +70,12 @@ type TemplateEdit =
   | 'templateEdit_failNoTemplateWithThisName'
   | 'templateEdit_success'
 
+type TemplateList =
+  | 'templateList_description'
+  | 'templateList_failNoTemplates'
+  | 'templateList_header'
+  | 'templateList_template'
+
 type CallbackSecretGet =
   | 'callbackSecretGet_description'
   | 'callbackSecretGet_message'
@@ -125,6 +131,7 @@ export interface Messages {
   stop: Context<Stop>
   templateAdd: Context<TemplateAdd>
   templateEdit: Context<TemplateEdit>
+  templateList: Context<TemplateList>
 }
 
 export type MessageKey =
@@ -144,6 +151,7 @@ export type MessageKey =
   | Stop
   | TemplateAdd
   | TemplateEdit
+  | TemplateList
 
 export const prepareMessages = (messages: Messages): Record<MessageKey, string> => ({
   ...messages.callbackAdd,
@@ -162,6 +170,7 @@ export const prepareMessages = (messages: Messages): Record<MessageKey, string> 
   ...messages.stop,
   ...messages.templateAdd,
   ...messages.templateEdit,
+  ...messages.templateList,
 })
 
 const messages: { [key in Locale]: Messages } = {
