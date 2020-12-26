@@ -15,6 +15,7 @@ import templateAdd from './conversationCommands/templateAdd'
 import templateEdit from './conversationCommands/templateEdit'
 import templateList from './conversationCommands/templateList'
 import templateRemove from './conversationCommands/templateRemove'
+import templateShow from './conversationCommands/templateShow'
 import help from './conversationCommands/help'
 import echo from './modes/echo'
 import callbackAdd from './privateMessageCommands/callbackAdd'
@@ -139,6 +140,7 @@ export const conversationCommands: { [commandName: string]: ConversationCommandO
   templateEdit,
   templateList,
   templateRemove,
+  templateShow,
 }
 
 export const callbackConversationCommands: { [commandName: string]: CallbackConversationCommandObject } = {

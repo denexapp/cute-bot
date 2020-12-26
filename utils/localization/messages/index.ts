@@ -83,6 +83,12 @@ type TemplateRemove =
   | 'templateRemove_failNoTemplateWithThisName'
   | 'templateRemove_success'
 
+type TemplateShow =
+  | 'templateShow_description'
+  | 'templateShow_failNoName'
+  | 'templateShow_failNoTemplates'
+  | 'templateShow_failNoTemplateWithThisName'
+
 type CallbackSecretGet =
   | 'callbackSecretGet_description'
   | 'callbackSecretGet_message'
@@ -140,6 +146,7 @@ export interface Messages {
   templateEdit: Context<TemplateEdit>
   templateList: Context<TemplateList>
   templateRemove: Context<TemplateRemove>
+  templateShow: Context<TemplateShow>
 }
 
 export type MessageKey =
@@ -161,6 +168,7 @@ export type MessageKey =
   | TemplateEdit
   | TemplateList
   | TemplateRemove
+  | TemplateShow
 
 export const prepareMessages = (messages: Messages): Record<MessageKey, string> => ({
   ...messages.callbackAdd,
@@ -181,6 +189,7 @@ export const prepareMessages = (messages: Messages): Record<MessageKey, string> 
   ...messages.templateEdit,
   ...messages.templateList,
   ...messages.templateRemove,
+  ...messages.templateShow,
 })
 
 const messages: { [key in Locale]: Messages } = {
