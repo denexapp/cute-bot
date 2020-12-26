@@ -11,6 +11,7 @@ import remove from './callbackConversationCommands/remove'
 import profanityFilter from './callbackModes/profanityFilter'
 import stop from './callbackModes/stop'
 import callbackConnect from './conversationCommands/callbackConnect'
+import t from './conversationCommands/t'
 import templateAdd from './conversationCommands/templateAdd'
 import templateEdit from './conversationCommands/templateEdit'
 import templateList from './conversationCommands/templateList'
@@ -136,6 +137,7 @@ export const callbackModes: { [commandName: string]: CallbackModeObject } = inte
 export const conversationCommands: { [commandName: string]: ConversationCommandObject } = {
   callbackConnect,
   help,
+  t,
   templateAdd,
   templateEdit,
   templateList,

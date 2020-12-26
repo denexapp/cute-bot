@@ -134,6 +134,9 @@ const en: Messages = {
     stop_enabledText: 'I\ll delete any appearing messages in the chat',
     stop_disabledText: 'I won\'t remove new messages anymore'
   },
+  t: {
+    t_description: 'shorthand for /templateShow',
+  },
   templateAdd: {
     templateAdd_description: 'adds template message',
     templateAdd_failNoNameOrText: 'I can\'t add the template cause the command misses a name or a message. Please, add the name of the template and the message separated by a space',

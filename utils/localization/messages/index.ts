@@ -56,6 +56,9 @@ type Stop =
   | 'stop_enabledText'
   | 'stop_disabledText'
 
+type T =
+  | 't_description'
+  
 type TemplateAdd =
   | 'templateAdd_description'
   | 'templateAdd_failNoNameOrText'
@@ -142,6 +145,7 @@ export interface Messages {
   profanityFilter: Context<ProfanityFilter>
   remove: Context<Remove>
   stop: Context<Stop>
+  t: Context<T>
   templateAdd: Context<TemplateAdd>
   templateEdit: Context<TemplateEdit>
   templateList: Context<TemplateList>
@@ -164,6 +168,7 @@ export type MessageKey =
   | ProfanityFilter
   | Remove
   | Stop
+  | T
   | TemplateAdd
   | TemplateEdit
   | TemplateList
@@ -185,6 +190,7 @@ export const prepareMessages = (messages: Messages): Record<MessageKey, string> 
   ...messages.profanityFilter,
   ...messages.remove,
   ...messages.stop,
+  ...messages.t,
   ...messages.templateAdd,
   ...messages.templateEdit,
   ...messages.templateList,
