@@ -1,18 +1,6 @@
 import { Messages } from '.'
 
 const en: Messages = {
-  templateAdd: {
-    templateAdd_description: 'adds template message',
-    templateAdd_failNoNameOrText: 'I can\'t add the template cause the command misses a name or a message. Please, add the name and the message separated by a space',
-    templateAdd_failAlreadyExists: 'I can\'t add this template cause a template with the same name already exists. The existing template is: "{text}"',
-    templateAdd_failTooMuchTemplates: `I can't add this template cause there are too much templates in the chat, the limit is {
-      limit, plural,
-      =0 {0 templates}
-      one {one template}
-      other {{limit} templates}
-    }`,
-    templateAdd_success: 'I\'ve successfully added template "{templateName}"'
-  },
   callbackAdd: {
     callbackAdd_description: 'adds personal callback server',
     callbackAdd_failError: 'I can\'t add callback server. Make sure that server is online.  Provided url: "{url}"',
@@ -145,7 +133,19 @@ const en: Messages = {
     stop_description: 'deletes all new messages',
     stop_enabledText: 'I\ll delete any appearing messages in the chat',
     stop_disabledText: 'I won\'t remove new messages anymore'
-  }
+  },
+  templateAdd: {
+    templateAdd_description: 'adds template message',
+    templateAdd_failNoNameOrText: 'I can\'t add the template cause the command misses a name or a message. Please, add the name and the message separated by a space',
+    templateAdd_failAlreadyExists: 'I can\'t add this template cause a template with the same name already exists. The existing template is: "{text}"',
+    templateAdd_failTooMuchTemplates: `I can't add this template cause there are too much templates in the chat, the limit is {
+      limit, plural,
+      =0 {0 templates}
+      one {one template}
+      other {{limit} templates}
+    }`,
+    templateAdd_success: 'I\'ve successfully added template "{templateName}"'
+  },
 }
 
 export default en

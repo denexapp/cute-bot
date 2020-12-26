@@ -10,8 +10,8 @@ import callbackDisconnect from './callbackConversationCommands/callbackDisconnec
 import remove from './callbackConversationCommands/remove'
 import profanityFilter from './callbackModes/profanityFilter'
 import stop from './callbackModes/stop'
-import templateAdd from './conversationCommands/templateAdd'
 import callbackConnect from './conversationCommands/callbackConnect'
+import templateAdd from './conversationCommands/templateAdd'
 import help from './conversationCommands/help'
 import echo from './modes/echo'
 import callbackAdd from './privateMessageCommands/callbackAdd'
@@ -130,9 +130,9 @@ export const modes: { [commandName: string]: ModeObject } = internalModes
 export const callbackModes: { [commandName: string]: CallbackModeObject } = internalCallbackModes
 
 export const conversationCommands: { [commandName: string]: ConversationCommandObject } = {
-  templateAdd,
   callbackConnect,
-  help
+  help,
+  templateAdd,
 }
 
 export const callbackConversationCommands: { [commandName: string]: CallbackConversationCommandObject } = {

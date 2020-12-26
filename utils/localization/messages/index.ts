@@ -102,7 +102,6 @@ type CallbackDisconnect =
 type Context<K extends string> = { [Key in K]: string }
 
 export interface Messages {
-  templateAdd: Context<TemplateAdd>
   callbackAdd: Context<CallbackAdd>
   callbackConnect: Context<CallbackConnect>
   callbackDisconnect: Context<CallbackDisconnect>
@@ -117,10 +116,10 @@ export interface Messages {
   profanityFilter: Context<ProfanityFilter>
   remove: Context<Remove>
   stop: Context<Stop>
+  templateAdd: Context<TemplateAdd>
 }
 
 export type MessageKey =
-  | TemplateAdd
   | CallbackAdd
   | CallbackConnect
   | CallbackDisconnect
@@ -135,9 +134,9 @@ export type MessageKey =
   | ProfanityFilter
   | Remove
   | Stop
+  | TemplateAdd
 
 export const prepareMessages = (messages: Messages): Record<MessageKey, string> => ({
-  ...messages.templateAdd,
   ...messages.callbackAdd,
   ...messages.callbackConnect,
   ...messages.callbackDisconnect,
@@ -152,6 +151,7 @@ export const prepareMessages = (messages: Messages): Record<MessageKey, string> 
   ...messages.profanityFilter,
   ...messages.remove,
   ...messages.stop,
+  ...messages.templateAdd,
 })
 
 const messages: { [key in Locale]: Messages } = {
