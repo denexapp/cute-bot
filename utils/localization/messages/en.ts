@@ -157,7 +157,7 @@ const en: Messages = {
     templateList_description: 'lists all templates',
     templateList_failNoTemplates: 'There\'s no saved templates in the chat. Use /templateAdd command to save a template',
     templateList_header: 'Saved messages templates:',
-    templateList_template: '😾 {name}',
+    templateList_template: '😾 /t {name}',
   }
 }
 
