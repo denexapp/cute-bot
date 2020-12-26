@@ -158,6 +158,13 @@ const en: Messages = {
     templateList_failNoTemplates: 'There\'s no saved templates in the chat. Use /templateAdd command to save a template',
     templateList_header: 'Saved messages templates:',
     templateList_template: '😾 /t {name}',
+  },
+  templateRemove: {
+    templateRemove_description: 'removes template message',
+    templateRemove_failNoName: 'I can\'t edit the template cause the command misses a name of the template',
+    templateRemove_failNoTemplates: 'There\'s no saved templates in the chat. Use /templateAdd command to save a template',
+    templateRemove_failNoTemplateWithThisName: 'There\'s no saved templates with the name "{templateName}". Use /templateList command to see all saved templates',
+    templateRemove_success: 'I\'ve successfully removed template "{templateName}"'
   }
 }
 

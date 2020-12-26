@@ -13,7 +13,7 @@ export interface ChatSettings {
   templates: {
     [name: string]: {
       message: string
-    }
+    } | null
   }
 }
 
