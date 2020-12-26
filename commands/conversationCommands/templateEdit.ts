@@ -8,11 +8,6 @@ const command: ConversationCommand = async (message, settings) => {
 
   const [commandName, templateName] = text.split(' ')
 
-  if (Object.keys(settings.templates).length === 0) {
-    await vk.messagesSend(peerId, phrase('templateEdit_failNoTemplates'))
-    return
-  }
-
   if (templateName === undefined || templateName.length === 0) {
     await vk.messagesSend(peerId, phrase('templateEdit_failNoNameOrText'))
     return
