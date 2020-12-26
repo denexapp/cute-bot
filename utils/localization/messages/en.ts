@@ -136,7 +136,7 @@ const en: Messages = {
   },
   templateAdd: {
     templateAdd_description: 'adds template message',
-    templateAdd_failNoNameOrText: 'I can\'t add the template cause the command misses a name or a message. Please, add the name and the message separated by a space',
+    templateAdd_failNoNameOrText: 'I can\'t add the template cause the command misses a name or a message. Please, add the name of the template and the message separated by a space',
     templateAdd_failAlreadyExists: 'I can\'t add this template cause a template with the same name already exists. The existing template is: "{text}"',
     templateAdd_failTooMuchTemplates: `I can't add this template cause there are too much templates in the chat, the limit is {
       limit, plural,
@@ -146,6 +146,13 @@ const en: Messages = {
     }`,
     templateAdd_success: 'I\'ve successfully added template "{templateName}"'
   },
+  templateEdit: {
+    templateEdit_description: 'edits template message',
+    templateEdit_failNoNameOrText: 'I can\'t edit the template cause the command misses a name or a message. Please, add the name of the template and the message separated by a space',
+    templateEdit_failNoTemplates: 'There\'s no saved templates in the chat. Use /templateAdd command to save a template',
+    templateEdit_failNoTemplateWithThisName: 'There\'s no saved templates with the name "{templateName}". Use /templateList command to see all saved templates',
+    templateEdit_success: 'I\'ve successfully edited template "{templateName}"'
+  }
 }
 
 export default en
