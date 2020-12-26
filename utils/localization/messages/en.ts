@@ -147,14 +147,14 @@ const en: Messages = {
       one {one template}
       other {{limit} templates}
     }`,
-    templateAdd_success: 'I\'ve successfully added template "{templateName}"'
+    templateAdd_success: 'I\'ve successfully added template "{templateName}". Use /t {templateName} command to show this template'
   },
   templateEdit: {
     templateEdit_description: 'edits template message',
     templateEdit_failNoNameOrText: 'I can\'t edit the template cause the command misses a name or a message. Please, add the name of the template and the message separated by a space',
     templateEdit_failNoTemplates: 'There\'s no saved templates in the chat. Use /templateAdd command to save a template',
     templateEdit_failNoTemplateWithThisName: 'There\'s no saved templates with the name "{templateName}". Use /templateList command to see all saved templates',
-    templateEdit_success: 'I\'ve successfully edited template "{templateName}"'
+    templateEdit_success: 'I\'ve successfully edited template "{templateName}". Use /t {templateName} command to show this template'
   },
   templateList: {
     templateList_description: 'lists all templates',
