@@ -56,6 +56,42 @@ type Stop =
   | 'stop_enabledText'
   | 'stop_disabledText'
 
+type T =
+  | 't_description'
+  
+type TemplateAdd =
+  | 'templateAdd_description'
+  | 'templateAdd_failNoNameOrText'
+  | 'templateAdd_failAlreadyExists'
+  | 'templateAdd_failTooMuchTemplates'
+  | 'templateAdd_success'
+
+type TemplateEdit =
+  | 'templateEdit_description'
+  | 'templateEdit_failNoNameOrText'
+  | 'templateEdit_failNoTemplates'
+  | 'templateEdit_failNoTemplateWithThisName'
+  | 'templateEdit_success'
+
+type TemplateList =
+  | 'templateList_description'
+  | 'templateList_failNoTemplates'
+  | 'templateList_header'
+  | 'templateList_template'
+
+type TemplateRemove =
+  | 'templateRemove_description'
+  | 'templateRemove_failNoName'
+  | 'templateRemove_failNoTemplates'
+  | 'templateRemove_failNoTemplateWithThisName'
+  | 'templateRemove_success'
+
+type TemplateShow =
+  | 'templateShow_description'
+  | 'templateShow_failNoName'
+  | 'templateShow_failNoTemplates'
+  | 'templateShow_failNoTemplateWithThisName'
+
 type CallbackSecretGet =
   | 'callbackSecretGet_description'
   | 'callbackSecretGet_message'
@@ -109,6 +145,12 @@ export interface Messages {
   profanityFilter: Context<ProfanityFilter>
   remove: Context<Remove>
   stop: Context<Stop>
+  t: Context<T>
+  templateAdd: Context<TemplateAdd>
+  templateEdit: Context<TemplateEdit>
+  templateList: Context<TemplateList>
+  templateRemove: Context<TemplateRemove>
+  templateShow: Context<TemplateShow>
 }
 
 export type MessageKey =
@@ -126,6 +168,12 @@ export type MessageKey =
   | ProfanityFilter
   | Remove
   | Stop
+  | T
+  | TemplateAdd
+  | TemplateEdit
+  | TemplateList
+  | TemplateRemove
+  | TemplateShow
 
 export const prepareMessages = (messages: Messages): Record<MessageKey, string> => ({
   ...messages.callbackAdd,
@@ -142,6 +190,12 @@ export const prepareMessages = (messages: Messages): Record<MessageKey, string> 
   ...messages.profanityFilter,
   ...messages.remove,
   ...messages.stop,
+  ...messages.t,
+  ...messages.templateAdd,
+  ...messages.templateEdit,
+  ...messages.templateList,
+  ...messages.templateRemove,
+  ...messages.templateShow,
 })
 
 const messages: { [key in Locale]: Messages } = {

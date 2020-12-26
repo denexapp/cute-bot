@@ -133,6 +133,47 @@ const en: Messages = {
     stop_description: 'deletes all new messages',
     stop_enabledText: 'I\ll delete any appearing messages in the chat',
     stop_disabledText: 'I won\'t remove new messages anymore'
+  },
+  t: {
+    t_description: 'shorthand for /templateShow',
+  },
+  templateAdd: {
+    templateAdd_description: 'adds template message',
+    templateAdd_failNoNameOrText: 'I can\'t add the template cause the command misses a name or a message. Please, add the name of the template and the message separated by a space',
+    templateAdd_failAlreadyExists: 'I can\'t add this template cause a template with the same name already exists. The existing template is: "{text}"',
+    templateAdd_failTooMuchTemplates: `I can't add this template cause there are too much templates in the chat, the limit is {
+      limit, plural,
+      =0 {0 templates}
+      one {one template}
+      other {{limit} templates}
+    }`,
+    templateAdd_success: 'I\'ve successfully added template "{templateName}". Use /t {templateName} command to show this template'
+  },
+  templateEdit: {
+    templateEdit_description: 'edits template message',
+    templateEdit_failNoNameOrText: 'I can\'t edit the template cause the command misses a name or a message. Please, add the name of the template and the message separated by a space',
+    templateEdit_failNoTemplates: 'There\'s no saved templates in the chat. Use /templateAdd command to save a template',
+    templateEdit_failNoTemplateWithThisName: 'There\'s no saved templates with the name "{templateName}". Use /templateList command to see all saved templates',
+    templateEdit_success: 'I\'ve successfully edited template "{templateName}". Use /t {templateName} command to show this template'
+  },
+  templateList: {
+    templateList_description: 'lists all templates',
+    templateList_failNoTemplates: 'There\'s no saved templates in the chat. Use /templateAdd command to save a template',
+    templateList_header: 'Saved messages templates:',
+    templateList_template: '😾 /t {name}',
+  },
+  templateRemove: {
+    templateRemove_description: 'removes template message',
+    templateRemove_failNoName: 'I can\'t edit the template cause the command misses a name of the template',
+    templateRemove_failNoTemplates: 'There\'s no saved templates in the chat. Use /templateAdd command to save a template',
+    templateRemove_failNoTemplateWithThisName: 'There\'s no saved templates with the name "{templateName}". Use /templateList command to see all saved templates',
+    templateRemove_success: 'I\'ve successfully removed template "{templateName}"'
+  },
+  templateShow: {
+    templateShow_description: 'shows template message',
+    templateShow_failNoName: 'I can\'t show the template cause the command misses a name of the template',
+    templateShow_failNoTemplates: 'There\'s no saved templates in the chat. Use /templateAdd command to save a template',
+    templateShow_failNoTemplateWithThisName: 'There\'s no saved templates with the name "{templateName}". Use /templateList command to see all saved templates',
   }
 }
 
