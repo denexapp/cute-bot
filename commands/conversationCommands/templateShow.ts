@@ -6,14 +6,14 @@ const command: ConversationCommand = async (message, settings) => {
   const { peer_id: peerId, text } = message
 
   const [commandName, templateName] = text.split(' ')
-
-  if (templateName === undefined || templateName.length === 0) {
-    await vk.messagesSend(peerId, phrase('templateShow_failNoName'))
+  
+  if (Object.keys(settings.templates).length === 0) {
+    await vk.messagesSend(peerId, phrase('templateShow_failNoTemplates'))
     return
   }
 
-  if (Object.keys(settings.templates).length === 0) {
-    await vk.messagesSend(peerId, phrase('templateShow_failNoTemplates'))
+  if (templateName === undefined || templateName.length === 0) {
+    await vk.messagesSend(peerId, phrase('templateShow_failNoName'))
     return
   }
 
