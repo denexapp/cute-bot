@@ -56,12 +56,12 @@ type Stop =
   | 'stop_enabledText'
   | 'stop_disabledText'
 
-type AddTemplate =
-  | 'addTemplate_description'
-  | 'addTemplate_failNoNameOrText'
-  | 'addTemplate_failAlreadyExists'
-  | 'addTemplate_failTooMuchTemplates'
-  | 'addTemplate_success'
+type TemplateAdd =
+  | 'templateAdd_description'
+  | 'templateAdd_failNoNameOrText'
+  | 'templateAdd_failAlreadyExists'
+  | 'templateAdd_failTooMuchTemplates'
+  | 'templateAdd_success'
 
 type CallbackSecretGet =
   | 'callbackSecretGet_description'
@@ -102,7 +102,7 @@ type CallbackDisconnect =
 type Context<K extends string> = { [Key in K]: string }
 
 export interface Messages {
-  addTemplate: Context<AddTemplate>
+  templateAdd: Context<TemplateAdd>
   callbackAdd: Context<CallbackAdd>
   callbackConnect: Context<CallbackConnect>
   callbackDisconnect: Context<CallbackDisconnect>
@@ -120,7 +120,7 @@ export interface Messages {
 }
 
 export type MessageKey =
-  | AddTemplate
+  | TemplateAdd
   | CallbackAdd
   | CallbackConnect
   | CallbackDisconnect
@@ -137,7 +137,7 @@ export type MessageKey =
   | Stop
 
 export const prepareMessages = (messages: Messages): Record<MessageKey, string> => ({
-  ...messages.addTemplate,
+  ...messages.templateAdd,
   ...messages.callbackAdd,
   ...messages.callbackConnect,
   ...messages.callbackDisconnect,

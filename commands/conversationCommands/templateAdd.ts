@@ -10,45 +10,45 @@ const command: ConversationCommand = async (message, settings) => {
   const [commandName, templateName] = text.split(' ')
 
   if (templateName === undefined || templateName.length === 0) {
-    await vk.messagesSend(peerId, phrase('addTemplate_failNoNameOrText'))
+    await vk.messagesSend(peerId, phrase('templateAdd_failNoNameOrText'))
     return
   }
 
   const templateText = text.slice(commandName.length + templateName.length + 2).trim()
 
   if (templateText.length === 0) {
-    await vk.messagesSend(peerId, phrase('addTemplate_failNoNameOrText'))
+    await vk.messagesSend(peerId, phrase('templateAdd_failNoNameOrText'))
     return
   }
 
   const resultStatus = await setChatTemplate(peerId, templateName, templateText)
 
   if (resultStatus === -1) {
-    await vk.messagesSend(peerId, phrase('addTemplate_failAlreadyExists', {
+    await vk.messagesSend(peerId, phrase('templateAdd_failAlreadyExists', {
       text: templateName
     }))
     return
   }
 
   if (resultStatus === -2) {
-    await vk.messagesSend(peerId, phrase('addTemplate_failTooMuchTemplates', {
+    await vk.messagesSend(peerId, phrase('templateAdd_failTooMuchTemplates', {
       limit: limitOfTemplatesPerChat
     }))
     return
   }
 
   if (resultStatus === 0) {
-    await vk.messagesSend(peerId, phrase('addTemplate_success', {
+    await vk.messagesSend(peerId, phrase('templateAdd_success', {
       templateName
     }))
     return
   }
 }
 
-const addTemplate: ConversationCommandObject = {
+const templateAdd: ConversationCommandObject = {
   command,
   isAdminCommand: true,
-  description: 'addTemplate_description'
+  description: 'templateAdd_description'
 }
 
-export default addTemplate
+export default templateAdd
