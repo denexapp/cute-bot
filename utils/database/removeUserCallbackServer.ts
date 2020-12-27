@@ -18,6 +18,7 @@ export const partialChatSettingsWithoutCallback: Partial<ChatSettings> = {
   callbackServerUserId: null,
   callbackModes: {
     stop: null,
+    removeCommands: null,
     profanityFilter: null
   }
 }

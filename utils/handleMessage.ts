@@ -35,10 +35,11 @@ const handleMessage = async (message: Message) => {
     const callbackServerSettings = await getCallbackServerSettings(settings)
     const isAdminMessage = await isUserAdmin(peerId, fromId)
     const botHasAdminRights = isUserAdmin !== null
+    let botReacted = false
     if (command) {
-      await handleConversationMessage(message, getCommandName(text), settings, callbackServerSettings, isAdminMessage)
+      botReacted = await handleConversationMessage(message, getCommandName(text), settings, callbackServerSettings, isAdminMessage)
     }
-    await handleModes(message, settings, callbackServerSettings, botHasAdminRights)
+    await handleModes(message, settings, callbackServerSettings, botHasAdminRights, botReacted)
   } else {
     if (command) {
       await handlePrivateMessage(message, getCommandName(text))

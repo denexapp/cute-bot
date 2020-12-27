@@ -9,6 +9,7 @@ import ignoreUsers from './actionlessModes/ignoreUsers'
 import callbackDisconnect from './callbackConversationCommands/callbackDisconnect'
 import remove from './callbackConversationCommands/remove'
 import profanityFilter from './callbackModes/profanityFilter'
+import removeCommands from './callbackModes/removeCommands'
 import stop from './callbackModes/stop'
 import callbackConnect from './conversationCommands/callbackConnect'
 import t from './conversationCommands/t'
@@ -26,11 +27,13 @@ import callbackSecretReset from './privateMessageCommands/callbackSecretReset'
 import privateHelp from './privateMessageCommands/help'
 
 export type Mode = (
-  message: Message
+  message: Message,
+  botReacted: boolean
 ) => Promise<void>
 
 export type CallbackMode = (
   message: Message,
+  botReacted: boolean,
   callbackServerSettings: CallbackServerSettings
 ) => Promise<void>
 
@@ -92,7 +95,7 @@ export type ActionlessModeName = 'ignoreUsers' | 'ignoreUnknownCommands'
 
 export type ModeName = 'echo'
 
-export type CallbackModeName = 'stop' | 'profanityFilter'
+export type CallbackModeName = 'stop' | 'removeCommands' | 'profanityFilter'
 
 const internalActionlessModes: { [commandName in ActionlessModeName]: ActionlessModeObject } = {
   ignoreUsers,
@@ -105,6 +108,7 @@ const internalModes: { [commandName in ModeName]: ModeObject } = {
 
 const internalCallbackModes: { [commandName in CallbackModeName]: CallbackModeObject } = {
   profanityFilter,
+  removeCommands,
   stop,
 }
 
@@ -124,6 +128,7 @@ export const upcastToModeName = (value: string): ModeName => (
 export const upcastToCallbackModeName = (value: string): CallbackModeName => (
   decode<CallbackModeName>(value, JsonDecoder.oneOf<CallbackModeName>([
     JsonDecoder.isExactly('profanityFilter'),
+    JsonDecoder.isExactly('removeCommands'),
     JsonDecoder.isExactly('stop'),
   ], 'Callback modes'))
 )

@@ -10,7 +10,8 @@ const handleModes = async (
   message: Message,
   settings: ChatSettings,
   callbackServerSettings: CallbackServerSettings | null,
-  botHasAdminRights: boolean
+  botHasAdminRights: boolean,
+  botReacted: boolean
 ) => {
   const { peer_id: peerId } = message
 
@@ -31,7 +32,7 @@ const handleModes = async (
         modesNames,
         modesNamesSlash
       })
-  
+
       await vk.messagesSend(peerId, text)
     }
   } else {
@@ -41,7 +42,7 @@ const handleModes = async (
         if (modeObject.actionNeedsBotAdminRights && !botHasAdminRights) {
           modesThatCantWorkWithoutAdminRights.push(commandName)
         } else {
-          await modeObject.action(message, callbackServerSettings)
+          await modeObject.action(message, botReacted, callbackServerSettings)
         }
       }
     }
@@ -53,7 +54,7 @@ const handleModes = async (
       if (modeObject.actionNeedsBotAdminRights && !botHasAdminRights) {
         modesThatCantWorkWithoutAdminRights.push(commandName)
       } else {
-        await modeObject.action(message)
+        await modeObject.action(message, botReacted)
       }
     }
   }

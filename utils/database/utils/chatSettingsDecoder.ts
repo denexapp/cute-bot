@@ -12,6 +12,7 @@ const chatSettingsDecoder = JsonDecoder.object<ChatSettings>({
   }, 'Modes'),
   callbackModes: JsonDecoder.object({
     profanityFilter: optionalDecoder(JsonDecoder.isExactly(true)),
+    removeCommands: optionalDecoder(JsonDecoder.isExactly(true)),
     stop: optionalDecoder(JsonDecoder.isExactly(true)),
   }, 'Callback modes'),
   callbackServerUserId: optionalDecoder(JsonDecoder.number),

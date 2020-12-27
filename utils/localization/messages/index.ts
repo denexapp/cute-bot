@@ -51,6 +51,11 @@ type ProfanityFilter =
 type Remove =
   | 'remove_description'
 
+type RemoveCommands =
+  | 'removeCommands_description'
+  | 'removeCommands_enabledText'
+  | 'removeCommands_disabledText'
+
 type Stop =
   | 'stop_description'
   | 'stop_enabledText'
@@ -144,6 +149,7 @@ export interface Messages {
   ignoreUsers: Context<IgnoreUsers>
   profanityFilter: Context<ProfanityFilter>
   remove: Context<Remove>
+  removeCommands: Context<RemoveCommands>
   stop: Context<Stop>
   t: Context<T>
   templateAdd: Context<TemplateAdd>
@@ -167,6 +173,7 @@ export type MessageKey =
   | IgnoreUsers
   | ProfanityFilter
   | Remove
+  | RemoveCommands
   | Stop
   | T
   | TemplateAdd
@@ -189,6 +196,7 @@ export const prepareMessages = (messages: Messages): Record<MessageKey, string> 
   ...messages.ignoreUsers,
   ...messages.profanityFilter,
   ...messages.remove,
+  ...messages.removeCommands,
   ...messages.stop,
   ...messages.t,
   ...messages.templateAdd,

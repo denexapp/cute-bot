@@ -1,7 +1,7 @@
 import { Mode, ModeObject } from '..'
 import vk from '../../utils/vk'
 
-const action: Mode = async message => {
+const action: Mode = async (message, botReacted) => {
   const { peer_id: peerId, text } = message
 
   await vk.messagesSend(peerId, text)

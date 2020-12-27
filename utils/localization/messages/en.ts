@@ -129,6 +129,11 @@ const en: Messages = {
   remove: {
     remove_description: 'removes message with this command',
   },
+  removeCommands: {
+    removeCommands_description: 'deletes messages with commands',
+    removeCommands_disabledText: 'I won\'t delete messages with commands anymore',
+    removeCommands_enabledText: 'I\'ll delete messages with commands since now'
+  },
   stop: {
     stop_description: 'deletes all new messages',
     stop_enabledText: 'I\ll delete any appearing messages in the chat',
