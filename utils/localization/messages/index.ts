@@ -6,6 +6,7 @@ type Common =
   | 'common_commandAvailableInAGroupChatOnly'
   | 'common_commandAvailableInThePrivateChatOnly'
   | 'common_commandRequiresCallbackServer'
+  | 'common_hello'
   | 'common_modeAvailableForAdminsOnly'
   | 'common_modeAvailableInAGroupChatOnly'
   | 'common_modeRequiresCallbackServer'
