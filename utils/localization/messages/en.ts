@@ -57,7 +57,7 @@ const en: Messages = {
     common_commandAvailableInAGroupChatOnly: 'Command /{commandName} is available in a group chat only',
     common_commandAvailableForAdminsOnly: 'Command /{commandName} is available for admins only',
     common_commandRequiresCallbackServer: 'Command /{commandName} requires a callback server connected to this conversation. Use /callbackConnect command to connect your callback server to this conversation',
-    common_hello: 'Hi! I\'m Cute bot. I will help you to moderate this chat. Use /help to learn my commands',
+    common_hello: 'Hi! I\'m Cute Bot. I will help you to moderate this chat. Use /help to learn my commands',
     common_modeAvailableInAGroupChatOnly: 'Mode /{commandName} is available in a group chat only, like all other modes',
     common_modeAvailableForAdminsOnly: 'Mode /{commandName} can be controled by admins only, like all other modes',
     common_modeDisabled: 'Mode /{commandName} disabled. {disabledText}',
