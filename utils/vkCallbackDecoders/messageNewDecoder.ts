@@ -9,6 +9,10 @@ export interface Message {
   peer_id: number
   from_id: number
   conversation_message_id: number
+  action: {
+    type: 'chat_invite_user',
+    member_id: number
+  } | null
 }
 
 interface MessageNew {
@@ -21,7 +25,14 @@ const messageDecoder = JsonDecoder.object<Message>({
   text: JsonDecoder.string,
   peer_id: JsonDecoder.number,
   from_id: JsonDecoder.number,
-  conversation_message_id: JsonDecoder.number
+  conversation_message_id: JsonDecoder.number,
+  action: JsonDecoder.oneOf([
+    JsonDecoder.object({
+      type: JsonDecoder.isExactly<'chat_invite_user'>('chat_invite_user'),
+      member_id: JsonDecoder.number,
+    }, 'Action'),
+    JsonDecoder.isUndefined(null)
+  ], 'Action')
 }, 'VK message')
 
 const messageNewObjectDecoder = JsonDecoder.object<MessageNew>({
