@@ -2,7 +2,7 @@ import { CallbackMode, CallbackModeObject } from '..'
 import remove from '../../utils/callbackServer/remove'
 import { flatWords } from 'russian-bad-words'
 
-const action: CallbackMode = async (message, { callbackSecret, callbackServerChatId, callbackServerUrl }) => {
+const action: CallbackMode = async (message, botReacted, { callbackSecret, callbackServerChatId, callbackServerUrl }) => {
   const { conversation_message_id } = message
 
   const normalizeWord = (word: string) => word.replace('ё', 'е').replace('й', 'и').replace('ъ', 'ь')

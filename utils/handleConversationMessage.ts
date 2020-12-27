@@ -16,15 +16,15 @@ const handleConversationMessage = async (
   settings: ChatSettings,
   callbackServerSettings: CallbackServerSettings | null,
   isAdminMessage: boolean | null
-) => {
+): Promise<boolean> => {
   const { peer_id: peerId, from_id: fromId } = message
 
   if (settings.actionlessModes.ignoreUsers) {
     if (isAdminMessage === null) {
       await vk.messagesSend(peerId, phrase('common_needPermissionsToReactToCommands'))
-      return
+      return true
     } else if (isAdminMessage === false) {
-      return
+      return false
     }
   }
 
@@ -33,10 +33,10 @@ const handleConversationMessage = async (
 
     if (isAdminMessage === false) {
       await vk.messagesSend(peerId, phrase('common_modeAvailableForAdminsOnly', { commandName }))
-      return
+      return true
     } else if (isAdminMessage === null) {
       await vk.messagesSend(peerId, phrase('common_needPermissionsToControlModes', { commandName }))
-      return
+      return true
     }
 
     const callbackModeName = upcastToCallbackModeName(commandName)
@@ -44,7 +44,7 @@ const handleConversationMessage = async (
 
     if (newValue === true && callbackServerSettings === null) {
       await vk.messagesSend(peerId, phrase('common_modeRequiresCallbackServer', { commandName }))
-      return
+      return true
     }
 
     await setChatSettings(peerId, {
@@ -61,7 +61,7 @@ const handleConversationMessage = async (
       await vk.messagesSend(peerId, phrase('common_modeDisabled', { commandName, disabledText }))
     }
 
-    return
+    return true
   }
 
   if (actionlessModes[commandName] !== undefined) {
@@ -69,10 +69,10 @@ const handleConversationMessage = async (
 
     if (isAdminMessage === false) {
       await vk.messagesSend(peerId, phrase('common_modeAvailableForAdminsOnly', { commandName }))
-      return
+      return true
     } else if (isAdminMessage === null) {
       await vk.messagesSend(peerId, phrase('common_needPermissionsToControlModes', { commandName }))
-      return
+      return true
     }
 
     const modeName = upcastToActionlessModeName(commandName)
@@ -91,7 +91,7 @@ const handleConversationMessage = async (
       await vk.messagesSend(peerId, phrase('common_modeDisabled', { commandName, disabledText }))
     }
 
-    return
+    return true
   }
 
   if (modes[commandName] !== undefined) {
@@ -99,10 +99,10 @@ const handleConversationMessage = async (
 
     if (isAdminMessage === false) {
       await vk.messagesSend(peerId, phrase('common_modeAvailableForAdminsOnly', { commandName }))
-      return
+      return true
     } else if (isAdminMessage === null) {
       await vk.messagesSend(peerId, phrase('common_needPermissionsToControlModes', { commandName }))
-      return
+      return true
     }
 
     const modeName = upcastToModeName(commandName)
@@ -121,7 +121,7 @@ const handleConversationMessage = async (
       await vk.messagesSend(peerId, phrase('common_modeDisabled', { commandName, disabledText }))
     }
 
-    return
+    return true
   }
 
   if (callbackConversationCommands[commandName] !== undefined) {
@@ -129,21 +129,21 @@ const handleConversationMessage = async (
 
     if (commandObject.isAdminCommand && isAdminMessage === false) {
       await vk.messagesSend(peerId, phrase('common_commandAvailableForAdminsOnly', { commandName }))
-      return
+      return true
     }
 
     if (commandObject.isAdminCommand && isAdminMessage === null) {
       await vk.messagesSend(peerId, phrase('common_needPermissionsToUseAdminCommands', { commandName }))
-      return
+      return true
     }
 
     if (callbackServerSettings === null) {
       await vk.messagesSend(peerId, phrase('common_commandRequiresCallbackServer', { commandName }))
-      return
+      return true
     }
 
     await commandObject.command(message, settings, callbackServerSettings)
-    return
+    return true
   }
 
   if (conversationCommands[commandName] !== undefined) {
@@ -151,26 +151,29 @@ const handleConversationMessage = async (
 
     if (commandObject.isAdminCommand && isAdminMessage === false) {
       await vk.messagesSend(peerId, phrase('common_commandAvailableForAdminsOnly', { commandName }))
-      return
+      return true
     }
 
     if (commandObject.isAdminCommand && isAdminMessage === null) {
       await vk.messagesSend(peerId, phrase('common_needPermissionsToUseAdminCommands', { commandName }))
-      return
+      return true
     }
 
     await commandObject.command(message, settings)
-    return
+    return true
   }
 
   if (isPrivateMessageCommandWithNameExist(commandName)) {
     await vk.messagesSend(peerId, phrase('common_commandAvailableInThePrivateChatOnly', { commandName }))
-    return
+    return true
   }
 
   if (settings.actionlessModes.ignoreUnknownCommands === null) {
     await vk.messagesSend(peerId, phrase('common_unknownCommand'))
+    return true
   }
+
+  return false
 }
 
 export default handleConversationMessage
