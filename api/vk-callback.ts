@@ -1,4 +1,4 @@
-import { VercelRequest, VercelResponse } from '@Vercel/node'
+import { VercelRequest, VercelResponse } from '@vercel/node'
 import createSettingsCollections from '../utils/database/createSettingsCollections'
 import decodeVkCallback from '../utils/decodeVkCallback'
 import handleMessage from '../utils/handleMessage'
