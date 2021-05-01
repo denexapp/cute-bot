@@ -15,7 +15,7 @@ const incrementUserWarningCount = async (
         warnings: {
           [userId]: q.Add(
             q.Select(
-              ["data", "warnings", userId],
+              ["data", "warnings", `${userId}`],
               q.Get(q.Ref(q.Collection("chats-settings"), peerId)),
               0
             ),
