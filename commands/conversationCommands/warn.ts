@@ -10,14 +10,14 @@ const command: ConversationCommand = async (message, settings) => {
   const [, unparsedUserId] = text.split(" ");
 
   if (unparsedUserId === undefined || unparsedUserId.length === 0) {
-    await vk.messagesSend(peerId, phrase("templateAdd_failNoNameOrText"));
+    await vk.messagesSend(peerId, phrase("warn_failNoUserId"));
     return;
   }
 
   const userId = await parseUserId(unparsedUserId);
 
   if (userId === null) {
-    await vk.messagesSend(peerId, phrase("templateAdd_failNoNameOrText"));
+    await vk.messagesSend(peerId, phrase("warn_failIncorrectUserId"));
     return;
   }
 
