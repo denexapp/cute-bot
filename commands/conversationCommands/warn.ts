@@ -1,3 +1,4 @@
+import { Sex } from 'vk-ts'
 import { ConversationCommand, ConversationCommandObject } from "..";
 import parseUserId from "../../utils/commandUtils/parseUserId";
 import incrementUserWarningCount from "../../utils/database/incrementUserWarningCount";
@@ -21,9 +22,13 @@ const command: ConversationCommand = async (message, settings) => {
     return;
   }
 
-  const count = await incrementUserWarningCount(peerId, userId);
+  const [count, [user]] = await Promise.all([
+    incrementUserWarningCount(peerId, userId),
+    vk.usersGet([userId])
+  ]);
 
-  await vk.messagesSend(peerId, phrase("warn_success", { count }));
+  await vk.messagesSend(peerId, phrase("warn_success", { count, sex: user.sex === Sex.Female ? 'female' : 'male' }));
+
 };
 
 const warn: ConversationCommandObject = {
