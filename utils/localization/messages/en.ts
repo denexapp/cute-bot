@@ -185,7 +185,7 @@ const en: Messages = {
     warn_description: 'warns user',
     warn_failNoUserId: 'Type id of user to warn after the command name',
     warn_failIncorrectUserId: 'Incorrect user id. You can try to mention them directly using @',
-    warn_success: 'User has been warned. { sex, select, male {He} female {She} } has {numPhotos, plural, zero {no warnings} one {1 warning} many {# warnings}'
+    warn_success: 'User has been warned. { sex, select, male {He} female {She} } has {numPhotos, plural, zero {no warnings} one {1 warning} many {# warnings}}'
   }
 }
 
