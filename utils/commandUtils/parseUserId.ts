@@ -27,7 +27,7 @@ const parseUserId = async (text: string): Promise<number | null> => {
   const linkPostfix = text.slice(-originalLinkPostfix.length);
 
   if (
-    linkPrefix === originalLinkPostfix &&
+    linkPrefix === originalLinkPrefix &&
     linkPostfix === originalLinkPostfix
   ) {
     const trimmedLink = text.slice(
@@ -42,13 +42,9 @@ const parseUserId = async (text: string): Promise<number | null> => {
 
   const screenNamePrefix = text.slice(0, originalScreenNamePrefix.length);
 
-  console.log(screenNamePrefix);
-  console.log(originalScreenNamePrefix);
-
   if (originalScreenNamePrefix === screenNamePrefix) {
     const screenName = text.slice(screenNamePrefix.length);
     const result = await vk.utilsResolveScreenName(screenName);
-    console.log(result);
     if (result instanceof Array) return null;
     if (result.type !== "user") return null;
     return result.object_id;
