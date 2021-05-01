@@ -1,20 +1,23 @@
-import { query as q } from 'faunadb'
-import { ActionlessModeName, CallbackModeName, ModeName } from '../../commands'
-import chatSettingsDecoder from './utils/chatSettingsDecoder'
-import decodeDatabaseResponse from './utils/decodeDatabaseResponse'
-import getDatabaseClient from './utils/getDatabaseClient'
+import { query as q } from "faunadb";
+import { ActionlessModeName, CallbackModeName, ModeName } from "../../commands";
+import chatSettingsDecoder from "./utils/chatSettingsDecoder";
+import decodeDatabaseResponse from "./utils/decodeDatabaseResponse";
+import getDatabaseClient from "./utils/getDatabaseClient";
 
 export interface ChatSettings {
-  actionlessModes: { [key in ActionlessModeName]: true | null }
-  modes: { [key in ModeName]: true | null }
-  callbackModes: { [key in CallbackModeName]: true | null }
-  callbackServerUserId: null | number
-  callbackServerChatId: null | number
+  actionlessModes: { [key in ActionlessModeName]: true | null };
+  modes: { [key in ModeName]: true | null };
+  callbackModes: { [key in CallbackModeName]: true | null };
+  callbackServerUserId: null | number;
+  callbackServerChatId: null | number;
   templates: {
     [name: string]: {
-      message: string
-    } | null
-  }
+      message: string;
+    } | null;
+  };
+  warnings: {
+    [userId: string]: number;
+  };
 }
 
 const getDefaultSettings = (): ChatSettings => ({
@@ -23,41 +26,26 @@ const getDefaultSettings = (): ChatSettings => ({
   callbackModes: { stop: null, removeCommands: null, profanityFilter: null },
   callbackServerUserId: null,
   callbackServerChatId: null,
-  templates: {}
-})
+  templates: {},
+  warnings: {},
+});
 
 const getChatSettings = async (peerId: number): Promise<ChatSettings> => {
-  const client = getDatabaseClient()
+  const client = getDatabaseClient();
 
   const settings = await client.query(
     q.If(
-      q.Exists(
-        q.Ref(
-          q.Collection('chats-settings'),
-          peerId
-        )
-      ),
-      q.Get(
-        q.Ref(
-          q.Collection('chats-settings'),
-          peerId
-        )
-      ),
-      q.Create(
-        q.Ref(
-          q.Collection('chats-settings'),
-          peerId
-        ),
-        {
-          data: getDefaultSettings()
-        }
-      )
+      q.Exists(q.Ref(q.Collection("chats-settings"), peerId)),
+      q.Get(q.Ref(q.Collection("chats-settings"), peerId)),
+      q.Create(q.Ref(q.Collection("chats-settings"), peerId), {
+        data: getDefaultSettings(),
+      })
     )
-  )
+  );
 
-  const decodedSettings = decodeDatabaseResponse(settings, chatSettingsDecoder)
+  const decodedSettings = decodeDatabaseResponse(settings, chatSettingsDecoder);
 
-  return decodedSettings
-}
+  return decodedSettings;
+};
 
-export default getChatSettings
+export default getChatSettings;

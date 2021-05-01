@@ -1,12 +1,11 @@
-const parseNumber = (string: string | undefined): number => {
-  if (typeof string !== 'string') {
-    throw new Error('Can\'t parse undefined parameter as number')
-  }
-  const parameter = parseInt(string, 10)
-  if (isNaN(parameter)) {
-    throw new Error(`Can't parse "${string}" parameter as valid number`)
-  }
-  return parameter
-}
+import parseNumberSafe from "./parseNumberSafe";
 
-export default parseNumber
+const parseNumber = (string: string | undefined): number => {
+  const result = parseNumberSafe(string);
+  if (result.error) {
+    throw new Error(result.message);
+  }
+  return result.value;
+};
+
+export default parseNumber;

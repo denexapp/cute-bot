@@ -180,6 +180,12 @@ const en: Messages = {
     templateShow_failNoName: 'I can\'t show the template cause the command misses a name of the template',
     templateShow_failNoTemplates: 'There\'s no saved templates in the chat. Use /templateAdd command to save a template',
     templateShow_failNoTemplateWithThisName: 'There\'s no saved templates with the name "{templateName}". Use /templateList command to see all saved templates',
+  },
+  warn: {
+    warn_description: 'warns user',
+    warn_failNoUserId: 'Type id of user to warn after the command name',
+    warn_failIncorrectUserId: 'Incorrect user id. You can try to mention them directly using @',
+    warn_success: 'User has been warned. They have {count} warnings'
   }
 }
 
