@@ -10,26 +10,20 @@ const incrementUserWarningCount = async (
   const client = getDatabaseClient();
 
   const settings = await client.query(
-    q.Do(
-      q.Let(
-        q.Ref(q.Collection("chats-settings"), peerId),
-        q.Var("chat-settings-ref")
-      ),
-      q.Update(q.Var("chat-settings-ref"), {
-        data: {
-          warnings: {
-            [userId]: q.Add(
-              q.Select(
-                ["data", "warnings", userId],
-                q.Get(q.Var("chat-settings-ref")),
-                0
-              ),
-              1
+    q.Update(q.Ref(q.Collection("chats-settings"), peerId), {
+      data: {
+        warnings: {
+          [userId]: q.Add(
+            q.Select(
+              ["data", "warnings", userId],
+              q.Get(q.Ref(q.Collection("chats-settings"), peerId)),
+              0
             ),
-          },
+            1
+          ),
         },
-      })
-    )
+      },
+    })
   );
 
   const decodedSettings = decodeDatabaseResponse(settings, chatSettingsDecoder);
