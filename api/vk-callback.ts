@@ -1,10 +1,10 @@
-import { NowRequest, NowResponse } from '@now/node'
+import { VercelRequest, VercelResponse } from '@Vercel/node'
 import createSettingsCollections from '../utils/database/createSettingsCollections'
 import decodeVkCallback from '../utils/decodeVkCallback'
 import handleMessage from '../utils/handleMessage'
 import variables from '../utils/variables'
 
-export default async (req: NowRequest, res: NowResponse) => {
+export default async (req: VercelRequest, res: VercelResponse) => {
   const data = decodeVkCallback(req.body)
 
   if (data.type === 'confirmation') {
