@@ -11,7 +11,10 @@ const incrementUserWarningCount = async (
 
   const settings = await client.query(
     q.Do(
-      q.Let(q.Ref(q.Collection("chats-settings"), peerId), "chat-settings-ref"),
+      q.Let(
+        q.Ref(q.Collection("chats-settings"), peerId),
+        q.Var("chat-settings-ref")
+      ),
       q.Update(q.Var("chat-settings-ref"), {
         data: {
           warnings: {
