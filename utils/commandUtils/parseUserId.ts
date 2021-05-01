@@ -47,6 +47,7 @@ const parseUserId = async (text: string): Promise<number | null> => {
     const result = await vk.utilsResolveScreenName(screenName);
     if (result instanceof Array) return null;
     if (result.type !== "user") return null;
+    console.log(result)
     return result.object_id;
   }
 
