@@ -5,7 +5,7 @@ import {
   ConversationCommandWithAdminContextObject,
 } from "..";
 import parseUserId from "../../utils/commandUtils/parseUserId";
-import decrementUserWarningCount from '../../utils/database/decrementUserWarningCount'
+import decrementUserWarningCount from "../../utils/database/decrementUserWarningCount";
 import incrementUserWarningCount from "../../utils/database/incrementUserWarningCount";
 import phrase from "../../utils/localization/phrase";
 import vk from "../../utils/vk";
@@ -38,18 +38,29 @@ const command: ConversationCommandWithAdminContext = async (
     return;
   }
 
-  const count = await decrementUserWarningCount(peerId, userId) ?? -1;
+  const count = await decrementUserWarningCount(peerId, userId);
+  const sex =
+    user.sex === Sex.Female
+      ? "female"
+      : user.sex === Sex.Male
+      ? "male"
+      : "unknown";
+
+  if (count === null) {
+    await vk.messagesSend(
+      peerId,
+      phrase("warnRemove_faliNoWarnsAlready", {
+        sex,
+      })
+    );
+    return;
+  }
 
   await vk.messagesSend(
     peerId,
     phrase("warnRemove_success", {
       count,
-      sex:
-        user.sex === Sex.Female
-          ? "female"
-          : user.sex === Sex.Male
-          ? "male"
-          : "unknown",
+      sex,
     })
   );
 };

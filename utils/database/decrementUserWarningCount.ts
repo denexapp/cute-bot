@@ -1,7 +1,8 @@
-import { query as q } from "faunadb";
-import chatSettingsDecoder from "./utils/chatSettingsDecoder";
-import decodeDatabaseResponse from "./utils/decodeDatabaseResponse";
-import getDatabaseClient from "./utils/getDatabaseClient";
+import { query as q } from "faunadb"
+import { JsonDecoder } from 'ts.data.json'
+import decode from '../decode'
+import chatSettingsDecoder from "./utils/chatSettingsDecoder"
+import getDatabaseClient from "./utils/getDatabaseClient"
 
 const decrementUserWarningCount = async (
   peerId: number,
@@ -20,7 +21,7 @@ const decrementUserWarningCount = async (
       },
       q.If(
         q.LTE(q.Var("count"), 0),
-        false,
+        null,
         q.Update(q.Ref(q.Collection("chats-settings"), peerId), {
           data: {
             warnings: {
@@ -32,12 +33,10 @@ const decrementUserWarningCount = async (
     )
   );
 
-  console.log(settings)
+  const decodedSettings = decode(settings, JsonDecoder.nullable(chatSettingsDecoder));
+  const userWarningCount = decodedSettings?.warnings[userId] ?? null;
 
-  // const decodedSettings = decodeDatabaseResponse(settings, chatSettingsDecoder);
-  // const userWarningCount = decodedSettings.warnings[userId];
-
-  return null;
+  return userWarningCount;
 };
 
 export default decrementUserWarningCount;
