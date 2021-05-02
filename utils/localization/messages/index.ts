@@ -2,10 +2,14 @@ import { Locale } from "../locale";
 import en from "./en";
 
 type Common =
+  | "common_botNeedsToBeAdmin"
   | "common_commandAvailableForAdminsOnly"
   | "common_commandAvailableInAGroupChatOnly"
   | "common_commandAvailableInThePrivateChatOnly"
   | "common_commandRequiresCallbackServer"
+  | "common_failIncorrectUserId"
+  | "common_failNoUserId"
+  | "common_failNoUserInConversation"
   | "common_hello"
   | "common_modeAvailableForAdminsOnly"
   | "common_modeAvailableInAGroupChatOnly"
@@ -90,11 +94,12 @@ type TemplateShow =
   | "templateShow_failNoTemplates"
   | "templateShow_failNoTemplateWithThisName";
 
-type Warn =
-  | "warn_description"
-  | "warn_failNoUserId"
-  | "warn_failIncorrectUserId"
-  | "warn_success";
+type Warn = "warn_description" | "warn_success";
+
+type WarnRemove =
+  | "warnRemove_description"
+  | "warnRemove_faliNoWarnsAlready"
+  | "warnRemove_success";
 
 type CallbackSecretGet =
   | "callbackSecretGet_description"
@@ -157,6 +162,7 @@ export interface Messages {
   templateRemove: Context<TemplateRemove>;
   templateShow: Context<TemplateShow>;
   warn: Context<Warn>;
+  warnRemove: Context<WarnRemove>;
 }
 
 export type MessageKey =
@@ -181,7 +187,8 @@ export type MessageKey =
   | TemplateList
   | TemplateRemove
   | TemplateShow
-  | Warn;
+  | Warn
+  | WarnRemove;
 
 export const prepareMessages = (
   messages: Messages
@@ -208,6 +215,7 @@ export const prepareMessages = (
   ...messages.templateRemove,
   ...messages.templateShow,
   ...messages.warn,
+  ...messages.warnRemove,
 });
 
 const messages: { [key in Locale]: Messages } = {

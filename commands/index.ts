@@ -1,4 +1,6 @@
 import { JsonDecoder } from "ts.data.json";
+import { User } from "vk-ts";
+import { ConversationMember } from "vk-ts/dist/methods/messagesGetConversationMembers";
 import { ChatSettings } from "../utils/database/getChatSettings";
 import decode from "../utils/decode";
 import { CallbackServerSettings } from "../utils/getCallbackServerSettings";
@@ -12,14 +14,15 @@ import profanityFilter from "./callbackModes/profanityFilter";
 import removeCommands from "./callbackModes/removeCommands";
 import stop from "./callbackModes/stop";
 import callbackConnect from "./conversationCommands/callbackConnect";
+import help from "./conversationCommands/help";
 import t from "./conversationCommands/t";
 import templateAdd from "./conversationCommands/templateAdd";
 import templateEdit from "./conversationCommands/templateEdit";
 import templateList from "./conversationCommands/templateList";
 import templateRemove from "./conversationCommands/templateRemove";
 import templateShow from "./conversationCommands/templateShow";
-import help from "./conversationCommands/help";
-import warn from "./conversationCommands/warn";
+import warn from "./conversationCommandsWithAdminContext/warn";
+import warnRemove from "./conversationCommandsWithAdminContext/warnRemove";
 import echo from "./modes/echo";
 import callbackAdd from "./privateMessageCommands/callbackAdd";
 import callbackRemove from "./privateMessageCommands/callbackRemove";
@@ -38,6 +41,12 @@ export type CallbackMode = (
 export type ConversationCommand = (
   message: Message,
   settings: ChatSettings
+) => Promise<void>;
+
+export type ConversationCommandWithAdminContext = (
+  message: Message,
+  settings: ChatSettings,
+  adminContext: AdminContext
 ) => Promise<void>;
 
 export type CallbackConversationCommand = (
@@ -75,6 +84,11 @@ export interface ConversationCommandObject {
   isAdminCommand: boolean;
   description: MessageKey;
 }
+export interface ConversationCommandWithAdminContextObject {
+  command: ConversationCommandWithAdminContext;
+  isAdminCommand: boolean;
+  description: MessageKey;
+}
 
 export interface CallbackConversationCommandObject {
   command: CallbackConversationCommand;
@@ -85,6 +99,12 @@ export interface CallbackConversationCommandObject {
 export interface PrivateMessageCommandObject {
   command: PrivateMessageCommand;
   description: MessageKey;
+}
+
+export interface AdminContext {
+  isAdminMessage: boolean;
+  conversationMembers: Map<number, ConversationMember>;
+  profiles: Map<number, User>;
 }
 
 export type ActionlessModeName = "ignoreUsers" | "ignoreUnknownCommands";
@@ -164,7 +184,13 @@ export const conversationCommands: {
   templateList,
   templateRemove,
   templateShow,
+};
+
+export const conversationCommandsWithAdminContext: {
+  [commandName: string]: ConversationCommandWithAdminContextObject;
+} = {
   warn,
+  warnRemove,
 };
 
 export const callbackConversationCommands: {

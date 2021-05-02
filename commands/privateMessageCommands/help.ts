@@ -7,6 +7,8 @@ import {
   callbackModes,
   ConversationCommandObject,
   conversationCommands,
+  conversationCommandsWithAdminContext,
+  ConversationCommandWithAdminContextObject,
   ModeObject,
   modes,
   PrivateMessageCommand,
@@ -23,6 +25,7 @@ type CommandItem = [
   | ModeObject
   | CallbackModeObject
   | ConversationCommandObject
+  | ConversationCommandWithAdminContextObject
   | CallbackConversationCommandObject
   | PrivateMessageCommandObject
 ]
@@ -47,17 +50,19 @@ const generateCommandList = (
 const command: PrivateMessageCommand = async message => {
   const { peer_id: peerId } = message
 
-  const adminCommands = Object
-    .entries(conversationCommands)
-    .filter(([, command]) => command.isAdminCommand)
+  const adminCommands = Object.entries({
+    ...conversationCommands,
+    ...conversationCommandsWithAdminContext,
+  }).filter(([, command]) => command.isAdminCommand);
     
   const adminCallbackCommands = Object
     .entries(callbackConversationCommands)
     .filter(([, command]) => command.isAdminCommand)
 
-  const userCommands = Object
-    .entries(conversationCommands)
-    .filter(([, command]) => !command.isAdminCommand)
+  const userCommands = Object.entries({
+    ...conversationCommands,
+    ...conversationCommandsWithAdminContext,
+  }).filter(([, command]) => !command.isAdminCommand);
   
   const userCallbackCommands = Object
     .entries(callbackConversationCommands)
