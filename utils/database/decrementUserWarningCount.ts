@@ -31,13 +31,16 @@ const decrementUserWarningCount = async (
         }),
         q.If(
           q.Equals(q.Var("count"), 1),
-          q.Update(q.Ref(q.Collection("chats-settings"), peerId), {
-            data: {
-              warnings: {
-                [userId]: null,
+          q.Do(
+            q.Update(q.Ref(q.Collection("chats-settings"), peerId), {
+              data: {
+                warnings: {
+                  [userId]: null,
+                },
               },
-            },
-          }),
+            }),
+            0
+          ),
           null
         )
       )
