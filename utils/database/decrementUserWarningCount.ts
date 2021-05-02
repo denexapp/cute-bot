@@ -31,16 +31,13 @@ const decrementUserWarningCount = async (
         }),
         q.If(
           q.Equals(q.Var("count"), 1),
-          q.Do(
-            q.Update(q.Ref(q.Collection("chats-settings"), peerId), {
-              data: {
-                warnings: {
-                  [userId]: null,
-                },
+          q.Update(q.Ref(q.Collection("chats-settings"), peerId), {
+            data: {
+              warnings: {
+                [userId]: null,
               },
-            }),
-            0
-          ),
+            },
+          }),
           null
         )
       )
@@ -51,7 +48,8 @@ const decrementUserWarningCount = async (
     settings,
     JsonDecoder.nullable(databaseResponseDecoder(chatSettingsDecoder))
   );
-  const userWarningCount = decodedSettings?.data.warnings[userId] ?? null;
+
+  const userWarningCount = decodedSettings === null ? null : decodedSettings.data.warnings[userId] ?? 0;
 
   return userWarningCount;
 };
