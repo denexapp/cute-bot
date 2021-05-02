@@ -243,7 +243,7 @@ const en: Messages = {
   warn: {
     warn_description: "warns user",
     warn_success:
-      "User has been warned. { sex, select, male {He has} female {She has} } unknown {They have} {count, plural, zero {no warnings} one {1 warning} other {# warnings}}",
+      "User has been warned. { sex, select, male {He has} female {She has} unknown {They have}} {count, plural, zero {no warnings} one {1 warning} other {# warnings}}",
   },
   warnRemove: {
     warnRemove_description: "unwarns user",
