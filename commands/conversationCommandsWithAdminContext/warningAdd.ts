@@ -42,7 +42,7 @@ const command: ConversationCommandWithAdminContext = async (
   }
 
   if (member.is_admin) {
-    await vk.messagesSend(peerId, phrase("warn_failCantWarnAdmin"));
+    await vk.messagesSend(peerId, phrase("warningAdd_failCantWarnAdmin"));
     return;
   }
 
@@ -73,7 +73,7 @@ const command: ConversationCommandWithAdminContext = async (
 
       await vk.messagesSend(
         peerId,
-        phrase("warn_willBeKickedWithCallback", {
+        phrase("warningAdd_willBeKickedWithCallback", {
           userLink,
           maxCount,
           sex,
@@ -92,7 +92,7 @@ const command: ConversationCommandWithAdminContext = async (
         if (callbackServerUserId === from_id) {
           await vk.messagesSend(
             peerId,
-            phrase("warn_kickWithYourCallbackServerFailed", {
+            phrase("warningAdd_kickWithYourCallbackServerFailed", {
               userLink,
               modLink,
               sex,
@@ -114,7 +114,7 @@ const command: ConversationCommandWithAdminContext = async (
               : "unknown";
           await vk.messagesSend(
             peerId,
-            phrase("warn_kickWithSomeonesCallbackServerFailed", {
+            phrase("warningAdd_kickWithSomeonesCallbackServerFailed", {
               userLink,
               sex,
               modLink,
@@ -131,7 +131,7 @@ const command: ConversationCommandWithAdminContext = async (
     } else {
       await vk.messagesSend(
         peerId,
-        phrase("warn_kickManually", {
+        phrase("warningAdd_kickManually", {
           userLink,
           modLink,
           sex,
@@ -142,7 +142,7 @@ const command: ConversationCommandWithAdminContext = async (
   } else {
     await vk.messagesSend(
       peerId,
-      phrase("warn_success", {
+      phrase("warningAdd_success", {
         userLink,
         count,
         maxCount,
@@ -152,10 +152,10 @@ const command: ConversationCommandWithAdminContext = async (
   }
 };
 
-const warn: ConversationCommandWithAdminContextObject = {
+const warningAdd: ConversationCommandWithAdminContextObject = {
   command,
   isAdminCommand: true,
-  description: "warn_description",
+  description: "warningAdd_description",
 };
 
-export default warn;
+export default warningAdd;

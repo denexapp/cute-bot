@@ -240,24 +240,25 @@ const en: Messages = {
     templateShow_failNoTemplateWithThisName:
       'There\'s no saved templates with the name "{templateName}". Use /templateList command to see all saved templates',
   },
-  warn: {
-    warn_description: "warns user",
-    warn_failCantWarnAdmin: "I can't warn an admin",
-    warn_success:
+  warningAdd: {
+    warningAdd_description: "warns user",
+    warningAdd_failCantWarnAdmin: "I can't warn an admin",
+    warningAdd_success:
       "{userLink} has been warned. { sex, select, male {He has} female {She has} unknown {They have}} {count, plural, =0 {no warnings} one {1 warning out of {maxCount}} other {# warnings out of {maxCount}}}",
-    warn_willBeKickedWithCallback:
+    warningAdd_willBeKickedWithCallback:
       "{userLink} has been warned. { sex, select, male {His} female {Her} unknown {Their}} amount of warnings has hit the limit of {maxCount}, so I will kick { sex, select, male {him} female {her} unknown {them}}",
-    warn_kickManually:
+    warningAdd_kickManually:
       "{userLink} has been warned and { sex, select, male {his} female {her} unknown {their}} amount of warnings has hit the limit of {maxCount}. {modLink}, please kick { sex, select, male {him} female {her} unknown {them}}",
-    warn_kickWithYourCallbackServerFailed:
+    warningAdd_kickWithYourCallbackServerFailed:
       "I tried to kick {userLink}, but there is a problem with the callback server. {modLink}, please kick { sex, select, male {him} female {her} unknown {them}} manualy and check your callback server",
-    warn_kickWithSomeonesCallbackServerFailed:
+    warningAdd_kickWithSomeonesCallbackServerFailed:
       "I tried to kick {userLink}, but there is a problem with the callback server. {modLink}, please kick { sex, select, male {him} female {her} unknown {them}} manualy and ask {callbackOwnerLink} to check { callbackOwnerSex, select, male {his} female {her} unknown {their}} callback server",
   },
-  warnRemove: {
-    warnRemove_description: "unwarns user",
-    warnRemove_faliNoWarnsAlready: "@id{id} ({name}) already has no warnings",
-    warnRemove_success:
+  warningRemove: {
+    warningRemove_description: "removes warning from user",
+    warningRemove_faliNoWarnsAlready:
+      "@id{id} ({name}) already has no warnings",
+    warningRemove_success:
       "@id{id} ({name}) has been unwarned. { sex, select, male {He has} female {She has} unknown {They have}} {count, plural, =0 {no warnings} one {1 warning out of {maxCount}} other {# warnings out of {maxCount}}}",
   },
 };

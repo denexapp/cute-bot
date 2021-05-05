@@ -48,7 +48,7 @@ const command: ConversationCommandWithAdminContext = async (
   if (count === null) {
     await vk.messagesSend(
       peerId,
-      phrase("warnRemove_faliNoWarnsAlready", {
+      phrase("warningRemove_faliNoWarnsAlready", {
         id: user.id,
         name: user.first_name,
       })
@@ -58,7 +58,7 @@ const command: ConversationCommandWithAdminContext = async (
 
   await vk.messagesSend(
     peerId,
-    phrase("warnRemove_success", {
+    phrase("warningRemove_success", {
       name: user.first_name,
       id: user.id,
       maxCount: settings.warningsLimit,
@@ -68,10 +68,10 @@ const command: ConversationCommandWithAdminContext = async (
   );
 };
 
-const warnRemove: ConversationCommandWithAdminContextObject = {
+const warningRemove: ConversationCommandWithAdminContextObject = {
   command,
   isAdminCommand: true,
-  description: "warnRemove_description",
+  description: "warningRemove_description",
 };
 
-export default warnRemove;
+export default warningRemove;

@@ -21,8 +21,8 @@ import templateEdit from "./conversationCommands/templateEdit";
 import templateList from "./conversationCommands/templateList";
 import templateRemove from "./conversationCommands/templateRemove";
 import templateShow from "./conversationCommands/templateShow";
-import warn from "./conversationCommandsWithAdminContext/warn";
-import warnRemove from "./conversationCommandsWithAdminContext/warnRemove";
+import warningAdd from "./conversationCommandsWithAdminContext/warningAdd";
+import warningRemove from "./conversationCommandsWithAdminContext/warningRemove";
 import echo from "./modes/echo";
 import callbackAdd from "./privateMessageCommands/callbackAdd";
 import callbackRemove from "./privateMessageCommands/callbackRemove";
@@ -191,8 +191,8 @@ export const conversationCommands: {
 export const conversationCommandsWithAdminContext: {
   [commandName: string]: ConversationCommandWithAdminContextObject;
 } = {
-  warn,
-  warnRemove,
+  warningAdd,
+  warningRemove,
 };
 
 export const callbackConversationCommands: {

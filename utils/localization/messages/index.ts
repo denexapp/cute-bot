@@ -94,19 +94,19 @@ type TemplateShow =
   | "templateShow_failNoTemplates"
   | "templateShow_failNoTemplateWithThisName";
 
-type Warn =
-  | "warn_description"
-  | "warn_failCantWarnAdmin"
-  | "warn_kickManually"
-  | "warn_kickWithSomeonesCallbackServerFailed"
-  | "warn_kickWithYourCallbackServerFailed"
-  | "warn_success"
-  | "warn_willBeKickedWithCallback";
+type WarningAdd =
+  | "warningAdd_description"
+  | "warningAdd_failCantWarnAdmin"
+  | "warningAdd_kickManually"
+  | "warningAdd_kickWithSomeonesCallbackServerFailed"
+  | "warningAdd_kickWithYourCallbackServerFailed"
+  | "warningAdd_success"
+  | "warningAdd_willBeKickedWithCallback";
 
-type WarnRemove =
-  | "warnRemove_description"
-  | "warnRemove_faliNoWarnsAlready"
-  | "warnRemove_success";
+type WarningRemove =
+  | "warningRemove_description"
+  | "warningRemove_faliNoWarnsAlready"
+  | "warningRemove_success";
 
 type CallbackSecretGet =
   | "callbackSecretGet_description"
@@ -168,8 +168,8 @@ export interface Messages {
   templateList: Context<TemplateList>;
   templateRemove: Context<TemplateRemove>;
   templateShow: Context<TemplateShow>;
-  warn: Context<Warn>;
-  warnRemove: Context<WarnRemove>;
+  warningAdd: Context<WarningAdd>;
+  warningRemove: Context<WarningRemove>;
 }
 
 export type MessageKey =
@@ -194,8 +194,8 @@ export type MessageKey =
   | TemplateList
   | TemplateRemove
   | TemplateShow
-  | Warn
-  | WarnRemove;
+  | WarningAdd
+  | WarningRemove;
 
 export const prepareMessages = (
   messages: Messages
@@ -221,8 +221,8 @@ export const prepareMessages = (
   ...messages.templateList,
   ...messages.templateRemove,
   ...messages.templateShow,
-  ...messages.warn,
-  ...messages.warnRemove,
+  ...messages.warningAdd,
+  ...messages.warningRemove,
 });
 
 const messages: { [key in Locale]: Messages } = {
