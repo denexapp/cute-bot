@@ -1,5 +1,6 @@
 import { query as q } from "faunadb";
 import { ActionlessModeName, CallbackModeName, ModeName } from "../../commands";
+import { defaultWarningsLimit } from "../consts";
 import chatSettingsDecoder from "./utils/chatSettingsDecoder";
 import decodeDatabaseResponse from "./utils/decodeDatabaseResponse";
 import getDatabaseClient from "./utils/getDatabaseClient";
@@ -18,6 +19,7 @@ export interface ChatSettings {
   warnings: {
     [userId: string]: number;
   };
+  warningsLimit: number;
 }
 
 const getDefaultSettings = (): ChatSettings => ({
@@ -28,6 +30,7 @@ const getDefaultSettings = (): ChatSettings => ({
   callbackServerChatId: null,
   templates: {},
   warnings: {},
+  warningsLimit: defaultWarningsLimit,
 });
 
 const getChatSettings = async (peerId: number): Promise<ChatSettings> => {

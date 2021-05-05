@@ -1,13 +1,21 @@
 import makeRequestToCallback from "./utils/makeRequestToCallback";
 import { JsonDecoder } from "ts.data.json";
 
-const add = async (url: string, secret: string) =>
+const kick = async (
+  url: string,
+  secret: string,
+  chatId: number,
+  userId: number
+) =>
   await makeRequestToCallback(
     url,
-    "add",
+    "kick",
     secret,
-    null,
+    {
+      chatId,
+      userId,
+    },
     JsonDecoder.isNull(null)
   );
 
-export default add;
+export default kick;

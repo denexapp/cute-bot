@@ -1,7 +1,7 @@
-import { customAlphabet } from 'nanoid/async'
+import { customAlphabet } from "nanoid/async";
 
-const nanoid = customAlphabet('1234567890abcdef', 32)
+const nanoid = customAlphabet("1234567890abcdef", 32);
 
-const generateSecret = async () => nanoid()
+const generateSecret = async () => nanoid();
 
-export default generateSecret
+export default generateSecret;

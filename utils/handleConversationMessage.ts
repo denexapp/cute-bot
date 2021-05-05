@@ -240,7 +240,7 @@ const handleConversationMessage = async (
       return true;
     }
 
-    await commandObject.command(message, settings);
+    await commandObject.command(message, settings, callbackServerSettings);
     return true;
   }
 
@@ -263,7 +263,12 @@ const handleConversationMessage = async (
       return true;
     }
 
-    await commandObject.command(message, settings, adminContext);
+    await commandObject.command(
+      message,
+      settings,
+      adminContext,
+      callbackServerSettings
+    );
     return true;
   }
 

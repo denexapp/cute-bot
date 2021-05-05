@@ -242,15 +242,23 @@ const en: Messages = {
   },
   warn: {
     warn_description: "warns user",
+    warn_failCantWarnAdmin: "I can't warn an admin",
     warn_success:
-      "User has been warned. { sex, select, male {He has} female {She has} unknown {They have}} {count, plural, zero {no warnings} one {1 warning} other {# warnings}}",
+      "{userLink} has been warned. { sex, select, male {He has} female {She has} unknown {They have}} {count, plural, =0 {no warnings} one {1 warning out of {maxCount}} other {# warnings out of {maxCount}}}",
+    warn_willBeKickedWithCallback:
+      "{userLink} has been warned. { sex, select, male {His} female {Her} unknown {Their}} amount of warnings has hit the limit of {maxCount}, so I will kick { sex, select, male {him} female {her} unknown {them}}",
+    warn_kickManually:
+      "{userLink} has been warned and { sex, select, male {his} female {her} unknown {their}} amount of warnings has hit the limit of {maxCount}. {modLink}, please kick { sex, select, male {him} female {her} unknown {them}}",
+    warn_kickWithYourCallbackServerFailed:
+      "I tried to kick {userLink}, but there is a problem with the callback server. {modLink}, please kick { sex, select, male {him} female {her} unknown {them}} manualy and check your callback server",
+    warn_kickWithSomeonesCallbackServerFailed:
+      "I tried to kick {userLink}, but there is a problem with the callback server. {modLink}, please kick { sex, select, male {him} female {her} unknown {them}} manualy and ask {callbackOwnerLink} to check { callbackOwnerSex, select, male {his} female {her} unknown {their}} callback server",
   },
   warnRemove: {
     warnRemove_description: "unwarns user",
-    warnRemove_faliNoWarnsAlready:
-      "{ sex, select, male {He already has} female {She already has} unknown {They already have}} no warnings",
+    warnRemove_faliNoWarnsAlready: "@id{id} ({name}) already has no warnings",
     warnRemove_success:
-      "User has been unwarned. { sex, select, male {He has} female {She has} unknown {They have}} {count, plural, zero {no warnings} one {1 warning} other {# warnings}}",
+      "@id{id} ({name}) has been unwarned. { sex, select, male {He has} female {She has} unknown {They have}} {count, plural, =0 {no warnings} one {1 warning out of {maxCount}} other {# warnings out of {maxCount}}}",
   },
 };
 

@@ -1,8 +1,18 @@
-import makeRequestToCallback from './utils/makeRequestToCallback'
-import { JsonDecoder } from 'ts.data.json'
+import makeRequestToCallback from "./utils/makeRequestToCallback";
+import { JsonDecoder } from "ts.data.json";
 
-const remove = async (url: string, secret: string, chatId: number, conversationMessageId: number) => (
-  await makeRequestToCallback(url, 'remove', secret, { chatId, conversationMessageId }, JsonDecoder.isNull(null))
-)
+const remove = async (
+  url: string,
+  secret: string,
+  chatId: number,
+  conversationMessageId: number
+) =>
+  await makeRequestToCallback(
+    url,
+    "remove",
+    secret,
+    { chatId, conversationMessageId },
+    JsonDecoder.isNull(null)
+  );
 
-export default remove
+export default remove;

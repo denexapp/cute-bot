@@ -1,6 +1,6 @@
-import fetch from 'node-fetch'
-import { JsonDecoder } from 'ts.data.json'
-import decodeCallback from './decodeCallback'
+import fetch from "node-fetch";
+import { JsonDecoder } from "ts.data.json";
+import decodeCallback from "./decodeCallback";
 
 const makeRequestToCallback = async <T>(
   url: string,
@@ -12,26 +12,28 @@ const makeRequestToCallback = async <T>(
   const body = {
     type,
     secret,
-    object
-  }
+    object,
+  };
 
   const result = await fetch(url, {
     body: JSON.stringify(body),
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json'
-    }
-  })
+      "Content-Type": "application/json",
+    },
+  });
 
   if (!result.ok) {
-    throw new Error(`Callback server responded with unexpeted code ${result.status}`)
+    throw new Error(
+      `Callback server responded with unexpeted code ${result.status}`
+    );
   }
 
-  const json = await result.json()
- 
-  const { response } = decodeCallback(json, callbackDecoder)
+  const json = await result.json();
 
-  return response
-}
+  const { response } = decodeCallback(json, callbackDecoder);
 
-export default makeRequestToCallback
+  return response;
+};
+
+export default makeRequestToCallback;

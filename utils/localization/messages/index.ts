@@ -94,7 +94,14 @@ type TemplateShow =
   | "templateShow_failNoTemplates"
   | "templateShow_failNoTemplateWithThisName";
 
-type Warn = "warn_description" | "warn_success";
+type Warn =
+  | "warn_description"
+  | "warn_failCantWarnAdmin"
+  | "warn_kickManually"
+  | "warn_kickWithSomeonesCallbackServerFailed"
+  | "warn_kickWithYourCallbackServerFailed"
+  | "warn_success"
+  | "warn_willBeKickedWithCallback";
 
 type WarnRemove =
   | "warnRemove_description"

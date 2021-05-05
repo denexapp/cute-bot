@@ -1,4 +1,5 @@
 import { JsonDecoder } from "ts.data.json";
+import { defaultWarningsLimit } from "../../consts";
 import optionalDecoder from "../../optionalDecoder";
 import { ChatSettings } from "../getChatSettings";
 
@@ -42,6 +43,10 @@ const chatSettingsDecoder = JsonDecoder.object<ChatSettings>(
         JsonDecoder.isUndefined({}),
       ],
       "Warnings"
+    ),
+    warningsLimit: JsonDecoder.oneOf(
+      [JsonDecoder.number, JsonDecoder.isUndefined(defaultWarningsLimit)],
+      "Warnings limit"
     ),
   },
   "Chat settings"

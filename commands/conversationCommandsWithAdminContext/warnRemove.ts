@@ -1,19 +1,18 @@
 import { Sex } from "vk-ts";
 import {
-  ConversationCommandObject,
   ConversationCommandWithAdminContext,
   ConversationCommandWithAdminContextObject,
 } from "..";
 import parseUserId from "../../utils/commandUtils/parseUserId";
 import decrementUserWarningCount from "../../utils/database/decrementUserWarningCount";
-import incrementUserWarningCount from "../../utils/database/incrementUserWarningCount";
 import phrase from "../../utils/localization/phrase";
 import vk from "../../utils/vk";
 
 const command: ConversationCommandWithAdminContext = async (
   message,
   settings,
-  adminContext
+  adminContext,
+  callbackServerSettings
 ) => {
   const { peer_id: peerId, text } = message;
 
@@ -50,7 +49,8 @@ const command: ConversationCommandWithAdminContext = async (
     await vk.messagesSend(
       peerId,
       phrase("warnRemove_faliNoWarnsAlready", {
-        sex,
+        id: user.id,
+        name: user.first_name,
       })
     );
     return;
@@ -59,6 +59,9 @@ const command: ConversationCommandWithAdminContext = async (
   await vk.messagesSend(
     peerId,
     phrase("warnRemove_success", {
+      name: user.first_name,
+      id: user.id,
+      maxCount: settings.warningsLimit,
       count,
       sex,
     })

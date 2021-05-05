@@ -1,12 +1,12 @@
 const isUrlValidAndHttps = (string: string) => {
-  let url: URL
+  let url: URL;
   try {
-    url = new URL(string)
+    url = new URL(string);
   } catch {
-    return false
+    return false;
   }
 
-  return url.protocol === "https:"
-}
+  return url.protocol === "https:";
+};
 
-export default isUrlValidAndHttps
+export default isUrlValidAndHttps;

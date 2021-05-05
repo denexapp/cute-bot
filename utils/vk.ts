@@ -1,6 +1,6 @@
-import VK from 'vk-ts'
-import variables from './variables'
+import VK from "vk-ts";
+import variables from "./variables";
 
-const vk = new VK(variables.accessToken)
+const vk = new VK(variables.accessToken);
 
-export default vk
+export default vk;

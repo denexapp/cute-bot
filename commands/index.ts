@@ -40,13 +40,15 @@ export type CallbackMode = (
 
 export type ConversationCommand = (
   message: Message,
-  settings: ChatSettings
+  settings: ChatSettings,
+  callbackServerSettings: CallbackServerSettings | null
 ) => Promise<void>;
 
 export type ConversationCommandWithAdminContext = (
   message: Message,
   settings: ChatSettings,
-  adminContext: AdminContext
+  adminContext: AdminContext,
+  callbackServerSettings: CallbackServerSettings | null
 ) => Promise<void>;
 
 export type CallbackConversationCommand = (

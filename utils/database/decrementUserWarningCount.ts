@@ -49,7 +49,10 @@ const decrementUserWarningCount = async (
     JsonDecoder.nullable(databaseResponseDecoder(chatSettingsDecoder))
   );
 
-  const userWarningCount = decodedSettings === null ? null : decodedSettings.data.warnings[userId] ?? 0;
+  const userWarningCount =
+    decodedSettings === null
+      ? null
+      : decodedSettings.data.warnings[userId] ?? 0;
 
   return userWarningCount;
 };
