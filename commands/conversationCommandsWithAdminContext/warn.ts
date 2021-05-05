@@ -19,7 +19,7 @@ const command: ConversationCommandWithAdminContext = async (
 
 const warn: ConversationCommandWithAdminContextObject = {
   command,
-  isAdminCommand: false,
+  isAdminCommand: true,
   description: "warn_description",
 };
 

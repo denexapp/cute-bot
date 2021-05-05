@@ -232,6 +232,22 @@ const en = {
   warningAdd_kickWithSomeonesCallbackServerFailed:
     "I tried to kick {userLink}, but there is a problem with the callback server. {modLink}, please kick { sex, select, male {him} female {her} unknown {them}} manualy and ask {callbackOwnerLink} to check { callbackOwnerSex, select, male {his} female {her} unknown {their}} callback server",
 
+  warningLimitSet_description: "sets max amount of warnings per user",
+  warningLimitSet_failNoLimit:
+    "Specify the limit of warnings after the command name",
+  warningLimitSet_failIncorrectLimit:
+    "The limit of warnings should be a number",
+  warningLimitSet_failTooHighLimit:
+    "The limit of warnings should be less or equal than {maxWarningsLimit}",
+  warningLimitSet_failTooLowLimit:
+    "The limit of warnings should be greater or equal than {minWarningsLimit}",
+  warningLimitSet_success:
+    "I've set warnings limit to {limit}. Users with amount of warnings exceeding the limit will be kicked if they get another warning",
+
+  warningLimitShow_description: "shows the limit of warnings per user",
+  warningLimitShow_message:
+    "The limit of warnings per user is {warningsLimit}. User gets kicked if they reach the limit",
+
   warningRemove_description: "removes warning from user",
   warningRemove_faliNoWarnsAlready: "@id{id} ({name}) already has no warnings",
   warningRemove_success:

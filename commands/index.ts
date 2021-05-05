@@ -4,7 +4,7 @@ import { ConversationMember } from "vk-ts/dist/methods/messagesGetConversationMe
 import { ChatSettings } from "../utils/database/getChatSettings";
 import decode from "../utils/decode";
 import { CallbackServerSettings } from "../utils/getCallbackServerSettings";
-import { MessageKey } from "../utils/localization/messages";
+import { MessageId } from "../utils/localization/messages";
 import { Message } from "../utils/vkCallbackDecoders/messageNewDecoder";
 import ignoreUnknownCommands from "./actionlessModes/ignoreUnknownCommands";
 import ignoreUsers from "./actionlessModes/ignoreUsers";
@@ -21,6 +21,8 @@ import templateEdit from "./conversationCommands/templateEdit";
 import templateList from "./conversationCommands/templateList";
 import templateRemove from "./conversationCommands/templateRemove";
 import templateShow from "./conversationCommands/templateShow";
+import warningLimitSet from "./conversationCommands/warningLimitSet";
+import warningLimitShow from "./conversationCommands/warningLimitShow";
 import unwarn from "./conversationCommandsWithAdminContext/unwarn";
 import warn from "./conversationCommandsWithAdminContext/warn";
 import warningAdd from "./conversationCommandsWithAdminContext/warningAdd";
@@ -62,23 +64,23 @@ export type CallbackConversationCommand = (
 export type PrivateMessageCommand = (message: Message) => Promise<void>;
 
 export interface ActionlessModeObject {
-  description: MessageKey;
-  enabledText: MessageKey;
-  disabledText: MessageKey;
+  description: MessageId;
+  enabledText: MessageId;
+  disabledText: MessageId;
 }
 
 export interface ModeObject {
-  description: MessageKey;
-  enabledText: MessageKey;
-  disabledText: MessageKey;
+  description: MessageId;
+  enabledText: MessageId;
+  disabledText: MessageId;
   actionNeedsBotAdminRights: boolean;
   action: Mode;
 }
 
 export interface CallbackModeObject {
-  description: MessageKey;
-  enabledText: MessageKey;
-  disabledText: MessageKey;
+  description: MessageId;
+  enabledText: MessageId;
+  disabledText: MessageId;
   actionNeedsBotAdminRights: boolean;
   action: CallbackMode;
 }
@@ -86,23 +88,23 @@ export interface CallbackModeObject {
 export interface ConversationCommandObject {
   command: ConversationCommand;
   isAdminCommand: boolean;
-  description: MessageKey;
+  description: MessageId;
 }
 export interface ConversationCommandWithAdminContextObject {
   command: ConversationCommandWithAdminContext;
   isAdminCommand: boolean;
-  description: MessageKey;
+  description: MessageId;
 }
 
 export interface CallbackConversationCommandObject {
   command: CallbackConversationCommand;
   isAdminCommand: boolean;
-  description: MessageKey;
+  description: MessageId;
 }
 
 export interface PrivateMessageCommandObject {
   command: PrivateMessageCommand;
-  description: MessageKey;
+  description: MessageId;
 }
 
 export interface AdminContext {
@@ -188,6 +190,8 @@ export const conversationCommands: {
   templateList,
   templateRemove,
   templateShow,
+  warningLimitSet,
+  warningLimitShow,
 };
 
 export const conversationCommandsWithAdminContext: {
