@@ -94,6 +94,10 @@ type TemplateShow =
   | "templateShow_failNoTemplates"
   | "templateShow_failNoTemplateWithThisName";
 
+type Unwarn = "unwarn_description";
+
+type Warn = "warn_description";
+
 type WarningAdd =
   | "warningAdd_description"
   | "warningAdd_failCantWarnAdmin"
@@ -168,6 +172,8 @@ export interface Messages {
   templateList: Context<TemplateList>;
   templateRemove: Context<TemplateRemove>;
   templateShow: Context<TemplateShow>;
+  unwarn: Context<Unwarn>;
+  warn: Context<Warn>;
   warningAdd: Context<WarningAdd>;
   warningRemove: Context<WarningRemove>;
 }
@@ -194,6 +200,8 @@ export type MessageKey =
   | TemplateList
   | TemplateRemove
   | TemplateShow
+  | Unwarn
+  | Warn
   | WarningAdd
   | WarningRemove;
 
@@ -221,6 +229,8 @@ export const prepareMessages = (
   ...messages.templateList,
   ...messages.templateRemove,
   ...messages.templateShow,
+  ...messages.unwarn,
+  ...messages.warn,
   ...messages.warningAdd,
   ...messages.warningRemove,
 });

@@ -240,6 +240,12 @@ const en: Messages = {
     templateShow_failNoTemplateWithThisName:
       'There\'s no saved templates with the name "{templateName}". Use /templateList command to see all saved templates',
   },
+  unwarn: {
+    unwarn_description: "shorthand for /warningRemove",
+  },
+  warn: {
+    warn_description: "shorthand for /warningAdd",
+  },
   warningAdd: {
     warningAdd_description: "warns user",
     warningAdd_failCantWarnAdmin: "I can't warn an admin",

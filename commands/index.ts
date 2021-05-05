@@ -21,6 +21,8 @@ import templateEdit from "./conversationCommands/templateEdit";
 import templateList from "./conversationCommands/templateList";
 import templateRemove from "./conversationCommands/templateRemove";
 import templateShow from "./conversationCommands/templateShow";
+import unwarn from "./conversationCommandsWithAdminContext/unwarn";
+import warn from "./conversationCommandsWithAdminContext/warn";
 import warningAdd from "./conversationCommandsWithAdminContext/warningAdd";
 import warningRemove from "./conversationCommandsWithAdminContext/warningRemove";
 import echo from "./modes/echo";
@@ -191,6 +193,8 @@ export const conversationCommands: {
 export const conversationCommandsWithAdminContext: {
   [commandName: string]: ConversationCommandWithAdminContextObject;
 } = {
+  unwarn,
+  warn,
   warningAdd,
   warningRemove,
 };
