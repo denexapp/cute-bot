@@ -21,6 +21,7 @@ import templateEdit from "./conversationCommands/templateEdit";
 import templateList from "./conversationCommands/templateList";
 import templateRemove from "./conversationCommands/templateRemove";
 import templateShow from "./conversationCommands/templateShow";
+import warningAmount from "./conversationCommands/warningAmount";
 import warningLimitSet from "./conversationCommands/warningLimitSet";
 import warningLimitShow from "./conversationCommands/warningLimitShow";
 import unwarn from "./conversationCommandsWithAdminContext/unwarn";
@@ -45,6 +46,7 @@ export type CallbackMode = (
 export type ConversationCommand = (
   message: Message,
   settings: ChatSettings,
+  adminContext: AdminContext | null,
   callbackServerSettings: CallbackServerSettings | null
 ) => Promise<void>;
 
@@ -190,6 +192,7 @@ export const conversationCommands: {
   templateList,
   templateRemove,
   templateShow,
+  warningAmount,
   warningLimitSet,
   warningLimitShow,
 };

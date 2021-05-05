@@ -8,6 +8,7 @@ import vk from "../../utils/vk";
 const command: ConversationCommand = async (
   message,
   settings,
+  adminContext,
   callbackServerSettings
 ) => {
   const { peer_id: peerId, text } = message;
@@ -19,7 +20,7 @@ const command: ConversationCommand = async (
     return;
   }
 
-  const parsedNumber = await parseNumberSafe(warningLimitString);
+  const parsedNumber = parseNumberSafe(warningLimitString);
 
   if (parsedNumber.error) {
     await vk.messagesSend(peerId, phrase("warningLimitSet_failIncorrectLimit"));

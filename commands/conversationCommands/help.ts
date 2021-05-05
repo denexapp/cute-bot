@@ -4,6 +4,7 @@ import privateHelp from "../privateMessageCommands/help";
 const command: ConversationCommand = async (
   message,
   settings,
+  adminContext,
   callbackServerSettings
 ) => await privateHelp.command(message);
 

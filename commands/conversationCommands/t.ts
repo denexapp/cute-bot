@@ -4,8 +4,15 @@ import templateShow from "./templateShow";
 const command: ConversationCommand = async (
   message,
   settings,
+  adminContext,
   callbackServerSettings
-) => await templateShow.command(message, settings, callbackServerSettings);
+) =>
+  await templateShow.command(
+    message,
+    settings,
+    adminContext,
+    callbackServerSettings
+  );
 
 const t: ConversationCommandObject = {
   command,

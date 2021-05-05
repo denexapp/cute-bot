@@ -232,6 +232,18 @@ const en = {
   warningAdd_kickWithSomeonesCallbackServerFailed:
     "I tried to kick {userLink}, but there is a problem with the callback server. {modLink}, please kick { sex, select, male {him} female {her} unknown {them}} manualy and ask {callbackOwnerLink} to check { callbackOwnerSex, select, male {his} female {her} unknown {their}} callback server",
 
+  warningAmount_description: "shows how many warnings do you or user have",
+  warningAmount_failCantCheckIfUserIsAnAdmin:
+    "Only admins can see warnings of other people but I am not allowed to check if you are an admin or not. Appoint me as administrator or ask {userLink} to use this command",
+  warningAmount_failCantCheckIfUnknownUserIsAnAdmin:
+    "Only admins can see warnings of other people but I am not allowed to check if you are an admin or not. Appoint me as administrator or ask the user to use this command themself",
+  warningAmount_failCantSeeWarningsOfOtherPerson:
+    "You can't see warnings of other person unless you are an admin",
+  warningAmount_message:
+    "{userLink}, you have {count, plural, =0 {no warnings} one {1 warning out of {maxCount}} other {# warnings out of {maxCount}}}",
+  warningAmount_messageOtherPerson:
+    "{userLink} has {count, plural, =0 {no warnings} one {1 warning out of {maxCount}} other {# warnings out of {maxCount}}}",
+
   warningLimitSet_description: "sets max amount of warnings per user",
   warningLimitSet_failNoLimit:
     "Specify the limit of warnings after the command name",

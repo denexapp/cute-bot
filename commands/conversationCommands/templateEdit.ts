@@ -6,6 +6,7 @@ import vk from "../../utils/vk";
 const command: ConversationCommand = async (
   message,
   settings,
+  adminContext,
   callbackServerSettings
 ) => {
   const { peer_id: peerId, text } = message;
