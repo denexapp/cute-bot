@@ -15,7 +15,7 @@ import {
   PrivateMessageCommandObject,
   privateMessageCommands,
 } from "..";
-import { MessageKey } from "../../utils/localization/messages";
+import { MessageId } from "../../utils/localization/messages";
 import phrase from "../../utils/localization/phrase";
 import vk from "../../utils/vk";
 
@@ -33,11 +33,11 @@ type CommandItem = [
 ];
 
 const generateCommandList = (
-  header: MessageKey,
+  header: MessageId,
   commands: Array<CommandItem> = [],
   callbackCommands: Array<CommandItem> = []
 ): string => {
-  const mapper = (messageKey: MessageKey) => ([
+  const mapper = (messageKey: MessageId) => ([
     name,
     { description },
   ]: CommandItem) =>
