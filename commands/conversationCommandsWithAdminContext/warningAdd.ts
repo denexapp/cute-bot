@@ -3,7 +3,7 @@ import {
   ConversationCommandWithAdminContext,
   ConversationCommandWithAdminContextObject,
 } from "..";
-import kick from "../../utils/callbackServer/kick";
+import kick, { Status } from "../../utils/callbackServer/kick";
 import parseUserId from "../../utils/commandUtils/parseUserId";
 import incrementUserWarningCount from "../../utils/database/incrementUserWarningCount";
 import removeUserWarningCount from "../../utils/database/removeUserWarningCount";
@@ -22,7 +22,7 @@ const command: ConversationCommandWithAdminContext = async (
   const [, unparsedUserId] = text.split(" ");
 
   if (unparsedUserId === undefined || unparsedUserId.length === 0) {
-    await vk.messagesSend(peerId, phrase("common_failNoUserId"));
+    await vk.messagesSend(peerId, phrase("warningAdd_failNoUserId"));
     return;
   }
 
@@ -69,8 +69,6 @@ const command: ConversationCommandWithAdminContext = async (
         callbackServerUserId,
       } = callbackServerSettings;
 
-      let kicked = false;
-
       await vk.messagesSend(
         peerId,
         phrase("warningAdd_willBeKickedWithCallback", {
@@ -80,19 +78,24 @@ const command: ConversationCommandWithAdminContext = async (
         })
       );
 
+      let result: Status | null = null;
+
       try {
-        await kick(
-          callbackServerUrl,
-          callbackSecret,
-          callbackServerChatId - 2000000000,
-          user.id
-        );
-        kicked = true;
-      } catch {
+        result = (
+          await kick(
+            callbackServerUrl,
+            callbackSecret,
+            callbackServerChatId - 2000000000,
+            user.id
+          )
+        ).status;
+      } catch {}
+
+      if (result === null) {
         if (callbackServerUserId === from_id) {
           await vk.messagesSend(
             peerId,
-            phrase("warningAdd_kickWithYourCallbackServerFailed", {
+            phrase("common_kickWithYourCallbackServerFailed", {
               userLink,
               modLink,
               sex,
@@ -109,12 +112,12 @@ const command: ConversationCommandWithAdminContext = async (
           const callbackOwnerSex =
             callbackOwnerProfile?.sex === Sex.Female
               ? "female"
-              : user.sex === Sex.Male
+              : callbackOwnerProfile?.sex === Sex.Male
               ? "male"
               : "unknown";
           await vk.messagesSend(
             peerId,
-            phrase("warningAdd_kickWithSomeonesCallbackServerFailed", {
+            phrase("common_kickWithSomeonesCallbackServerFailed", {
               userLink,
               sex,
               modLink,
@@ -125,8 +128,19 @@ const command: ConversationCommandWithAdminContext = async (
         }
       }
 
-      if (kicked) {
+      if (result === Status.Kicked) {
         await removeUserWarningCount(peerId, userId);
+      }
+
+      if (result === Status.NoUserInChat) {
+        await vk.messagesSend(
+          peerId,
+          phrase("common_failNoUserInConversation")
+        );
+      }
+
+      if (result === Status.UserIsAnAdmin) {
+        await vk.messagesSend(peerId, phrase("common_failCantKickAdmin"));
       }
     } else {
       await vk.messagesSend(

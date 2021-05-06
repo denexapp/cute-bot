@@ -7,6 +7,7 @@ import callbackRemove from "../../utils/callbackServer/remove";
 const command: CallbackConversationCommand = async (
   message,
   settings,
+  adminContext,
   { callbackServerUrl, callbackSecret, callbackServerChatId }
 ) => {
   await callbackRemove(

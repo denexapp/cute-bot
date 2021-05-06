@@ -19,7 +19,7 @@ const command: ConversationCommandWithAdminContext = async (
   const [, unparsedUserId] = text.split(" ");
 
   if (unparsedUserId === undefined || unparsedUserId.length === 0) {
-    await vk.messagesSend(peerId, phrase("common_failNoUserId"));
+    await vk.messagesSend(peerId, phrase("warningRemove_failNoUserId"));
     return;
   }
 
