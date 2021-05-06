@@ -118,11 +118,15 @@ const en = {
     "Command /{commandName} is available for admins only, but I don't have a permission to check user permissions in this conversation. Appoint me as administrator to use admin commands",
   common_botNeedsToBeAdmin:
     "I don't have enough permissions to use /{commandName} command. Appoint me as administrator to use this command",
-  common_failNoUserId: "Type id of user to warn after the command name",
+  common_failCantKickAdmin: "I can't kick an admin",
   common_failIncorrectUserId:
     "Incorrect user id. You can try to mention them directly using @",
   common_failNoUserInConversation:
     "There's no such user in this conversation. They may have left from the chat or there's a typo",
+  common_kickWithYourCallbackServerFailed:
+    "I tried to kick {userLink}, but there is a problem with your callback server. {modLink}, please kick { sex, select, male {him} female {her} unknown {them}} manualy and check your callback server",
+  common_kickWithSomeonesCallbackServerFailed:
+    "I tried to kick {userLink}, but there is a problem with the callback server. {modLink}, please kick { sex, select, male {him} female {her} unknown {them}} manualy and ask {callbackOwnerLink} to check { callbackOwnerSex, select, male {his} female {her} unknown {their}} callback server",
 
   echo_description: "echoes all new messages in the chat",
   echo_enabledText: "I'll be repeating all messages in the chat",
@@ -148,6 +152,10 @@ const en = {
   ignoreUsers_description: "ignore commands from regular users",
   ignoreUsers_disabledText: "I'll react to commands from regular users",
   ignoreUsers_enabledText: "I will ignore commands from regular users",
+
+  kick_description: "kicks user",
+  kick_failNoUserId: 'Type id of user to kick after the command name',
+  kick_willBeKicked: "Okay, I will kick {userLink}",
 
   profanityFilter_description: "deletes messages with Russian swear words",
   profanityFilter_enabledText:
@@ -220,6 +228,7 @@ const en = {
   warn_description: "shorthand for /warningAdd",
 
   warningAdd_description: "warns user",
+  warningAdd_failNoUserId: "Type id of user to warn after the command name",
   warningAdd_failCantWarnAdmin: "I can't warn an admin",
   warningAdd_success:
     "{userLink} has been warned. { sex, select, male {He has} female {She has} unknown {They have}} {count, plural, =0 {no warnings} one {1 warning out of {maxCount}} other {# warnings out of {maxCount}}}",
@@ -227,10 +236,6 @@ const en = {
     "{userLink} has been warned. { sex, select, male {His} female {Her} unknown {Their}} amount of warnings has hit the limit of {maxCount}, so I will kick { sex, select, male {him} female {her} unknown {them}}",
   warningAdd_kickManually:
     "{userLink} has been warned and { sex, select, male {his} female {her} unknown {their}} amount of warnings has hit the limit of {maxCount}. {modLink}, please kick { sex, select, male {him} female {her} unknown {them}}",
-  warningAdd_kickWithYourCallbackServerFailed:
-    "I tried to kick {userLink}, but there is a problem with the callback server. {modLink}, please kick { sex, select, male {him} female {her} unknown {them}} manualy and check your callback server",
-  warningAdd_kickWithSomeonesCallbackServerFailed:
-    "I tried to kick {userLink}, but there is a problem with the callback server. {modLink}, please kick { sex, select, male {him} female {her} unknown {them}} manualy and ask {callbackOwnerLink} to check { callbackOwnerSex, select, male {his} female {her} unknown {their}} callback server",
 
   warningAmount_description: "shows how many warnings do you or user have",
   warningAmount_failCantCheckIfUserIsAnAdmin:
@@ -261,6 +266,7 @@ const en = {
     "The limit of warnings per user is {warningsLimit}. User gets kicked if they reach the limit",
 
   warningRemove_description: "removes warning from user",
+  warningRemove_failNoUserId: 'Type id of user to unwarn after the command name',
   warningRemove_faliNoWarnsAlready: "@id{id} ({name}) already has no warnings",
   warningRemove_success:
     "@id{id} ({name}) has been unwarned. { sex, select, male {He has} female {She has} unknown {They have}} {count, plural, =0 {no warnings} one {1 warning out of {maxCount}} other {# warnings out of {maxCount}}}",

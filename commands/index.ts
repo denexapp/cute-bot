@@ -9,6 +9,7 @@ import { Message } from "../utils/vkCallbackDecoders/messageNewDecoder";
 import ignoreUnknownCommands from "./actionlessModes/ignoreUnknownCommands";
 import ignoreUsers from "./actionlessModes/ignoreUsers";
 import callbackDisconnect from "./callbackConversationCommands/callbackDisconnect";
+import kick from "./callbackConversationCommands/kick";
 import remove from "./callbackConversationCommands/remove";
 import profanityFilter from "./callbackModes/profanityFilter";
 import removeCommands from "./callbackModes/removeCommands";
@@ -60,6 +61,7 @@ export type ConversationCommandWithAdminContext = (
 export type CallbackConversationCommand = (
   message: Message,
   settings: ChatSettings,
+  adminContext: AdminContext | null,
   callbackServerSettings: CallbackServerSettings
 ) => Promise<void>;
 
@@ -211,6 +213,7 @@ export const callbackConversationCommands: {
 } = {
   callbackDisconnect,
   remove,
+  kick,
 };
 
 export const privateMessageCommands: {

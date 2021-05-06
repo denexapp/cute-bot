@@ -213,7 +213,7 @@ const handleConversationMessage = async (
       return true;
     }
 
-    await commandObject.command(message, settings, callbackServerSettings);
+    await commandObject.command(message, settings, adminContext, callbackServerSettings);
     return true;
   }
 
