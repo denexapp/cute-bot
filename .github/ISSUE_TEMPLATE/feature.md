@@ -1,10 +1,7 @@
 ---
 name: Feature
 about: A feature to work on
-title: ''
+title: ""
 labels: enhancement
 assignees: denexapp
-
 ---
-
-

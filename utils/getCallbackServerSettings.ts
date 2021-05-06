@@ -1,22 +1,32 @@
-import { ChatSettings } from './database/getChatSettings'
-import getUserSettings from './database/getUserSettings'
+import { ChatSettings } from "./database/getChatSettings";
+import getUserSettings from "./database/getUserSettings";
 
 export type CallbackServerSettings = {
-  callbackServerUrl: string
-  callbackSecret: string
-  callbackServerChatId: number
-}
+  callbackServerUrl: string;
+  callbackSecret: string;
+  callbackServerChatId: number;
+  callbackServerUserId: number;
+};
 
-const getCallbackServerSettings = async (settings: ChatSettings): Promise<null | CallbackServerSettings> => {
-  const { callbackServerUserId, callbackServerChatId } = settings
+const getCallbackServerSettings = async (
+  settings: ChatSettings
+): Promise<null | CallbackServerSettings> => {
+  const { callbackServerUserId, callbackServerChatId } = settings;
   if (callbackServerUserId === null || callbackServerChatId === null) {
-    return null
+    return null;
   }
-  const { callbackSecret, callbackServerUrl } = await getUserSettings(callbackServerUserId)
+  const { callbackSecret, callbackServerUrl } = await getUserSettings(
+    callbackServerUserId
+  );
   if (callbackServerUrl === null) {
-    return null
+    return null;
   }
-  return { callbackServerUrl, callbackSecret, callbackServerChatId }
-}
+  return {
+    callbackServerUrl,
+    callbackSecret,
+    callbackServerChatId,
+    callbackServerUserId,
+  };
+};
 
-export default getCallbackServerSettings
+export default getCallbackServerSettings;

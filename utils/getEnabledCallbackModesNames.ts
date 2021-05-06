@@ -1,12 +1,11 @@
-import { ChatSettings } from './database/getChatSettings'
+import { ChatSettings } from "./database/getChatSettings";
 
 const getEnabledCallbackModesNames = (settings: ChatSettings) => {
-  const enabledCallbackModesNames = Object
-    .entries(settings.callbackModes)
+  const enabledCallbackModesNames = Object.entries(settings.callbackModes)
     .filter(([, mode]) => mode === true)
-    .map(([name]) => name)
+    .map(([name]) => name);
 
-  return enabledCallbackModesNames
-}
+  return enabledCallbackModesNames;
+};
 
-export default getEnabledCallbackModesNames
+export default getEnabledCallbackModesNames;
