@@ -60,7 +60,6 @@ const en = {
       one {. Mode {modesNames} was disabled, because it requires a callback server}
       other {. Modes {modesNames} were disabled, because they require a callback server}
     }`,
-
   common_unknownCommand: "Unknown command. Use /help to list all commands",
   common_commandAvailableInThePrivateChatOnly:
     "Command /{commandName} is available in a private chat with me only",
