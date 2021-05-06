@@ -147,7 +147,7 @@ const en = {
 
   ignoreUsers_description: "ignore commands from regular users",
   ignoreUsers_disabledText: "I'll react to commands from regular users",
-  ignoreUsers_enabledText: "I will be ignore commands from regular users",
+  ignoreUsers_enabledText: "I will ignore commands from regular users",
 
   profanityFilter_description: "deletes messages with Russian swear words",
   profanityFilter_enabledText:
