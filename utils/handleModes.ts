@@ -1,4 +1,4 @@
-import { callbackModes, modes } from "../commands";
+import { AdminContext, callbackModes, modes } from "../commands";
 import { ChatSettings } from "./database/getChatSettings";
 import { CallbackServerSettings } from "./getCallbackServerSettings";
 import phrase from "./localization/phrase";
@@ -11,7 +11,8 @@ const handleModes = async (
   settings: ChatSettings,
   callbackServerSettings: CallbackServerSettings | null,
   botHasAdminRights: boolean,
-  botReacted: boolean
+  botReacted: boolean,
+  adminContext: AdminContext | null
 ) => {
   const { peer_id: peerId } = message;
 
@@ -43,7 +44,7 @@ const handleModes = async (
         if (modeObject.actionNeedsBotAdminRights && !botHasAdminRights) {
           modesThatCantWorkWithoutAdminRights.push(commandName);
         } else {
-          await modeObject.action(message, botReacted, callbackServerSettings);
+          await modeObject.action(message, settings, callbackServerSettings, botReacted, adminContext);
         }
       }
     }
