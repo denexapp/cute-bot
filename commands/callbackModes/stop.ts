@@ -3,8 +3,10 @@ import remove from "../../utils/callbackServer/remove";
 
 const action: CallbackMode = async (
   message,
+  settings,
+  { callbackSecret, callbackServerChatId, callbackServerUrl },
   botReacted,
-  { callbackSecret, callbackServerChatId, callbackServerUrl }
+  adminContext
 ) => {
   const { conversation_message_id } = message;
 

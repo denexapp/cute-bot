@@ -123,6 +123,8 @@ const en = {
     "Incorrect user id. You can try to mention them directly using @",
   common_failNoUserInConversation:
     "There's no such user in this conversation. They may have left from the chat or there's a typo",
+  common_kickWithCallbackServerFailed:
+    "I tried to kick {userLink}, but there is a problem with the callback server. Admins, please kick { sex, select, male {him} female {her} unknown {them}} manualy and and ask {callbackOwnerLink} to check { callbackOwnerSex, select, male {his} female {her} unknown {their}} callback server",
   common_kickWithYourCallbackServerFailed:
     "I tried to kick {userLink}, but there is a problem with your callback server. {modLink}, please kick { sex, select, male {him} female {her} unknown {them}} manualy and check your callback server",
   common_kickWithSomeonesCallbackServerFailed:
@@ -162,6 +164,10 @@ const en = {
     "I will remove all new messages with swear words",
   profanityFilter_disabledText:
     "Okay, I won't remove messages with swear words anymore",
+  profanityFilter_success:
+    "{userLink}, I warn you for using word \"{word}\". You have {count, plural, =0 {no warnings} one {1 warning out of {maxCount}} other {# warnings out of {maxCount}}}",
+  profanityFilter_willBeKickedWithCallback:
+    "{userLink}, I warn you for using word \"{word}\". Your amount of warnings has hit the limit of {maxCount}, so you will be kicked",
 
   remove_description: "removes message with this command",
 

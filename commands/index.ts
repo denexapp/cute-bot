@@ -40,9 +40,11 @@ export type Mode = (message: Message, botReacted: boolean) => Promise<void>;
 
 export type CallbackMode = (
   message: Message,
+  settings: ChatSettings,
+  callbackServerSettings: CallbackServerSettings,
   botReacted: boolean,
-  callbackServerSettings: CallbackServerSettings
-) => Promise<void>;
+  adminContext: AdminContext | null
+  ) => Promise<void>;
 
 export type ConversationCommand = (
   message: Message,

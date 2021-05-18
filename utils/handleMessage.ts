@@ -86,7 +86,8 @@ const handleMessage = async (message: Message) => {
         settings,
         callbackServerSettings,
         adminContext !== null,
-        botReacted
+        botReacted,
+        adminContext
       );
     }
   } else {
