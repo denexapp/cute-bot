@@ -8,6 +8,7 @@ import { MessageId } from "../utils/localization/messages";
 import { Message } from "../utils/vkCallbackDecoders/messageNewDecoder";
 import ignoreUnknownCommands from "./actionlessModes/ignoreUnknownCommands";
 import ignoreUsers from "./actionlessModes/ignoreUsers";
+import welcome from "./actionlessModes/welcome";
 import callbackDisconnect from "./callbackConversationCommands/callbackDisconnect";
 import kick from "./callbackConversationCommands/kick";
 import remove from "./callbackConversationCommands/remove";
@@ -25,6 +26,9 @@ import templateShow from "./conversationCommands/templateShow";
 import warningAmount from "./conversationCommands/warningAmount";
 import warningLimitSet from "./conversationCommands/warningLimitSet";
 import warningLimitShow from "./conversationCommands/warningLimitShow";
+import welcomeRemove from "./conversationCommands/welcomeRemove";
+import welcomeSet from "./conversationCommands/welcomeSet";
+import welcomeTest from "./conversationCommands/welcomeTest";
 import unwarn from "./conversationCommandsWithAdminContext/unwarn";
 import warn from "./conversationCommandsWithAdminContext/warn";
 import warningAdd from "./conversationCommandsWithAdminContext/warningAdd";
@@ -44,7 +48,7 @@ export type CallbackMode = (
   callbackServerSettings: CallbackServerSettings,
   botReacted: boolean,
   adminContext: AdminContext | null
-  ) => Promise<void>;
+) => Promise<void>;
 
 export type ConversationCommand = (
   message: Message,
@@ -119,7 +123,10 @@ export interface AdminContext {
   profiles: Map<number, User>;
 }
 
-export type ActionlessModeName = "ignoreUsers" | "ignoreUnknownCommands";
+export type ActionlessModeName =
+  | "ignoreUsers"
+  | "ignoreUnknownCommands"
+  | "welcome";
 
 export type ModeName = "echo";
 
@@ -130,6 +137,7 @@ const internalActionlessModes: {
 } = {
   ignoreUsers,
   ignoreUnknownCommands,
+  welcome,
 };
 
 const internalModes: { [commandName in ModeName]: ModeObject } = {
@@ -151,6 +159,7 @@ export const upcastToActionlessModeName = (value: string): ActionlessModeName =>
       [
         JsonDecoder.isExactly("ignoreUsers"),
         JsonDecoder.isExactly("ignoreUnknownCommands"),
+        JsonDecoder.isExactly("welcome"),
       ],
       "Actionless modes"
     )
@@ -199,6 +208,9 @@ export const conversationCommands: {
   warningAmount,
   warningLimitSet,
   warningLimitShow,
+  welcomeRemove,
+  welcomeSet,
+  welcomeTest,
 };
 
 export const conversationCommandsWithAdminContext: {

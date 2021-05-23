@@ -15,13 +15,17 @@ export default async (req: VercelRequest, res: VercelResponse) => {
   if (data.type === "message_new") {
     const { message } = data.object;
 
-    if (message.from_id > 0) {
-      await createSettingsCollections();
-      await handleMessage(message);
+    try {
+      if (message.from_id > 0) {
+        await createSettingsCollections();
+        await handleMessage(message);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      res.send("ok");
+      return;
     }
-
-    res.send("ok");
-    return;
   }
 
   res.send("ok");

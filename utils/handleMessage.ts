@@ -2,6 +2,7 @@ import { User, VkError, VkErrorCode } from "vk-ts";
 import { ConversationMember } from "vk-ts/dist/methods/messagesGetConversationMembers";
 import { AdminContext } from "../commands";
 import getChatSettings from "./database/getChatSettings";
+import generateVkUserLink from "./generateVkUserLink";
 import getCallbackServerSettings from "./getCallbackServerSettings";
 import handleConversationMessage from "./handleConversationMessage";
 import handleModes from "./handleModes";
@@ -62,9 +63,43 @@ const handleMessage = async (message: Message) => {
       action !== null &&
       action.type === "chat_invite_user" &&
       action.member_id === -variables.groupId;
+
     if (botIsInvited) {
       await vk.messagesSend(peerId, phrase("common_hello"));
     }
+
+    const newUserJoined =
+      (action !== null &&
+        action.type === "chat_invite_user_by_link" &&
+        fromId >= 0) ||
+      (action?.type === "chat_invite_user" && action.member_id >= 0);
+
+    if (newUserJoined) {
+      const newUserId =
+        action?.type === "chat_invite_user" ? action.member_id : fromId;
+
+      const [settings, adminContext] = await Promise.all([
+        getChatSettings(peerId),
+        getAdminContext(peerId, newUserId),
+      ]);
+
+      const userLink = generateVkUserLink(
+        newUserId,
+        adminContext?.profiles.get(newUserId)?.first_name
+      );
+
+      const welcomeMessage =
+        settings.welcome ?? phrase("common_defaultWelcomeMessage");
+
+      await vk.messagesSend(
+        peerId,
+        phrase("common_welcome", {
+          userLink,
+          welcomeMessage,
+        })
+      );
+    }
+
     if (action === null) {
       const [settings, adminContext] = await Promise.all([
         getChatSettings(peerId),

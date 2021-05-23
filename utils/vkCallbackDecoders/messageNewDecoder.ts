@@ -1,8 +1,18 @@
+import { JsonDecoder } from "ts.data.json";
 import variables from "../variables";
 import vkCallbackWithObjectRequestDecoder, {
   VkCallbackRequestWithObject,
 } from "./vkCallbackWithObjectDecoder";
-import { JsonDecoder } from "ts.data.json";
+
+type Action =
+  | {
+      type: "chat_invite_user";
+      member_id: number;
+    }
+  | {
+      type: "chat_invite_user_by_link";
+    }
+  | null;
 
 export interface Message {
   id: number;
@@ -11,10 +21,7 @@ export interface Message {
   peer_id: number;
   from_id: number;
   conversation_message_id: number;
-  action: {
-    type: "chat_invite_user";
-    member_id: number;
-  } | null;
+  action: Action;
 }
 
 interface MessageNew {
@@ -29,12 +36,20 @@ const messageDecoder = JsonDecoder.object<Message>(
     peer_id: JsonDecoder.number,
     from_id: JsonDecoder.number,
     conversation_message_id: JsonDecoder.number,
-    action: JsonDecoder.oneOf(
+    action: JsonDecoder.oneOf<Action>(
       [
         JsonDecoder.object(
           {
             type: JsonDecoder.isExactly<"chat_invite_user">("chat_invite_user"),
             member_id: JsonDecoder.number,
+          },
+          "Action"
+        ),
+        JsonDecoder.object(
+          {
+            type: JsonDecoder.isExactly<"chat_invite_user_by_link">(
+              "chat_invite_user_by_link"
+            ),
           },
           "Action"
         ),

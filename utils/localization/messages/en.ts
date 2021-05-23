@@ -129,6 +129,8 @@ const en = {
     "I tried to kick {userLink}, but there is a problem with your callback server. {modLink}, please kick { sex, select, male {him} female {her} unknown {them}} manualy and check your callback server",
   common_kickWithSomeonesCallbackServerFailed:
     "I tried to kick {userLink}, but there is a problem with the callback server. {modLink}, please kick { sex, select, male {him} female {her} unknown {them}} manualy and ask {callbackOwnerLink} to check { callbackOwnerSex, select, male {his} female {her} unknown {their}} callback server",
+  common_welcome: "{userLink}, {welcomeMessage}",
+  common_defaultWelcomeMessage: "hey there, welcome to the chat",
 
   echo_description: "echoes all new messages in the chat",
   echo_enabledText: "I'll be repeating all messages in the chat",
@@ -156,7 +158,7 @@ const en = {
   ignoreUsers_enabledText: "I will ignore commands from regular users",
 
   kick_description: "kicks user",
-  kick_failNoUserId: 'Type id of user to kick after the command name',
+  kick_failNoUserId: "Type id of user to kick after the command name",
   kick_willBeKicked: "Okay, I will kick {userLink}",
 
   profanityFilter_description: "deletes messages with Russian swear words",
@@ -165,9 +167,9 @@ const en = {
   profanityFilter_disabledText:
     "Okay, I won't remove messages with swear words anymore",
   profanityFilter_success:
-    "{userLink}, I warn you for using word \"{word}\". You have {count, plural, =0 {no warnings} one {1 warning out of {maxCount}} other {# warnings out of {maxCount}}}",
+    '{userLink}, I warn you for using word "{word}". You have {count, plural, =0 {no warnings} one {1 warning out of {maxCount}} other {# warnings out of {maxCount}}}',
   profanityFilter_willBeKickedWithCallback:
-    "{userLink}, I warn you for using word \"{word}\". Your amount of warnings has hit the limit of {maxCount}, so you will be kicked",
+    '{userLink}, I warn you for using word "{word}". Your amount of warnings has hit the limit of {maxCount}, so you will be kicked',
 
   remove_description: "removes message with this command",
 
@@ -272,10 +274,36 @@ const en = {
     "The limit of warnings per user is {warningsLimit}. User gets kicked if they reach the limit",
 
   warningRemove_description: "removes warning from user",
-  warningRemove_failNoUserId: 'Type id of user to unwarn after the command name',
+  warningRemove_failNoUserId:
+    "Type id of user to unwarn after the command name",
   warningRemove_faliNoWarnsAlready: "@id{id} ({name}) already has no warnings",
   warningRemove_success:
     "@id{id} ({name}) has been unwarned. { sex, select, male {He has} female {She has} unknown {They have}} {count, plural, =0 {no warnings} one {1 warning out of {maxCount}} other {# warnings out of {maxCount}}}",
+
+  welcome_description: "welcomes new users",
+  welcome_enabledText:
+    "I'll welcome new users in the chat. You can customize welcome message using /welcomeSet command. Also you can test welcome message using /welcomeTest command",
+  welcome_disabledText: "Okay, I'll stop welcoming new chat users",
+
+  welcomeRemove_description: "removes custom welcome message",
+  welcomeRemove_failNoMessage: "There's no saved welcome message",
+  welcomeRemove_failNoMessageWithModeHint:
+    "There's no saved welcome message. If you want me to stop welcoming new users, disable /welcome mode",
+  welcomeRemove_success: "I've removed custom welcome message",
+  welcomeRemove_successWithModeHint:
+    "I've removed custom welcome message, I will welcome new users with default welcome message. If you want me to stop welcoming new users, disable /welcome mode",
+
+  welcomeSet_description: "sets custom welcome message",
+  welcomeSet_failNoMessage:
+    "Type your custom welcome message after the command name",
+  welcomeSet_success:
+    "I've set custom welcome message. Use /welcomeTest command to test it",
+  welcomeSet_successWithModeHint:
+    "I've set custom welcome message. Don't forget to enable /welcome mode, so I will use this message to welcome new users",
+
+  welcomeTest_description: "shows wellcome message",
+  welcomeTest_failModeIsDisabled:
+    "Mode /welcome is disabled, so I can't show welcome message. Enable it so I will welcome new users",
 };
 
 export default en;
