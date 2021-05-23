@@ -69,17 +69,23 @@ const handleMessage = async (message: Message) => {
     }
 
     const newUserJoined =
-      action !== null && action.type === "chat_invite_user_by_link";
+      (action !== null &&
+        action.type === "chat_invite_user_by_link" &&
+        fromId >= 0) ||
+      (action?.type === "chat_invite_user" && action.member_id >= 0);
 
     if (newUserJoined) {
+      const newUserId =
+        action?.type === "chat_invite_user" ? action.member_id : fromId;
+
       const [settings, adminContext] = await Promise.all([
         getChatSettings(peerId),
-        getAdminContext(peerId, fromId),
+        getAdminContext(peerId, newUserId),
       ]);
 
       const userLink = generateVkUserLink(
-        fromId,
-        adminContext?.profiles.get(fromId)?.first_name
+        newUserId,
+        adminContext?.profiles.get(newUserId)?.first_name
       );
 
       const welcomeMessage =
