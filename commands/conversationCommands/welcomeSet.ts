@@ -12,7 +12,14 @@ const command: ConversationCommand = async (
 ) => {
   const { peer_id: peerId, text } = message;
 
-  const welcomeMessage = text.slice(text.indexOf(" ")).trim();
+  const indexOfSpace = text.indexOf(" ");
+
+  if (indexOfSpace === -1) {
+    await vk.messagesSend(peerId, phrase("welcomeSet_failNoMessage"));
+    return;
+  }
+
+  const welcomeMessage = text.slice(indexOfSpace).trim();
 
   if (welcomeMessage.length === 0) {
     await vk.messagesSend(peerId, phrase("welcomeSet_failNoMessage"));
