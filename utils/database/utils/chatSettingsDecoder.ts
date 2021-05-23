@@ -9,6 +9,7 @@ const chatSettingsDecoder = JsonDecoder.object<ChatSettings>(
       {
         ignoreUnknownCommands: optionalDecoder(JsonDecoder.isExactly(true)),
         ignoreUsers: optionalDecoder(JsonDecoder.isExactly(true)),
+        welcome: optionalDecoder(JsonDecoder.isExactly(true)),
       },
       "Actionless modes"
     ),
@@ -48,6 +49,7 @@ const chatSettingsDecoder = JsonDecoder.object<ChatSettings>(
       [JsonDecoder.number, JsonDecoder.isUndefined(defaultWarningsLimit)],
       "Warnings limit"
     ),
+    welcome: optionalDecoder(JsonDecoder.string),
   },
   "Chat settings"
 );

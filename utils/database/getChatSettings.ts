@@ -20,10 +20,15 @@ export interface ChatSettings {
     [userId: string]: number;
   };
   warningsLimit: number;
+  welcome: string | null;
 }
 
 const getDefaultSettings = (): ChatSettings => ({
-  actionlessModes: { ignoreUnknownCommands: null, ignoreUsers: null },
+  actionlessModes: {
+    ignoreUnknownCommands: null,
+    ignoreUsers: null,
+    welcome: null,
+  },
   modes: { echo: null },
   callbackModes: { stop: null, removeCommands: null, profanityFilter: null },
   callbackServerUserId: null,
@@ -31,6 +36,7 @@ const getDefaultSettings = (): ChatSettings => ({
   templates: {},
   warnings: {},
   warningsLimit: defaultWarningsLimit,
+  welcome: null,
 });
 
 const getChatSettings = async (peerId: number): Promise<ChatSettings> => {
