@@ -159,6 +159,7 @@ export const upcastToActionlessModeName = (value: string): ActionlessModeName =>
       [
         JsonDecoder.isExactly("ignoreUsers"),
         JsonDecoder.isExactly("ignoreUnknownCommands"),
+        JsonDecoder.isExactly("welcome"),
       ],
       "Actionless modes"
     )
