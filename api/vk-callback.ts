@@ -20,6 +20,8 @@ export default async (req: VercelRequest, res: VercelResponse) => {
         await createSettingsCollections();
         await handleMessage(message);
       }
+    } catch (error) {
+      console.error(error);
     } finally {
       res.send("ok");
       return;
