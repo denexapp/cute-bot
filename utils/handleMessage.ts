@@ -83,21 +83,23 @@ const handleMessage = async (message: Message) => {
         getAdminContext(peerId, newUserId),
       ]);
 
-      const userLink = generateVkUserLink(
-        newUserId,
-        adminContext?.profiles.get(newUserId)?.first_name
-      );
+      if (settings.actionlessModes.welcome) {
+        const userLink = generateVkUserLink(
+          newUserId,
+          adminContext?.profiles.get(newUserId)?.first_name
+        );
 
-      const welcomeMessage =
-        settings.welcome ?? phrase("common_defaultWelcomeMessage");
+        const welcomeMessage =
+          settings.welcome ?? phrase("common_defaultWelcomeMessage");
 
-      await vk.messagesSend(
-        peerId,
-        phrase("common_welcome", {
-          userLink,
-          welcomeMessage,
-        })
-      );
+        await vk.messagesSend(
+          peerId,
+          phrase("common_welcome", {
+            userLink,
+            welcomeMessage,
+          })
+        );
+      }
     }
 
     if (action === null) {
