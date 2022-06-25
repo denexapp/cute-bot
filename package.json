@@ -21,7 +21,7 @@
     "faunadb": "^4.2.0",
     "intl-messageformat": "^9.6.11",
     "nanoid": "^3.1.22",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.7",
     "russian-bad-words": "^0.5.0",
     "ts.data.json": "^1.7.0",
     "vk-ts": "^0.16.2"
